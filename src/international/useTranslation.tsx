@@ -22,6 +22,7 @@ import { useRouter } from "next/router";
 
 type Namespace = "common" | "home" | "who" | "what" | "how" | "projects" | "shop" | "contact";
 type TranslationKeys = "en" | "pt-BR";
+type Translations = Record<string, string>;
 
 const translations: Record<TranslationKeys, Record<Namespace, typeof commonEn>> = {
     en: {
@@ -55,5 +56,5 @@ export function useTranslation(namespace: Namespace) {
         t = translations[locale as TranslationKeys][namespace];
     }
 
-    return { t };
+    return { t: t as Translations };
 }
