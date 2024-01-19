@@ -1,12 +1,14 @@
 import { motion as m } from "framer-motion";
 
 import { useTranslation } from "@/international/useTranslation";
+import Image from "next/image";
 
 export default function What() {
     const { t } = useTranslation("what");
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
+            <Image src="/imgs/pragmatas_logo_comercial_black.png" width={500} height={500} alt="pragmatas" className="Image" />
             <p>{t.description1}</p>
             <p>{t.description2}</p>
             <p>{t.description3}</p>
