@@ -1,6 +1,9 @@
 {
-    "slogan": "Invention Attelier",
+    "pageName": "Home",
+    "pageTitle": "Creative Lab and Beacon of Inventions",
+    "pageDescription": "We are a Creative Lab, focused on providing Art & Design services and developing our own Products.",
+
     "greeting": "Hello Weary Traveller",
-    "welcomeMessage": "Welcome to our home page!",
+    "welcomeMessage": "Welcome to our world!",
     "ctaButton": "Click here to know more about us"
 }

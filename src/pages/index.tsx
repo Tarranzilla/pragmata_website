@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { motion as m } from "framer-motion";
+
 import { useTranslation } from "@/international/useTranslation";
 import LangSwitch from "@/components/buttons/LangSwitch";
 
@@ -17,13 +18,10 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <m.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={""}>
-                <h1>Pragmatas</h1>
-                <h2>{t.slogan}</h2>
+            <m.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={"ContentViewer"}>
                 <h3>{t.greeting}</h3>
                 <h4>{t.welcomeMessage}</h4>
                 <Link href={"/who"}>{t.ctaButton}</Link>
-                <LangSwitch />
             </m.main>
         </>
     );

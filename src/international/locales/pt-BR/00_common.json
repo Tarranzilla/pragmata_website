@@ -1,4 +1,16 @@
 {
     "none": "none",
-    "langSwitch": "Mudar Idioma"
+    "langSwitch": "Mudar Idioma",
+    "colorSwitch": "Mudar Modo de Cor",
+    "shareBtn": "Compartilhar Página",
+    "menuBtn": "Abrir Menu",
+    "prevPage": "Página Anterior",
+    "nextPage": "Próxima Página",
+
+    "page1": "Início",
+    "page2": "Quem Somos",
+    "page3": "O Que Fazemos",
+    "page4": "Projetos",
+    "page5": "Farol",
+    "page6": "Contato"
 }

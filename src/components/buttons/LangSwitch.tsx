@@ -16,5 +16,9 @@ export default function LangSwitch() {
         router.push(currentPath, currentPath, { locale: newLocale });
     };
 
-    return <button onClick={changeLanguage}>{t.langSwitch}</button>;
+    return (
+        <button className="Nav_Button" onClick={changeLanguage}>
+            {t.langSwitch}
+        </button>
+    );
 }

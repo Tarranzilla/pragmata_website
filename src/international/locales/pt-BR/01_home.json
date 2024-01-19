@@ -1,6 +1,9 @@
 {
-    "slogan": "Ateliê de Invenções",
+    "pageName": "Início",
+    "pageTitle": "Laboratório Criativo e Farol de Invenções",
+    "pageDescription": "Somos um Laboratório Criativo focado no Desenvolvimento de Serviços de Arte & Design e na Criação de nossos Próprios Produtos.",
+
     "greeting": "Olá Viajante Anônimo",
-    "welcomeMessage": "Seja bem vindo ao nosso site!",
+    "welcomeMessage": "Seja bem vindo ao nosso mundo!",
     "ctaButton": "Clique aqui para saber mais sobre nós!"
 }

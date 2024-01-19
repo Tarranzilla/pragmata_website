@@ -20,11 +20,31 @@ import contactPtBR from "./locales/pt-BR/07_contact.json";
 
 import { useRouter } from "next/router";
 
-type Namespace = "common" | "home" | "who" | "what" | "how" | "projects" | "shop" | "contact";
+type CommonTranslations = typeof commonEn;
+
+type HomeTranslations = typeof homeEn;
+type WhoTranslations = typeof whoEn;
+type WhatTranslations = typeof whatEn;
+type HowTranslations = typeof howEn;
+type ProjectsTranslations = typeof projectsEn;
+type ShopTranslations = typeof shopEn;
+type ContactTranslations = typeof contactEn;
+
+type PageTranslations =
+    | CommonTranslations
+    | HomeTranslations
+    | WhoTranslations
+    | WhatTranslations
+    | HowTranslations
+    | ProjectsTranslations
+    | ShopTranslations
+    | ContactTranslations;
+
+export type Namespace = string;
 type TranslationKeys = "en" | "pt-BR";
 type Translations = Record<string, string>;
 
-const translations: Record<TranslationKeys, Record<Namespace, typeof commonEn>> = {
+const translations: Record<TranslationKeys, Record<string, PageTranslations>> = {
     en: {
         common: commonEn,
         home: homeEn,
