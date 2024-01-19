@@ -3,14 +3,16 @@ import { Namespace } from "@/international/useTranslation";
 
 import { motion as m, AnimatePresence } from "framer-motion";
 
+import { useColorMode } from "@/pages/_app";
+
 type HeaderProps = {
     currentRoute: string;
-    colorMode: "light" | "dark";
-    setColorMode: (mode: "light" | "dark") => void;
 };
 
-export default function Header({ currentRoute, colorMode, setColorMode }: HeaderProps) {
+export default function Header({ currentRoute }: HeaderProps) {
     const { t: tCommon } = useTranslation("common");
+
+    const { colorMode, setColorMode } = useColorMode();
 
     // If currentRoute is '/', change it to 'home'
     let pageNamespace;

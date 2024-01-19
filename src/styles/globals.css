@@ -90,6 +90,11 @@ body.dark-mode {
     max-height: 50vh;
 }
 
+.InvertedImage {
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+
 a {
     color: var(--text-color);
 }

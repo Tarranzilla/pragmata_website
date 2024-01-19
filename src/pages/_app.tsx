@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
 import { AnimatePresence, color } from "framer-motion";
 import { useRouter } from "next/router";
@@ -8,6 +8,18 @@ import { useRouter } from "next/router";
 import Header from "@/components/main/01_Header";
 import Navbar from "@/components/main/03_Navbar";
 import Menu from "@/components/main/04_Menu";
+
+export const ColorModeContext = createContext<{
+    colorMode: "light" | "dark";
+    setColorMode: React.Dispatch<React.SetStateAction<"light" | "dark">>;
+}>({
+    colorMode: "light",
+    setColorMode: () => {},
+});
+
+export function useColorMode() {
+    return useContext(ColorModeContext);
+}
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -35,17 +47,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
         <>
-            <Header currentRoute={routeWithoutLeadingSlash} colorMode={colorMode} setColorMode={setColorMode} />
+            <ColorModeContext.Provider value={{ colorMode, setColorMode }}>
+                <Header currentRoute={routeWithoutLeadingSlash} />
 
-            <AnimatePresence mode="wait">{isMenuOpen && <Menu closeMenu={closeMenu} />}</AnimatePresence>
+                <AnimatePresence mode="wait">{isMenuOpen && <Menu closeMenu={closeMenu} />}</AnimatePresence>
 
-            <div className="ContentViewer_Wrapper">
-                <AnimatePresence mode="wait">
-                    <Component {...pageProps} key={router.route} />
-                </AnimatePresence>
-            </div>
+                <div className="ContentViewer_Wrapper">
+                    <AnimatePresence mode="wait">
+                        <Component {...pageProps} key={router.route} />
+                    </AnimatePresence>
+                </div>
 
-            <Navbar currentRoute={route} isMenuOpen={isMenuOpen} closeMenu={closeMenu} toggleMenu={toggleMenu} />
+                <Navbar currentRoute={route} isMenuOpen={isMenuOpen} closeMenu={closeMenu} toggleMenu={toggleMenu} />
+            </ColorModeContext.Provider>
         </>
     );
 }
