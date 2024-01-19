@@ -17,6 +17,8 @@ const pages: { [key: string]: string } = {
     "/projects": "projects",
     "/shop": "shop",
     "/contact": "contact",
+    "/404": "err404",
+    "/500": "err500",
 };
 
 function getPrevAndNextPages(currentPage: string) {

@@ -7,6 +7,8 @@ import howEn from "./locales/en/04_how.json";
 import projectsEn from "./locales/en/05_projects.json";
 import shopEn from "./locales/en/06_shop.json";
 import contactEn from "./locales/en/07_contact.json";
+import en404 from "./locales/en/08_404.json";
+import en500 from "./locales/en/09_500.json";
 
 // Portuguese Imports
 import commonPtBR from "./locales/pt-BR/00_common.json";
@@ -17,6 +19,8 @@ import howPtBR from "./locales/pt-BR/04_how.json";
 import projectsPtBR from "./locales/pt-BR/05_projects.json";
 import shopPtBR from "./locales/pt-BR/06_shop.json";
 import contactPtBR from "./locales/pt-BR/07_contact.json";
+import ptBR404 from "./locales/pt-BR/08_404.json";
+import ptBR500 from "./locales/pt-BR/09_500.json";
 
 import { useRouter } from "next/router";
 
@@ -29,6 +33,7 @@ type HowTranslations = typeof howEn;
 type ProjectsTranslations = typeof projectsEn;
 type ShopTranslations = typeof shopEn;
 type ContactTranslations = typeof contactEn;
+type ErrorTranslations = typeof en404 | typeof en500;
 
 type PageTranslations =
     | CommonTranslations
@@ -38,7 +43,8 @@ type PageTranslations =
     | HowTranslations
     | ProjectsTranslations
     | ShopTranslations
-    | ContactTranslations;
+    | ContactTranslations
+    | ErrorTranslations;
 
 export type Namespace = string;
 type TranslationKeys = "en" | "pt-BR";
@@ -54,6 +60,8 @@ const translations: Record<TranslationKeys, Record<string, PageTranslations>> = 
         projects: projectsEn,
         shop: shopEn,
         contact: contactEn,
+        err404: en404,
+        err500: en500,
     },
     "pt-BR": {
         common: commonPtBR,
@@ -64,6 +72,8 @@ const translations: Record<TranslationKeys, Record<string, PageTranslations>> = 
         projects: projectsPtBR,
         shop: shopPtBR,
         contact: contactPtBR,
+        err404: ptBR404,
+        err500: ptBR500,
     },
 };
 

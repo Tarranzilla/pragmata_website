@@ -11,7 +11,16 @@ export default function Header({ currentRoute, colorMode, setColorMode }: Header
     const { t: tCommon } = useTranslation("common");
 
     // If currentRoute is '/', change it to 'home'
-    const pageNamespace = currentRoute === "" ? "home" : currentRoute;
+    let pageNamespace;
+    if (currentRoute === "") {
+        pageNamespace = "home";
+    } else if (currentRoute === "404") {
+        pageNamespace = "err404";
+    } else if (currentRoute === "500") {
+        pageNamespace = "err500";
+    } else {
+        pageNamespace = currentRoute;
+    }
 
     const { t: tPage } = useTranslation(pageNamespace);
 
