@@ -18,25 +18,25 @@ export default function Menu({ closeMenu }: MenuProps) {
             className="Menu"
         >
             <div className="PageList">
-                <Link onClick={closeMenu} href="/">
+                <Link className="MenuLink" onClick={closeMenu} href="/">
                     {tCommon.page1}
                 </Link>
-                <Link onClick={closeMenu} href="/who">
+                <Link className="MenuLink" onClick={closeMenu} href="/who">
                     {tCommon.page2}
                 </Link>
-                <Link onClick={closeMenu} href="/what">
+                <Link className="MenuLink" onClick={closeMenu} href="/what">
                     {tCommon.page3}
                 </Link>
-                <Link onClick={closeMenu} href="/how">
+                <Link className="MenuLink" onClick={closeMenu} href="/how">
                     {tCommon.page4}
                 </Link>
-                <Link onClick={closeMenu} href="/projects">
+                <Link className="MenuLink" onClick={closeMenu} href="/projects">
                     {tCommon.page5}
                 </Link>
-                <Link onClick={closeMenu} href="/shop">
+                <Link className="MenuLink" onClick={closeMenu} href="/shop">
                     {tCommon.page6}
                 </Link>
-                <Link onClick={closeMenu} href="/contact">
+                <Link className="MenuLink" onClick={closeMenu} href="/contact">
                     {tCommon.page7}
                 </Link>
             </div>

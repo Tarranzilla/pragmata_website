@@ -9,6 +9,7 @@ import { useState } from "react";
 
 type NavbarProps = {
     currentRoute: string;
+    isMenuOpen: boolean;
     closeMenu: () => void;
     toggleMenu: () => void;
 };
@@ -37,10 +38,11 @@ function getPrevAndNextPages(currentPage: string) {
     return { prevPage, nextPage };
 }
 
-export default function Navbar({ currentRoute, toggleMenu, closeMenu }: NavbarProps) {
+export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu }: NavbarProps) {
     const { t: tCommon } = useTranslation("common");
     const { t: tPage } = useTranslation(pages[currentRoute]);
 
+    const pageKeys = Object.keys(pages).filter((page) => page !== "/404" && page !== "/500");
     const { prevPage, nextPage } = getPrevAndNextPages(currentRoute);
 
     const [direction, setDirection] = useState(0); // 0 for next, 1 for previous
@@ -73,7 +75,15 @@ export default function Navbar({ currentRoute, toggleMenu, closeMenu }: NavbarPr
                     </m.h2>
                 </AnimatePresence>
 
-                <h1>Pragmatas</h1>
+                {currentRoute !== "/404" && currentRoute !== "/500" && (
+                    <div className="NavigationIndicator">
+                        {pageKeys.map((page, index) => (
+                            <div key={index} className={`NavigationCircle ${currentRoute === page ? "Active" : ""}`} />
+                        ))}
+                    </div>
+                )}
+
+                <h1 className="BrandName">pragmatas</h1>
             </div>
             <div className="Navbar_Right">
                 <Link
@@ -87,7 +97,7 @@ export default function Navbar({ currentRoute, toggleMenu, closeMenu }: NavbarPr
                     {tCommon["nextPage"]}
                 </Link>
                 <button onClick={toggleMenu} className={"Nav_Button"}>
-                    {tCommon["menuBtn"]}
+                    {tCommon[isMenuOpen ? "closeMenuBtn" : "menuBtn"]}
                 </button>
             </div>
         </div>

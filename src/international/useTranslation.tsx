@@ -5,6 +5,7 @@ import whoEn from "./locales/en/02_who.json";
 import whatEn from "./locales/en/03_what.json";
 import howEn from "./locales/en/04_how.json";
 import projectsEn from "./locales/en/05_projects.json";
+import projectsListEn from "./locales/en/05b_projects_list.json";
 import shopEn from "./locales/en/06_shop.json";
 import contactEn from "./locales/en/07_contact.json";
 import en404 from "./locales/en/08_404.json";
@@ -17,6 +18,7 @@ import whoPtBR from "./locales/pt-BR/02_who.json";
 import whatPtBR from "./locales/pt-BR/03_what.json";
 import howPtBR from "./locales/pt-BR/04_how.json";
 import projectsPtBR from "./locales/pt-BR/05_projects.json";
+import projectsListPtBR from "./locales/pt-BR/05b_projects_list.json";
 import shopPtBR from "./locales/pt-BR/06_shop.json";
 import contactPtBR from "./locales/pt-BR/07_contact.json";
 import ptBR404 from "./locales/pt-BR/08_404.json";
@@ -35,6 +37,8 @@ type ShopTranslations = typeof shopEn;
 type ContactTranslations = typeof contactEn;
 type ErrorTranslations = typeof en404 | typeof en500;
 
+type ProjectListTranslations = typeof projectsListEn;
+
 type PageTranslations =
     | CommonTranslations
     | HomeTranslations
@@ -44,7 +48,8 @@ type PageTranslations =
     | ProjectsTranslations
     | ShopTranslations
     | ContactTranslations
-    | ErrorTranslations;
+    | ErrorTranslations
+    | ProjectListTranslations;
 
 export type Namespace = string;
 type TranslationKeys = "en" | "pt-BR";
@@ -62,6 +67,7 @@ const translations: Record<TranslationKeys, Record<string, PageTranslations>> = 
         contact: contactEn,
         err404: en404,
         err500: en500,
+        projList: projectsListEn,
     },
     "pt-BR": {
         common: commonPtBR,
@@ -74,6 +80,7 @@ const translations: Record<TranslationKeys, Record<string, PageTranslations>> = 
         contact: contactPtBR,
         err404: ptBR404,
         err500: ptBR500,
+        projList: projectsListPtBR,
     },
 };
 

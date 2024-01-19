@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 </AnimatePresence>
             </div>
 
-            <Navbar currentRoute={route} closeMenu={closeMenu} toggleMenu={toggleMenu} />
+            <Navbar currentRoute={route} isMenuOpen={isMenuOpen} closeMenu={closeMenu} toggleMenu={toggleMenu} />
         </>
     );
 }

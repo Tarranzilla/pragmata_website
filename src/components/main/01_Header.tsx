@@ -51,7 +51,13 @@ export default function Header({ currentRoute, colorMode, setColorMode }: Header
 
             <div className="Header_Center">
                 <AnimatePresence mode="wait">
-                    <m.h2 key={tPage.pageTitle} initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }}>
+                    <m.h2
+                        className="HeaderPageTitle"
+                        key={tPage.pageTitle}
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -50 }}
+                    >
                         {tPage.pageTitle}
                     </m.h2>
                 </AnimatePresence>
