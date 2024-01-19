@@ -11,7 +11,12 @@ export default function Menu({ closeMenu }: MenuProps) {
     const { t: tCommon } = useTranslation("common");
 
     return (
-        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Menu">
+        <m.div
+            initial={{ opacity: 0, y: "100vh" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+            exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+            className="Menu"
+        >
             <div className="PageList">
                 <Link onClick={closeMenu} href="/">
                     {tCommon.page1}

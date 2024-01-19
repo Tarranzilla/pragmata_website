@@ -1,6 +1,8 @@
 import { useTranslation } from "@/international/useTranslation";
 import { Namespace } from "@/international/useTranslation";
 
+import { motion as m, AnimatePresence } from "framer-motion";
+
 type HeaderProps = {
     currentRoute: string;
     colorMode: "light" | "dark";
@@ -48,7 +50,11 @@ export default function Header({ currentRoute, colorMode, setColorMode }: Header
             <button onClick={toggleColorMode}>{tCommon.colorSwitch}</button>
 
             <div className="Header_Center">
-                <h2>{tPage.pageTitle}</h2>
+                <AnimatePresence mode="wait">
+                    <m.h2 key={tPage.pageTitle} initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }}>
+                        {tPage.pageTitle}
+                    </m.h2>
+                </AnimatePresence>
             </div>
 
             <button onClick={share}>{tCommon.shareBtn}</button>

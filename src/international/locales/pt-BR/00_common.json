@@ -15,10 +15,10 @@
     "page6": "Contato",
 
     "pageName404": "404",
-    "pageTitle404": "Page Not Found",
-    "pageDescription404": "The page you are looking for does not exist.",
+    "pageTitle404": "Página não encontrada",
+    "pageDescription404": "A página que você está procurando não existe.",
 
     "pageName500": "500",
-    "pageTitle500": "Internal Server Error",
-    "pageDescription500": "An error occurred while processing your request."
+    "pageTitle500": "Erro de Servidor Interno",
+    "pageDescription500": "Um erro ocorreu ao processar seu requerimento."
 }
