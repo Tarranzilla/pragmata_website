@@ -74,6 +74,7 @@ export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: direction === 0 ? -100 : 100 }}
                         transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+                        className="PageName"
                     >
                         {tPage["pageName"]}
                     </m.h2>

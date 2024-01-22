@@ -62,6 +62,11 @@
     font-family: "Chantal", sans-serif;
 }
 
+p {
+    font-size: 1.15rem;
+    line-height: 1.8rem;
+}
+
 html,
 body,
 #__next {
@@ -297,6 +302,11 @@ button {
 
     padding: 1rem;
     gap: 1rem;
+}
+
+.PageName {
+    font-family: "Delimiter";
+    font-size: 2rem;
 }
 
 @media (max-width: 900px) {
