@@ -26,20 +26,41 @@ import ptBR500 from "./locales/pt-BR/09_500.json";
 
 import { useRouter } from "next/router";
 
-type CommonTranslations = typeof commonEn;
+export type CommonTranslations = typeof commonEn;
 
-type HomeTranslations = typeof homeEn;
-type WhoTranslations = typeof whoEn;
-type WhatTranslations = typeof whatEn;
-type HowTranslations = typeof howEn;
-type ProjectsTranslations = typeof projectsEn;
-type ShopTranslations = typeof shopEn;
-type ContactTranslations = typeof contactEn;
-type ErrorTranslations = typeof en404 | typeof en500;
+export type HomeTranslations = typeof homeEn;
+export type WhoTranslations = typeof whoEn;
 
-type ProjectListTranslations = typeof projectsListEn;
+export type CategoryTranslations = {
+    title: string;
+    subitems: string[];
+};
 
-type PageTranslations =
+export type WhatTranslations = {
+    pageName: string;
+    pageTitle: string;
+    pageDescription: string;
+    categories: CategoryTranslations[];
+};
+
+export type HowTranslations = typeof howEn;
+export type ProjectsTranslations = typeof projectsEn;
+export type ShopTranslations = typeof shopEn;
+export type ContactTranslations = typeof contactEn;
+export type ErrorTranslations = typeof en404 | typeof en500;
+
+export type ProjectListObject = {
+    title: string;
+    subtitle: string;
+    description: string;
+};
+
+export type ProjectListTranslations = {
+    projects: ProjectListObject[];
+    // Add more properties here as needed
+};
+
+export type PageTranslations =
     | CommonTranslations
     | HomeTranslations
     | WhoTranslations
@@ -53,7 +74,6 @@ type PageTranslations =
 
 export type Namespace = string;
 type TranslationKeys = "en" | "pt-BR";
-type Translations = Record<string, string>;
 
 const translations: Record<TranslationKeys, Record<string, PageTranslations>> = {
     en: {
@@ -84,7 +104,7 @@ const translations: Record<TranslationKeys, Record<string, PageTranslations>> = 
     },
 };
 
-export function useTranslation(namespace: Namespace) {
+export function useTranslation<T = Record<string, unknown>>(namespace: string): T {
     const router = useRouter();
     const { locale } = router;
 
@@ -93,5 +113,5 @@ export function useTranslation(namespace: Namespace) {
         t = translations[locale as TranslationKeys][namespace];
     }
 
-    return { t: t as Translations };
+    return t as T;
 }

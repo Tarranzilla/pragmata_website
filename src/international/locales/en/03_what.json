@@ -2,13 +2,95 @@
     "pageName": "What",
     "pageTitle": "What we do?",
     "pageDescription": "We are a Creative Lab, focused on providing Art & Design services and developing our own Products.",
+    "categories": [
+        {
+            "title": "GRAPHIC DESIGN",
+            "subitems": [
+                "Development of Visual Identity",
+                "Development of Printed Materials",
+                "Development of Signs and Signage",
+                "Illustration and Painting",
+                "Pop-Up Books and Handmade Binding",
+                "Redesigns and reinterpretations"
+            ]
+        },
 
-    "description1": "We are a Creative Lab, focused on providing Art & Design services and developing our own Products. We offer two main solutions:",
-    "description2": "On one side, we create and sell our own products in our carefully curated store for sustainability and modularity - called the Lighthouse of Inventions.",
-    "description3": "We seek a projectual dialogue and a blurring of the boundaries between users and designers that stimulates an alternative, autopoeitic, anthropophagic, symbiotic, and parasitic consumption logic through upcycling, open and free design, and decentralized production.",
-    "description4": "We BELIEVE THAT buying a product or service is more than enjoying a good - it is supporting an idea - and supporting an entire production network behind it.",
-    "description5": "On the other side, we offer our creativity and innovation services in graphic design, product design, web design, UI UX, services, and consulting - always moving towards sustainability.",
-    "description6": "Our design is Critical.",
-    "description7": "Through the proposition of questioning and innovative projects, we seek a genuinely new way of designing, modifying material and social reality in positive and inclusive ways so that our community has access to food, tools, services, and dignified work.",
-    "description8": "Like the idea? Then join us, let's schedule a conversation and create something MEANINGFUL!"
+        {
+            "title": "PRODUCT DESIGN",
+            "subitems": ["Product Development", "Furniture Development", "Digital Fabrication", "Machine Development", "Prototype Development"]
+        },
+
+        {
+            "title": "WEB & APP",
+            "subitems": [
+                "Interface Development (UI)",
+                "iOS App Development",
+                "Android App Development",
+                "Progressive Web App Development (PWA)",
+                "Website Development",
+                "Web Domain Registration and Management",
+                "Web Hosting",
+                "Game Development"
+            ]
+        },
+        {
+            "title": "BUSINESS",
+            "subitems": ["Brand Diagnosis (brand analysis)", "Brand Development (branding)", "Business Model Diagnosis (Strategyzer)"]
+        },
+        {
+            "title": "THINKING",
+            "subitems": [
+                "Consultancy in Creativity, Innovation, and Sustainability",
+                "Consultancy on Graphic Design, Product, Branding, and Communication Strategies",
+                "Consultancy on any product, service, or experience we offer"
+            ]
+        },
+        {
+            "title": "AUDIOVISUAL",
+            "subitems": [
+                "Animations",
+                "Photographic Essay",
+                "Photographic Coverage",
+                "Audiovisual Essay",
+                "Audiovisual Coverage",
+                "Streaming",
+                "Scenography",
+                "Script Development",
+                "Stereoscopy Development (3D)",
+                "Storyboard and Script Development",
+                "Scenography Development"
+            ]
+        },
+        {
+            "title": "SUSTAINABILITY",
+            "subitems": ["Corporate Sustainability Consultancy (UN SDGs)", "Development of Sustainable Transition Plan", "Ecological Product Design"]
+        },
+        {
+            "title": "RESEARCH",
+            "subitems": ["Design Research", "Material Research", "Ecosystem Mapping", "User Experience (UX) Development"]
+        },
+        {
+            "title": "MARKETING",
+            "subitems": [
+                "Marketing Diagnosis",
+                "Event Production (Brand Activation)",
+                "Online Store Development",
+                "Point of Sale (POS) Development",
+                "Marketing Plan Development (4Ps)",
+                "Communication Plan Development (Channels)"
+            ]
+        },
+        {
+            "title": "EXPERIENCES",
+            "subitems": [
+                "Photography Class",
+                "3D Photography Class",
+                "Animation Class",
+                "Audiovisual Capture Class",
+                "Live Audiovisual Capture Class",
+                "SURU Experience (Space Development)"
+            ]
+        },
+        { "title": "DELIVERIES", "subitems": ["Design Kit", "Brand Kit", "Press Kit", "Media Kit"] }
+    ]
 }

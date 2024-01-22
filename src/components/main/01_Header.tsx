@@ -1,5 +1,4 @@
-import { useTranslation } from "@/international/useTranslation";
-import { Namespace } from "@/international/useTranslation";
+import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 
 import { motion as m, AnimatePresence } from "framer-motion";
 
@@ -9,11 +8,25 @@ type HeaderProps = {
     currentRoute: string;
 };
 
+type PageTranslations = {
+    none: string;
+    langSwitch: string;
+    colorSwitch: string;
+    shareBtn: string;
+    menuBtn: string;
+    closeMenuBtn: string;
+    prevPage: string;
+    nextPage: string;
+    page1: string;
+    page2: string;
+    page3: string;
+    page4: string;
+    // Add more properties here as needed
+    pageTitle: string;
+    sharePageTitle: string;
+};
+
 export default function Header({ currentRoute }: HeaderProps) {
-    const { t: tCommon } = useTranslation("common");
-
-    const { colorMode, setColorMode } = useColorMode();
-
     // If currentRoute is '/', change it to 'home'
     let pageNamespace;
     if (currentRoute === "") {
@@ -26,7 +39,10 @@ export default function Header({ currentRoute }: HeaderProps) {
         pageNamespace = currentRoute;
     }
 
-    const { t: tPage } = useTranslation(pageNamespace);
+    const tPage = useTranslation<PageTranslations>(pageNamespace);
+    const tCommon = useTranslation<CommonTranslations>("common");
+
+    const { colorMode, setColorMode } = useColorMode();
 
     const toggleColorMode = () => {
         setColorMode(colorMode === "light" ? "dark" : "light");
@@ -37,7 +53,7 @@ export default function Header({ currentRoute }: HeaderProps) {
             navigator
                 .share({
                     title: "Pragmatas",
-                    text: "Check out this website!",
+                    text: tCommon.sharePageTitle,
                     url: window.location.href,
                 })
                 .then(() => console.log("Successful share"))

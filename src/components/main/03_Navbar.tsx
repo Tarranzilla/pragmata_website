@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import LangSwitch from "@/components/buttons/LangSwitch";
-import { useTranslation } from "@/international/useTranslation";
+import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 
 import { motion as m, AnimatePresence } from "framer-motion";
 
@@ -12,6 +12,10 @@ type NavbarProps = {
     isMenuOpen: boolean;
     closeMenu: () => void;
     toggleMenu: () => void;
+};
+
+type PageTranslations = {
+    pageName: string;
 };
 
 const pages: { [key: string]: string } = {
@@ -39,8 +43,8 @@ function getPrevAndNextPages(currentPage: string) {
 }
 
 export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu }: NavbarProps) {
-    const { t: tCommon } = useTranslation("common");
-    const { t: tPage } = useTranslation(pages[currentRoute]);
+    const tCommon = useTranslation<CommonTranslations>("common");
+    const tPage = useTranslation<PageTranslations>(pages[currentRoute]);
 
     const pageKeys = Object.keys(pages).filter((page) => page !== "/404" && page !== "/500");
     const { prevPage, nextPage } = getPrevAndNextPages(currentRoute);

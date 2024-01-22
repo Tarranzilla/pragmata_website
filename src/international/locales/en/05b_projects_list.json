@@ -1,81 +1,104 @@
 {
-    "project1Title": "SURU",
-    "project1Subtitle": "Universal Recombinant Utility System",
-    "project1Description": "Decolonial and modular furniture that can be reconfigured to achieve different formats.",
-
-    "project2Title": "Tropical Cacao",
-    "project2Subtitle": "High-Quality Organic Chocolates",
-    "project2Description": "The power of the sun manifested in flavor.",
-
-    "project3Title": "Rewave",
-    "project3Subtitle": "Renewable Materials Laboratory",
-    "project3Description": "Creators of raw materials that will sustain a more ecological future.",
-
-    "project4Title": "Human Robotics",
-    "project4Subtitle": "Robots and Artificial Intelligence",
-    "project4Description": "Autonomous robotics has the potential to revolutionize the way we work.",
-
-    "project5Title": "Ateliê Floar",
-    "project5Subtitle": "Sustainable Clothing",
-    "project5Description": "Incredibly comfortable and stylish clothes made from recycled materials.",
-
-    "project6Title": "Full Jazz",
-    "project6Subtitle": "Music and Cuisine",
-    "project6Description": "A sophisticated restaurant, a stage for renowned and incredibly talented artists.",
-
-    "project7Title": "Rede AOBA",
-    "project7Subtitle": "Accessible Organic Foods",
-    "project7Description": "A system for the purchase and subscription of organic projects, connecting rural producers to urban centers.",
-
-    "project8Title": "Van Hack",
-    "project8Subtitle": "Global Talent Agency for Programmers",
-    "project8Description": "A platform offering job-hunting and professionalization services for technology professionals.",
-
-    "project9Title": "Taborda Lima & Associados Lawyers",
-    "project9Subtitle": "Contemporary Advocacy",
-    "project9Description": "A highly capable office addressing demands primarily related to immigration and foreign trade.",
-
-    "project10Title": "Calisto Advocacy",
-    "project10Subtitle": "Intellectual Property and Data Security",
-    "project10Description": "A modern office focused on patent publication and digital rights.",
-
-    "project11Title": "Colletive",
-    "project11Subtitle": "Cultural Experiences Worldwide",
-    "project11Description": "A platform focused on the search and realization of cultural experiences.",
-
-    "project12Title": "Jeremias",
-    "project12Subtitle": "Craft Brewery",
-    "project12Description": "A small brewery with the goal of making the most cheerful drinks in the region.",
-
-    "project13Title": "Komba",
-    "project13Subtitle": "Artisanal Kombuchas",
-    "project13Description": "A small factory of natural fermented beverages that refresh even the thirstiest of travelers.",
-
-    "project14Title": "Diva's House",
-    "project14Subtitle": "Senior Residential Condominium",
-    "project14Description": "Space dedicated to the care of senior citizens.",
-
-    "project15Title": "Nintendo Gate Control",
-    "project15Subtitle": "Gate Control",
-    "project15Description": "A reinterpretation of a console classic, now available to control whatever you want inside your home!",
-
-    "project16Title": "Cogu GO",
-    "project16Subtitle": "Natural projects",
-    "project16Description": "A store of organic food and psychotropic mushrooms.",
-
-    "project17Title": "Central COPASOL",
-    "project17Subtitle": "Food Cooperative",
-    "project17Description": "A network of organic producers with a wide variety of projects located in Paraná.",
-
-    "project18Title": "Bem Bolado",
-    "project18Subtitle": "Cultural Event",
-    "project18Description": "An event for the promotion of original art and local culture.",
-
-    "project19Title": "Pocket",
-    "project19Subtitle": "Cultural Event",
-    "project19Description": "An event for the promotion of original art and local culture.",
-
-    "project20Title": "UNVRS",
-    "project20Subtitle": "Alternative Clothing",
-    "project20Description": "A clothing brand for those who enjoy bold illustrations."
+    "projects": [
+        {
+            "title": "SURU",
+            "subtitle": "Universal Recombinant Utility System",
+            "description": "Decolonial and modular furniture that can be reconfigured to achieve different formats."
+        },
+        {
+            "title": "Tropical Cacao",
+            "subtitle": "High-Quality Organic Chocolates",
+            "description": "The power of the sun manifested in flavor."
+        },
+        {
+            "title": "Rewave",
+            "subtitle": "Renewable Materials Laboratory",
+            "description": "Creators of raw materials that will sustain a more ecological future."
+        },
+        {
+            "title": "Robotics",
+            "subtitle": "Robots and Artificial Intelligence",
+            "description": "Autonomous robotics has the potential to revolutionize the way we work."
+        },
+        {
+            "title": "Ateliê Floar",
+            "subtitle": "Sustainable Clothing",
+            "description": "Incredibly comfortable and stylish clothes made from recycled materials."
+        },
+        {
+            "title": "Full Jazz",
+            "subtitle": "Music and Cuisine",
+            "description": "A sophisticated restaurant, a stage for renowned and incredibly talented artists."
+        },
+        {
+            "title": "Rede AOBA",
+            "subtitle": "Accessible Organic Foods",
+            "description": "A system for the purchase and subscription of organic projects, connecting rural producers to urban centers."
+        },
+        {
+            "title": "Van Hack",
+            "subtitle": "Global Talent Agency for Programmers",
+            "description": "A platform offering job-hunting and professionalization services for technology professionals."
+        },
+        {
+            "title": "Taborda Lima & Associados Lawyers",
+            "subtitle": "Contemporary Advocacy",
+            "description": "A highly capable office addressing demands primarily related to immigration and foreign trade."
+        },
+        {
+            "title": "Calisto Advocacy",
+            "subtitle": "Intellectual Property and Data Security",
+            "description": "A modern office focused on patent publication and digital rights."
+        },
+        {
+            "title": "Colletive",
+            "subtitle": "Cultural Experiences Worldwide",
+            "description": "A platform focused on the search and realization of cultural experiences."
+        },
+        {
+            "title": "Jeremias",
+            "subtitle": "Craft Brewery",
+            "description": "A small brewery with the goal of making the most cheerful drinks in the region."
+        },
+        {
+            "title": "Komba",
+            "subtitle": "Artisanal Kombuchas",
+            "description": "A small factory of natural fermented beverages that refresh even the thirstiest of travelers."
+        },
+        {
+            "title": "Diva's House",
+            "subtitle": "Senior Residential Condominium",
+            "description": "Space dedicated to the care of senior citizens."
+        },
+        {
+            "title": "Nintendo Gate Control",
+            "subtitle": "Gate Control",
+            "description": "A reinterpretation of a console classic, now available to control whatever you want inside your home!"
+        },
+        {
+            "title": "Cogu GO",
+            "subtitle": "Natural Products",
+            "description": "A store of organic food and psychotropic mushrooms."
+        },
+        {
+            "title": "Central COPASOL",
+            "subtitle": "Food Cooperative",
+            "description": "A network of organic producers with a wide variety of projects located in Paraná."
+        },
+        {
+            "title": "Bem Bolado",
+            "subtitle": "Cultural Event",
+            "description": "An event for the promotion of original art and local culture."
+        },
+        {
+            "title": "Pocket",
+            "subtitle": "Cultural Event",
+            "description": "An event for the promotion of original art and local culture."
+        },
+        {
+            "title": "UNVRS",
+            "subtitle": "Alternative Clothing",
+            "description": "A clothing brand for those who enjoy bold illustrations."
+        }
+    ]
 }

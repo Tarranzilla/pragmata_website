@@ -22,5 +22,7 @@
 
     "pageName500": "500",
     "pageTitle500": "Internal Server Error",
-    "pageDescription500": "An error occurred while processing your request."
+    "pageDescription500": "An error occurred while processing your request.",
+
+    "sharePageTitle": "Art and Design united with purpose."
 }

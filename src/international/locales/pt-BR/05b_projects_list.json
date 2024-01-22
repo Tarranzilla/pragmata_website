@@ -1,81 +1,104 @@
 {
-    "project1Title": "SURU",
-    "project1Subtitle": "Sistema Utilitário Recombinante Universal",
-    "project1Description": "Mobilia Decolonial e modular que pode ser reconfigurada para obter diferentes formatos.",
-
-    "project2Title": "Tropical Cacau",
-    "project2Subtitle": "Chocolates Orgânicos de Altíssima Qualidade",
-    "project2Description": "O poder do sol manifestado em sabor.",
-
-    "project3Title": "Rewave",
-    "project3Subtitle": "Laboratório de Materiais Renováveis",
-    "project3Description": "Criadores das matérias primas que sustentarão um futuro mais ecológico.",
-
-    "project4Title": "Human Robotics",
-    "project4Subtitle": "Robôs e Inteligência Artificial",
-    "project4Description": "A robótica autônoma tem o potencial de revolucionar a forma como trabalhamos.",
-
-    "project5Title": "Ateliê Floar",
-    "project5Subtitle": "Vestuário Sustentável",
-    "project5Description": "Roupas incrivelmente confortáveis e elegantes feitas a partir de materiais reciclados.",
-
-    "project6Title": "Full Jazz",
-    "project6Subtitle": "Música e Culinária",
-    "project6Description": "Um sofisiticado restaurante, palco de renomados e talentosíssimos artistas.",
-
-    "project7Title": "Rede AOBA",
-    "project7Subtitle": "Alimentos Orgânicos Acessíveis",
-    "project7Description": "Um sistema para a compra e assinatura de produtos orgânicos, unindo os produtores rurais aos centros urbanos.",
-
-    "project8Title": "Van Hack",
-    "project8Subtitle": "Agência de Talentos Global para Progamadores",
-    "project8Description": "Uma plataforma que oferece serviços de job-hunting e profissionalização para profissionais do ramo da tecnologia.",
-
-    "project9Title": "Taborda Lima & Advogados Associados",
-    "project9Subtitle": "Advocacia Contemporânea",
-    "project9Description": "Um escritório altamente capaz de atender à demandas voltadas principalmente para imigração e comércio exterior.",
-
-    "project10Title": "Calisto Advocacia",
-    "project10Subtitle": "Propriedade Intelectual e Segurança de Dados",
-    "project10Description": "Um escritório moderno voltado à publicação de patentes e direito digital",
-
-    "project11Title": "Colletive",
-    "project11Subtitle": "Experiências Culturais pelo Mundo",
-    "project11Description": "Uma plataforma voltada à busca e realização de experiências culturais.",
-
-    "project12Title": "Jeremias",
-    "project12Subtitle": "Cervejaria Artesanal",
-    "project12Description": "Uma pequena cervejaria que tem o objetivo de fazer as bebidas mais serelepes da região.",
-
-    "project13Title": "Komba",
-    "project13Subtitle": "Kumbuchas Artesanais",
-    "project13Description": "Uma pequena fábrica de bebidas fermentadas naturais que refrescam até o mais sedento dos viajantes.",
-
-    "project14Title": "Diva's House",
-    "project14Subtitle": "Condomínio Residencial Sênior",
-    "project14Description": "Espaço voltado para o cuidado de pessoas de terceira idade.",
-
-    "project15Title": "Nintendo Gate Control",
-    "project15Subtitle": "Controle de Portão",
-    "project15Description": "A releitura de um clássico dos consoles, agora dispónível para controlar o que você quiser dentro de casa!",
-
-    "project16Title": "Cogu GO",
-    "project16Subtitle": "Produtos Naturais",
-    "project16Description": "Uma loja de cogumelos alimentícios e psicotrópicos orgânicos.",
-
-    "project17Title": "Central COPASOL",
-    "project17Subtitle": "Cooperativa Alimentar",
-    "project17Description": "Uma rede de produtores orgânicos com uma ampla variedade de produtos situada no Paraná.",
-
-    "project18Title": "Bem Bolado",
-    "project18Subtitle": "Evento Cultural",
-    "project18Description": "Um evento para a promoção da arte autoral e da cultura local.",
-
-    "project19Title": "Pocket",
-    "project19Subtitle": "Evento Cultural",
-    "project19Description": "Um evento para a promoção da arte autoral e da cultura local.",
-
-    "project20Title": "UNVRS",
-    "project20Subtitle": "Vestimenta Alternativa",
-    "project20Description": "Uma marca de roupas para quem curte aquelas ilustrações brabas."
+    "projects": [
+        {
+            "title": "SURU",
+            "subtitle": "Sistema Utilitário Recombinante Universal",
+            "description": "Mobília Decolonial e modular que pode ser reconfigurada para obter diferentes formatos."
+        },
+        {
+            "title": "Tropical Cacau",
+            "subtitle": "Chocolates Orgânicos de Altíssima Qualidade",
+            "description": "O poder do sol manifestado em sabor."
+        },
+        {
+            "title": "Rewave",
+            "subtitle": "Laboratório de Materiais Renováveis",
+            "description": "Criadores das matérias primas que sustentarão um futuro mais ecológico."
+        },
+        {
+            "title": "Human Robotics",
+            "subtitle": "Robôs e Inteligência Artificial",
+            "description": "A robótica autônoma tem o potencial de revolucionar a forma como trabalhamos."
+        },
+        {
+            "title": "Ateliê Floar",
+            "subtitle": "Vestuário Sustentável",
+            "description": "Roupas incrivelmente confortáveis e elegantes feitas a partir de materiais reciclados."
+        },
+        {
+            "title": "Full Jazz",
+            "subtitle": "Música e Culinária",
+            "description": "Um sofisticado restaurante, palco de renomados e talentosíssimos artistas."
+        },
+        {
+            "title": "Rede AOBA",
+            "subtitle": "Alimentos Orgânicos Acessíveis",
+            "description": "Um sistema para a compra e assinatura de produtos orgânicos, unindo os produtores rurais aos centros urbanos."
+        },
+        {
+            "title": "Van Hack",
+            "subtitle": "Agência de Talentos Global para Programadores",
+            "description": "Uma plataforma que oferece serviços de job-hunting e profissionalização para profissionais do ramo da tecnologia."
+        },
+        {
+            "title": "Taborda Lima & Advogados Associados",
+            "subtitle": "Advocacia Contemporânea",
+            "description": "Um escritório altamente capaz de atender à demandas voltadas principalmente para imigração e comércio exterior."
+        },
+        {
+            "title": "Calisto Advocacia",
+            "subtitle": "Propriedade Intelectual e Segurança de Dados",
+            "description": "Um escritório moderno voltado à publicação de patentes e direito digital."
+        },
+        {
+            "title": "Colletive",
+            "subtitle": "Experiências Culturais pelo Mundo",
+            "description": "Uma plataforma voltada à busca e realização de experiências culturais."
+        },
+        {
+            "title": "Jeremias",
+            "subtitle": "Cervejaria Artesanal",
+            "description": "Uma pequena cervejaria que tem o objetivo de fazer as bebidas mais serelepes da região."
+        },
+        {
+            "title": "Komba",
+            "subtitle": "Kumbuchas Artesanais",
+            "description": "Uma pequena fábrica de bebidas fermentadas naturais que refrescam até o mais sedento dos viajantes."
+        },
+        {
+            "title": "Diva's House",
+            "subtitle": "Condomínio Residencial Sênior",
+            "description": "Espaço voltado para o cuidado de pessoas de terceira idade."
+        },
+        {
+            "title": "Nintendo Gate Control",
+            "subtitle": "Controle de Portão",
+            "description": "A releitura de um clássico dos consoles, agora disponível para controlar o que você quiser dentro de casa!"
+        },
+        {
+            "title": "Cogu GO",
+            "subtitle": "Produtos Naturais",
+            "description": "Uma loja de cogumelos alimentícios e psicotrópicos orgânicos."
+        },
+        {
+            "title": "Central COPASOL",
+            "subtitle": "Cooperativa Alimentar",
+            "description": "Uma rede de produtores orgânicos com uma ampla variedade de produtos situada no Paraná."
+        },
+        {
+            "title": "Bem Bolado",
+            "subtitle": "Evento Cultural",
+            "description": "Um evento para a promoção da arte autoral e da cultura local."
+        },
+        {
+            "title": "Pocket",
+            "subtitle": "Evento Cultural",
+            "description": "Um evento para a promoção da arte autoral e da cultura local."
+        },
+        {
+            "title": "UNVRS",
+            "subtitle": "Vestimenta Alternativa",
+            "description": "Uma marca de roupas para quem curte aquelas ilustrações brabas."
+        }
+    ]
 }

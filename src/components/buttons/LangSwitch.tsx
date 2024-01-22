@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import { useTranslation } from "@/international/useTranslation";
+import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 
 export default function LangSwitch() {
     const router = useRouter();
-    const { t } = useTranslation("common");
+    const t = useTranslation<CommonTranslations>("common");
 
     const changeLanguage = () => {
         const currentPath = router.asPath; // Get the current path

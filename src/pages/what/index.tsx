@@ -5,28 +5,27 @@ import Image from "next/image";
 
 import { useColorMode } from "@/pages/_app";
 
+import { WhatTranslations, CategoryTranslations } from "@/international/useTranslation";
+
 export default function What() {
-    const { t } = useTranslation("what");
+    const t = useTranslation<WhatTranslations>("what");
 
     const { colorMode } = useColorMode();
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <Image
-                src="/imgs/pragmatas_logo_comercial_black.png"
-                width={500}
-                height={500}
-                alt="pragmatas"
-                className={`Image ${colorMode === "dark" ? "InvertedImage" : ""}`}
-            />
-            <p>{t.description1}</p>
-            <p>{t.description2}</p>
-            <p>{t.description3}</p>
-            <p>{t.description4}</p>
-            <p>{t.description5}</p>
-            <p>{t.description6}</p>
-            <p>{t.description7}</p>
-            <p>{t.description8}</p>
+            <div className="ServiceList">
+                {t.categories.map((category: CategoryTranslations, index: number) => (
+                    <div key={index}>
+                        <h2>{category.title}</h2>
+                        <ul>
+                            {category.subitems.map((subitem: string, index: number) => (
+                                <li key={index}>{subitem}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
         </m.div>
     );
 }

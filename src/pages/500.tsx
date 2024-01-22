@@ -1,7 +1,7 @@
-import { useTranslation } from "@/international/useTranslation";
+import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 
 export default function Custom500() {
-    const { t } = useTranslation("common");
+    const t = useTranslation<CommonTranslations>("common");
 
     return (
         <div>

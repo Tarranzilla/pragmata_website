@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { motion as m } from "framer-motion";
 
-import { useTranslation } from "@/international/useTranslation";
+import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 
 type MenuProps = {
     closeMenu: () => void;
 };
 
 export default function Menu({ closeMenu }: MenuProps) {
-    const { t: tCommon } = useTranslation("common");
+    const tCommon = useTranslation<CommonTranslations>("common");
 
     return (
         <m.div
