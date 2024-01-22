@@ -7,6 +7,7 @@ import howEn from "./locales/en/04_how.json";
 import projectsEn from "./locales/en/05_projects.json";
 import projectsListEn from "./locales/en/05b_projects_list.json";
 import shopEn from "./locales/en/06_shop.json";
+import ShopListEn from "./locales/en/06b_shop_list.json";
 import contactEn from "./locales/en/07_contact.json";
 import en404 from "./locales/en/08_404.json";
 import en500 from "./locales/en/09_500.json";
@@ -20,6 +21,7 @@ import howPtBR from "./locales/pt-BR/04_how.json";
 import projectsPtBR from "./locales/pt-BR/05_projects.json";
 import projectsListPtBR from "./locales/pt-BR/05b_projects_list.json";
 import shopPtBR from "./locales/pt-BR/06_shop.json";
+import ShopListPtBR from "./locales/pt-BR/06b_shop_list.json";
 import contactPtBR from "./locales/pt-BR/07_contact.json";
 import ptBR404 from "./locales/pt-BR/08_404.json";
 import ptBR500 from "./locales/pt-BR/09_500.json";
@@ -45,6 +47,7 @@ export type WhatTranslations = {
 
 export type HowTranslations = typeof howEn;
 export type ProjectsTranslations = typeof projectsEn;
+
 export type ShopTranslations = typeof shopEn;
 export type ContactTranslations = typeof contactEn;
 export type ErrorTranslations = typeof en404 | typeof en500;

@@ -7,7 +7,9 @@ export default function Contact() {
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <p>{t.description1}</p>
+            <p>{t.address}</p>
+            <p>{t.phone1}</p>
+            <p>{t.email}</p>
         </m.div>
     );
 }

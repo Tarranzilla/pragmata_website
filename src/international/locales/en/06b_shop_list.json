@@ -1,3 +1,19 @@
 {
-    "none": "none"
+    "products": [
+        {
+            "title": "SURU",
+            "subtitle": "Universal Recombinant Utility System",
+            "description": "Decolonial and modular furniture that can be reconfigured to achieve different formats."
+        },
+        {
+            "title": "Nintendo Gate Control",
+            "subtitle": "Gate Control",
+            "description": "A reinterpretation of a console classic, now available to control whatever you want inside your home!"
+        },
+        {
+            "title": "UNVRS",
+            "subtitle": "Alternative Clothing",
+            "description": "A clothing brand for those who enjoy bold illustrations."
+        }
+    ]
 }

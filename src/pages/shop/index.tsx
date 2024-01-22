@@ -7,7 +7,15 @@ export default function Shop() {
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <p>{t.description1}</p>
+            <div className="ShopList">
+                {t.products.map((product, index) => (
+                    <div className="ShopItem" key={index}>
+                        <h2 className="ShopItemTitle">{product.title}</h2>
+                        <div className="ShopItemSubtitle">{product.subtitle}</div>
+                        <div className="ShopItemDescription">{product.description}</div>
+                    </div>
+                ))}
+            </div>
         </m.div>
     );
 }

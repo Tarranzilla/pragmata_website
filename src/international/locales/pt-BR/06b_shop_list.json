@@ -1,3 +1,19 @@
 {
-    "none": "none"
+    "products": [
+        {
+            "title": "SURU",
+            "subtitle": "Sistema Utilitário Recombinante Universal",
+            "description": "Mobília Decolonial e modular que pode ser reconfigurada para obter diferentes formatos."
+        },
+        {
+            "title": "Nintendo Gate Control",
+            "subtitle": "Controle de Portão",
+            "description": "A releitura de um clássico dos consoles, agora disponível para controlar o que você quiser dentro de casa!"
+        },
+        {
+            "title": "UNVRS",
+            "subtitle": "Vestimenta Alternativa",
+            "description": "Uma marca de roupas para quem curte aquelas ilustrações brabas."
+        }
+    ]
 }

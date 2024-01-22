@@ -3,5 +3,33 @@
     "pageTitle": "How we do it",
     "pageDescription": "We are a Creative Lab, focused on providing Art & Design services and developing our own Products.",
 
-    "description1": "Science Man."
+    "description1": "We use various methodologies and tools to create innovative and efficient solutions.",
+    "description2": "Every good project should start with in-depth research. We strive to understand your business, your clients, and their needs. From there, we can create a design strategy that will help you achieve your goals.",
+    "description3": "The development of alternatives is the next part of the process. We generate several solutions for your problem, then refine the best ideas until we have a solution that is the most effective and appealing.",
+    "description4": "After reaching the solution, we prototype, test, and refine it until it's ready to be implemented.",
+    "description5": "We can also assist you in implementing the solution if needed. We have a network of partners who can help take your project to the next level.",
+
+    "referenceTitle": "Here is a curated list of the best references for design practices that we found during our researches so far:",
+    "referenceList": [
+        {
+            "title": "Design Livre.",
+            "author": "Instituto Faber Ludens",
+            "link": "https://corais.org/sites/default/files/livro_design_livre_versao1.pdf"
+        },
+        {
+            "title": "The Role of Hypothesis in Constructive Design Research.",
+            "author": "Anne Louise Bang e Colegas",
+            "link": "https://findresearcher.sdu.dk/ws/files/118361032/The_Role_of_Hypothesis_in_Constructive_Design_Research_Final_Version.pdf"
+        },
+        {
+            "title": "Wicked Problems in Design Thinking.",
+            "author": "Richard Buchanan",
+            "link": "https://web.mit.edu/jrankin/www/engin_as_lib_art/Design_thinking.pdf"
+        },
+        {
+            "title": "Metaprojeto: o design do design.",
+            "author": "Dijon de Moraes",
+            "link": "https://www.blucher.com.br/metaprojeto_9788521205166"
+        }
+    ]
 }

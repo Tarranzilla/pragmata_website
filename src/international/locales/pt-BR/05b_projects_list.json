@@ -1,11 +1,6 @@
 {
     "projects": [
         {
-            "title": "SURU",
-            "subtitle": "Sistema Utilitário Recombinante Universal",
-            "description": "Mobília Decolonial e modular que pode ser reconfigurada para obter diferentes formatos."
-        },
-        {
             "title": "Tropical Cacau",
             "subtitle": "Chocolates Orgânicos de Altíssima Qualidade",
             "description": "O poder do sol manifestado em sabor."
@@ -71,11 +66,6 @@
             "description": "Espaço voltado para o cuidado de pessoas de terceira idade."
         },
         {
-            "title": "Nintendo Gate Control",
-            "subtitle": "Controle de Portão",
-            "description": "A releitura de um clássico dos consoles, agora disponível para controlar o que você quiser dentro de casa!"
-        },
-        {
             "title": "Cogu GO",
             "subtitle": "Produtos Naturais",
             "description": "Uma loja de cogumelos alimentícios e psicotrópicos orgânicos."
@@ -94,11 +84,6 @@
             "title": "Pocket",
             "subtitle": "Evento Cultural",
             "description": "Um evento para a promoção da arte autoral e da cultura local."
-        },
-        {
-            "title": "UNVRS",
-            "subtitle": "Vestimenta Alternativa",
-            "description": "Uma marca de roupas para quem curte aquelas ilustrações brabas."
         }
     ]
 }

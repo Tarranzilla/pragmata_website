@@ -3,5 +3,33 @@
     "pageTitle": "Como Fazemos?",
     "pageDescription": "We are a Creative Lab, focused on providing Art & Design services and developing our own Products.",
 
-    "description1": "Usamos várias metodologias e ferramentas para criar soluções inovadoras e eficientes."
+    "description1": "Usamos várias metodologias e ferramentas para criar soluções inovadoras e eficientes.",
+    "description2": "Todo bom projeto deve começar com uma pesquisa aprofundada. Nós nos esforçamos para entender o seu negócio, seus clientes e suas necessidades. A partir daí, podemos criar uma estratégia de design que irá ajudá-lo a alcançar seus objetivos.",
+    "description3": "O desenvolvimento de alternativas é a próxima parte do processo. Nós criamos várias soluções para o seu problema, e então refinamos as melhores ideias até que tenhamos uma solução que seja a mais eficaz e a mais atraente.",
+    "description4": "Depois de chegar à solução nós a prototipamos, testamos e aperfeiçoamos até que esteja pronta para ser implementada",
+    "description5": "Nós também podemos ajudá-lo a implementar a solução, se necessário, contamos com uma rede de parceiros que podem ajudá-lo a levar seu projeto para o próximo nível.",
+
+    "referenceTitle": "Aqui está uma lista de algumas das melhores referências para práticas de design que encontramos durante nossas pesquisas até agora:",
+    "referenceList": [
+        {
+            "title": "Design Livre.",
+            "author": "Instituto Faber Ludens",
+            "link": "https://corais.org/sites/default/files/livro_design_livre_versao1.pdf"
+        },
+        {
+            "title": "The Role of Hypothesis in Constructive Design Research.",
+            "author": "Anne Louise Bang e Colegas",
+            "link": "https://findresearcher.sdu.dk/ws/files/118361032/The_Role_of_Hypothesis_in_Constructive_Design_Research_Final_Version.pdf"
+        },
+        {
+            "title": "Wicked Problems in Design Thinking.",
+            "author": "Richard Buchanan",
+            "link": "https://web.mit.edu/jrankin/www/engin_as_lib_art/Design_thinking.pdf"
+        },
+        {
+            "title": "Metaprojeto: o design do design.",
+            "author": "Dijon de Moraes",
+            "link": "https://www.blucher.com.br/metaprojeto_9788521205166"
+        }
+    ]
 }
