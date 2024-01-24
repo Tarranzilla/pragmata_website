@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion as m } from "framer-motion";
 
 import { useTranslation, HomeTranslations } from "@/international/useTranslation";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import LangSwitch from "@/components/buttons/LangSwitch";
 
 import { useSelector } from "react-redux";
@@ -12,6 +13,20 @@ import { RootState } from "@/store/store";
 
 export default function Home() {
     const t = useTranslation<HomeTranslations>("home");
+
+    const tSimple = useSimpleTranslation();
+
+    tSimple.pages[0].paragraphs?.map((paragraph) => {
+        console.log(paragraph);
+    });
+
+    tSimple.pages[4].projects?.map((project) => {
+        console.log(project);
+    });
+
+    tSimple.pages[5].products?.map((product) => {
+        console.log(product);
+    });
 
     const colorMode = useSelector((state: RootState) => state.interface.colorMode);
 
