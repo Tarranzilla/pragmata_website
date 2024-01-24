@@ -2,13 +2,12 @@ import { motion as m } from "framer-motion";
 import Image from "next/image";
 
 import { useTranslation, WhoTranslations } from "@/international/useTranslation";
-
-import { useColorMode } from "../_app";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function Who() {
     const t = useTranslation<WhoTranslations>("who");
-
-    const { colorMode } = useColorMode();
+    const colorMode = useSelector((state: RootState) => state.interface.colorMode);
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">

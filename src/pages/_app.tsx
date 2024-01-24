@@ -1,56 +1,48 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState, useEffect, createContext, useContext } from "react";
 
-import { AnimatePresence, color } from "framer-motion";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
+
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
+
+import { useEffect } from "react";
+import { setActivePage, setActiveSubpage, setActiveItem, setActivePageTranslationKey } from "@/store/slices/interfaceSlice";
+import { pathNameHelper } from "@/store/slices/interfaceSlice";
 
 import Header from "@/components/main/01_Header";
 import Navbar from "@/components/main/03_Navbar";
 import Menu from "@/components/main/04_Menu";
 
-export const ColorModeContext = createContext<{
-    colorMode: "light" | "dark";
-    setColorMode: React.Dispatch<React.SetStateAction<"light" | "dark">>;
-}>({
-    colorMode: "light",
-    setColorMode: () => {},
-});
-
-export function useColorMode() {
-    return useContext(ColorModeContext);
-}
-
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const route = router.route;
-    const routeWithoutLeadingSlash = router.route.slice(1);
-
-    const [colorMode, setColorMode] = useState<"light" | "dark">("light");
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-    };
 
     useEffect(() => {
-        if (colorMode === "dark") {
-            document.body.classList.add("dark-mode");
-        } else {
-            document.body.classList.remove("dark-mode");
-        }
-    }, [colorMode]);
+        const { page, pageLink, subpage, subpageLink, item, itemLink, pageTranslationKey } = pathNameHelper(router.pathname);
+        setActivePage(page);
+        setActiveSubpage(subpage);
+        setActiveItem(item);
+        setActivePageTranslationKey(pageTranslationKey);
+
+        console.log("activePage: " + page);
+        console.log("activePageLink: " + pageLink);
+        console.log("activeSubpage: " + subpage);
+        console.log("activeSubpageLink: " + subpageLink);
+        console.log("activeItem: " + item);
+        console.log("activeItemLink: " + itemLink);
+        console.log("activePageTranslationKey: " + pageTranslationKey);
+    }, [router.pathname]);
 
     return (
         <>
-            <ColorModeContext.Provider value={{ colorMode, setColorMode }}>
-                <Header currentRoute={routeWithoutLeadingSlash} />
+            <Provider store={store}>
+                <Header />
 
-                <AnimatePresence mode="wait">{isMenuOpen && <Menu closeMenu={closeMenu} />}</AnimatePresence>
+                <Menu />
 
                 <div className="ContentViewer_Wrapper">
                     <AnimatePresence mode="wait">
@@ -58,8 +50,8 @@ export default function App({ Component, pageProps }: AppProps) {
                     </AnimatePresence>
                 </div>
 
-                <Navbar currentRoute={route} isMenuOpen={isMenuOpen} closeMenu={closeMenu} toggleMenu={toggleMenu} />
-            </ColorModeContext.Provider>
+                <Navbar />
+            </Provider>
         </>
     );
 }

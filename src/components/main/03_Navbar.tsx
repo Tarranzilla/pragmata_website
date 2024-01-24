@@ -5,62 +5,167 @@ import { useTranslation, CommonTranslations } from "@/international/useTranslati
 
 import { motion as m, AnimatePresence } from "framer-motion";
 
-import { useState } from "react";
-
-type NavbarProps = {
-    currentRoute: string;
-    isMenuOpen: boolean;
-    closeMenu: () => void;
-    toggleMenu: () => void;
-};
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store/store";
+import { closeMenu, toggleMenuOpen, setActivePage } from "@/store/slices/interfaceSlice";
 
 type PageTranslations = {
     pageName: string;
 };
 
-const pages: { [key: string]: string } = {
-    "/": "home",
-    "/who": "who",
-    "/what": "what",
-    "/how": "how",
-    "/projects": "projects",
-    "/shop": "shop",
-    "/contact": "contact",
-    "/404": "err404",
-    "/500": "err500",
-};
+const pages = [
+    {
+        name: "home",
+        path: "/",
+        translation: "home",
+        subpages: null,
+    },
+    {
+        name: "who",
+        path: "/who",
+        translation: "who",
+        subpages: null,
+    },
+    {
+        name: "what",
+        path: "/what",
+        translation: "what",
+        subpages: null,
+    },
+    {
+        name: "how",
+        path: "/how",
+        translation: "how",
+        subpages: null,
+    },
+    {
+        name: "projects",
+        path: "/projects",
+        translation: "projects",
+        subpages: [
+            {
+                name: "product-design",
+                path: "/projects/product-design",
+                translation: "product-design",
+                items: [],
+            },
+            {
+                name: "graphic-design",
+                path: "/projects/graphic-design",
+                translation: "graphic-design",
+                items: [],
+            },
+            {
+                name: "web-app",
+                path: "/projects/web-app",
+                translation: "web-app",
+                items: [],
+            },
+        ],
+    },
+    {
+        name: "shop",
+        path: "/shop",
+        translation: "shop",
+        subpages: [
+            {
+                name: "all",
+                path: "/shop/all",
+                translation: "all",
+                items: [],
+            },
+            {
+                name: "artifacts",
+                path: "/shop/artifacts",
+                translation: "artifacts",
+                items: [],
+            },
+            {
+                name: "photography",
+                path: "/shop/photography",
+                translation: "photography",
+                items: [],
+            },
+            {
+                name: "clothing",
+                path: "/shop/clothing",
+                translation: "clothing",
+                items: [],
+            },
+        ],
+    },
+    {
+        name: "contact",
+        path: "/contact",
+        translation: "contact",
+        subpages: null,
+    },
+    {
+        name: "404",
+        path: "/404",
+        translation: "err404",
+        subpages: null,
+    },
+    {
+        name: "500",
+        path: "/500",
+        translation: "err500",
+        subpages: null,
+    },
+];
 
 function getPrevAndNextPages(currentPage: string) {
-    if (currentPage === "/404" || currentPage === "/500") {
-        // Return default values for prevPage and nextPage when on an error page
-        return { prevPage: "/contact", nextPage: "/" };
-    }
-    const pageKeys = Object.keys(pages).filter((page) => page !== "/404" && page !== "/500");
-    const currentIndex = pageKeys.indexOf(currentPage);
-    const prevPage = currentIndex === 0 ? pageKeys[pageKeys.length - 1] : pageKeys[currentIndex - 1];
-    const nextPage = currentIndex === pageKeys.length - 1 ? pageKeys[0] : pageKeys[currentIndex + 1];
-    return { prevPage, nextPage };
+    // Filter out the pages you don't want to include
+    const filteredPages = pages.filter((page) => page.name !== "404" && page.name !== "500");
+
+    // Find the index of the current page
+    const currentIndex = filteredPages.findIndex((page) => page.name === currentPage);
+
+    // Get the previous and next pages
+    const prevPage = currentIndex > 0 ? filteredPages[currentIndex - 1] : filteredPages[filteredPages.length - 1];
+    const nextPage = currentIndex < filteredPages.length - 1 ? filteredPages[currentIndex + 1] : filteredPages[0];
+
+    return { prevPage, nextPage, filteredPages };
 }
 
-export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu }: NavbarProps) {
+export default function Navbar() {
+    const dispatch = useDispatch();
+    const currentPage = useSelector((state: RootState) => state.interface.activePage);
+    const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
+
     const tCommon = useTranslation<CommonTranslations>("common");
-    const tPage = useTranslation<PageTranslations>(pages[currentRoute]);
+    const tPage = useTranslation<PageTranslations>(currentPage);
 
-    const pageKeys = Object.keys(pages).filter((page) => page !== "/404" && page !== "/500");
-    const { prevPage, nextPage } = getPrevAndNextPages(currentRoute);
+    const [exitDirection, setExitDirection] = useState(0);
+    const [enterDirection, setEnterDirection] = useState(0);
 
-    const [direction, setDirection] = useState(0); // 0 for next, 1 for previous
+    const { prevPage, nextPage, filteredPages } = getPrevAndNextPages(currentPage);
+
+    const toggleMenuAction = () => {
+        dispatch(toggleMenuOpen());
+    };
+
+    const closeMenuAction = () => {
+        dispatch(closeMenu());
+    };
+
+    const setActivePageAction = (page: string) => {
+        dispatch(setActivePage(page));
+    };
 
     return (
         <div className="Navbar">
             <div className="Navbar_Left">
                 <Link
                     onClick={() => {
-                        closeMenu();
-                        setDirection(1);
+                        closeMenuAction();
+                        setExitDirection(0); // Set direction to left for previous page
+                        setActivePageAction(prevPage.name);
                     }}
                     className={"Nav_Button"}
-                    href={prevPage}
+                    href={prevPage.path}
                 >
                     {tCommon["prevPage"]}
                 </Link>
@@ -70,9 +175,9 @@ export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu
                 <AnimatePresence mode="wait">
                     <m.h2
                         key={tPage["pageName"]}
-                        initial={{ opacity: 0, x: direction === 0 ? 100 : -100 }}
+                        initial={{ opacity: 0, x: enterDirection === 0 ? 100 : -100 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: direction === 0 ? -100 : 100 }}
+                        exit={{ opacity: 0, x: exitDirection === 0 ? -100 : 100 }}
                         transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
                         className="PageName"
                     >
@@ -80,10 +185,10 @@ export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu
                     </m.h2>
                 </AnimatePresence>
 
-                {currentRoute !== "/404" && currentRoute !== "/500" && (
+                {currentPage !== "/404" && currentPage !== "/500" && (
                     <div className="NavigationIndicator">
-                        {pageKeys.map((page, index) => (
-                            <div key={index} className={`NavigationCircle ${currentRoute === page ? "Active" : ""}`} />
+                        {filteredPages.map((page, index) => (
+                            <div key={index} className={`NavigationCircle ${currentPage === page.name ? "Active" : ""}`} />
                         ))}
                     </div>
                 )}
@@ -93,15 +198,16 @@ export default function Navbar({ currentRoute, isMenuOpen, toggleMenu, closeMenu
             <div className="Navbar_Right">
                 <Link
                     onClick={() => {
-                        closeMenu();
-                        setDirection(0);
+                        closeMenuAction();
+                        setExitDirection(1); // Set direction to right for next page
+                        setActivePageAction(nextPage.name);
                     }}
                     className={"Nav_Button"}
-                    href={nextPage}
+                    href={nextPage.path}
                 >
                     {tCommon["nextPage"]}
                 </Link>
-                <button onClick={toggleMenu} className={"Nav_Button"}>
+                <button onClick={toggleMenuAction} className={"Nav_Button"}>
                     {tCommon[isMenuOpen ? "closeMenuBtn" : "menuBtn"]}
                 </button>
             </div>

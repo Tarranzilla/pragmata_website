@@ -1,12 +1,13 @@
 import { useTranslation, CommonTranslations } from "@/international/useTranslation";
-
 import { motion as m, AnimatePresence } from "framer-motion";
 
-import { useColorMode } from "@/pages/_app";
+import { useEffect } from "react";
 
-type HeaderProps = {
-    currentRoute: string;
-};
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+
+import { RootState } from "@/store/store";
+import { setActivePage, setActiveSubpage, setActiveItem, toggleColorMode } from "@/store/slices/interfaceSlice";
 
 type PageTranslations = {
     none: string;
@@ -26,26 +27,18 @@ type PageTranslations = {
     sharePageTitle: string;
 };
 
-export default function Header({ currentRoute }: HeaderProps) {
-    // If currentRoute is '/', change it to 'home'
-    let pageNamespace;
-    if (currentRoute === "") {
-        pageNamespace = "home";
-    } else if (currentRoute === "404") {
-        pageNamespace = "err404";
-    } else if (currentRoute === "500") {
-        pageNamespace = "err500";
-    } else {
-        pageNamespace = currentRoute;
-    }
+export default function Header() {
+    const dispatch = useDispatch();
+    const router = useRouter();
 
-    const tPage = useTranslation<PageTranslations>(pageNamespace);
+    const currentPage = useSelector((state: RootState) => state.interface.activePage);
+
+    const tPage = useTranslation<PageTranslations>(currentPage);
     const tCommon = useTranslation<CommonTranslations>("common");
 
-    const { colorMode, setColorMode } = useColorMode();
-
-    const toggleColorMode = () => {
-        setColorMode(colorMode === "light" ? "dark" : "light");
+    const toggleColorModeAction = () => {
+        dispatch(toggleColorMode());
+        document.body.classList.toggle("dark-mode");
     };
 
     const share = () => {
@@ -65,7 +58,7 @@ export default function Header({ currentRoute }: HeaderProps) {
 
     return (
         <div className="Header">
-            <button onClick={toggleColorMode}>{tCommon.colorSwitch}</button>
+            <button onClick={toggleColorModeAction}>{tCommon.colorSwitch}</button>
 
             <div className="Header_Center">
                 <AnimatePresence mode="wait">

@@ -7,12 +7,13 @@ import { motion as m } from "framer-motion";
 import { useTranslation, HomeTranslations } from "@/international/useTranslation";
 import LangSwitch from "@/components/buttons/LangSwitch";
 
-import { useColorMode } from "@/pages/_app";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function Home() {
     const t = useTranslation<HomeTranslations>("home");
 
-    const { colorMode } = useColorMode();
+    const colorMode = useSelector((state: RootState) => state.interface.colorMode);
 
     return (
         <>
