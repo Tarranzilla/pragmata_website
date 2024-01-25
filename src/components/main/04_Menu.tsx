@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { motion as m, AnimatePresence } from "framer-motion";
 
-import { useTranslation, CommonTranslations } from "@/international/useTranslation";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
@@ -9,7 +9,7 @@ import { toggleMenuOpen } from "@/store/slices/interfaceSlice";
 
 export default function Menu() {
     const dispatch = useDispatch();
-    const tCommon = useTranslation<CommonTranslations>("common");
+    const tSimple = useSimpleTranslation();
 
     const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
 
@@ -27,27 +27,11 @@ export default function Menu() {
                     className="Menu"
                 >
                     <div className="PageList">
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/">
-                            {tCommon.page1}
-                        </Link>
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/who">
-                            {tCommon.page2}
-                        </Link>
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/what">
-                            {tCommon.page3}
-                        </Link>
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/how">
-                            {tCommon.page4}
-                        </Link>
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/projects">
-                            {tCommon.page5}
-                        </Link>
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/shop">
-                            {tCommon.page6}
-                        </Link>
-                        <Link className="MenuLink" onClick={toggleMenuAction} href="/contact">
-                            {tCommon.page7}
-                        </Link>
+                        {tSimple.menu.menuLinks?.map((link) => (
+                            <Link className="MenuLink" onClick={toggleMenuAction} href={link.path} key={link.name}>
+                                {link.name}
+                            </Link>
+                        ))}
                     </div>
                 </m.div>
             )}

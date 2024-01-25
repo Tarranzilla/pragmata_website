@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 

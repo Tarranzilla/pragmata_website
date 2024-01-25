@@ -11,10 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { closeMenu, toggleMenuOpen, setActivePage } from "@/store/slices/interfaceSlice";
 
-type PageTranslations = {
-    pageName: string;
-};
-
 const pages = [
     {
         name: "home",
