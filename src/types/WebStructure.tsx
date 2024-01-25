@@ -53,18 +53,23 @@ export type Reference = {
 };
 
 export type Page = {
-    pageIndex?: number;
+    // propriedades opcionais para páginas em geral
+    title?: string;
+    subTitle?: string;
+    description?: string; // deve ser obrigatório
+    keywords?: string[];
+
+    // propriedades obrigatórias para páginas em geral
+    pageIndex: number;
     name: string;
     path: string;
     language: string;
     translationKey: string;
 
-    // propriedades opcionais
+    // propriedades opcionais para páginas em geral
     subpages?: Page[];
     images?: string[];
-    imagesLength?: number;
     paragraphs?: string[];
-    paragraphsLength?: number;
 
     // propriedades opcionais para páginas específicas
     projects?: Project[];
@@ -186,6 +191,39 @@ const products: Product[] = [
         translationKey: "unvrs",
         categories: ["clothing"],
         price: 150, // You need to provide the actual price
+    },
+];
+
+const products_ptBR: Product[] = [
+    {
+        name: "SURU",
+        subtitle: "Sistema Utilitário Recombinante Universal",
+        description: "Móveis decoloniais e modulares que podem ser reconfigurados para obter diferentes formatos.",
+        path: "/produtos/suru",
+        language: "en",
+        translationKey: "suru",
+        categories: ["mobiliário"],
+        price: 420, // Você precisa fornecer o preço real
+    },
+    {
+        name: "Controle de Portão Nintendo",
+        subtitle: "Controle de Portão",
+        description: "Uma reinterpretação de um clássico do console, agora disponível para controlar o que você quiser dentro de sua casa!",
+        path: "/produtos/controle-de-portão-nintendo",
+        language: "en",
+        translationKey: "controleDePortaoNintendo",
+        categories: ["eletrônicos"],
+        price: 240, // Você precisa fornecer o preço real
+    },
+    {
+        name: "UNVRS",
+        subtitle: "Roupas Alternativas",
+        description: "Uma marca de roupas para quem gosta de ilustrações ousadas.",
+        path: "/produtos/unvrs",
+        language: "en",
+        translationKey: "unvrs",
+        categories: ["roupas"],
+        price: 150, // Você precisa fornecer o preço real
     },
 ];
 
@@ -345,6 +383,162 @@ const projects: Project[] = [
     },
 ];
 
+const projects_ptBR: Project[] = [
+    {
+        name: "Tropical Cacau",
+        subtitle: "Chocolates Orgânicos de Alta Qualidade",
+        description: "O poder do sol manifestado em sabor.",
+        path: "/projects/tropical-cacau",
+        language: "pt-BR",
+        translationKey: "tropicalCacau",
+        categories: ["design-de-produto, design-gráfico, branding, web-app"],
+    },
+    {
+        name: "Rewave",
+        subtitle: "Laboratório de Materiais Renováveis",
+        description: "Criadores de matéria-prima para um futuro mais ecológico.",
+        path: "/projects/rewave",
+        language: "pt-BR",
+        translationKey: "rewave",
+        categories: ["design-de-produto, design-gráfico, branding"],
+    },
+    {
+        name: "Human Robotics",
+        subtitle: "Robôs e Inteligência Artificial",
+        description: "A robótica autônoma tem o potencial de revolucionar a forma como trabalhamos.",
+        path: "/projects/robotics",
+        language: "pt-BR",
+        translationKey: "robotics",
+        categories: ["design-de-produto, design-gráfico, branding, web-app"],
+    },
+    {
+        name: "Ateliê Floar",
+        subtitle: "Roupas Sustentáveis",
+        description: "Roupas incrivelmente confortáveis e estilosas feitas de materiais reciclados.",
+        path: "/projects/atelie-floar",
+        language: "pt-BR",
+        translationKey: "atelieFloar",
+        categories: ["design-gráfico, branding, web-app"],
+    },
+    {
+        name: "Full Jazz",
+        subtitle: "Música e Gastronomia",
+        description: "Um restaurante sofisticado, palco para artistas renomados e incrivelmente talentosos.",
+        path: "/projects/full-jazz",
+        language: "pt-BR",
+        translationKey: "fullJazz",
+        categories: ["audiovisual"],
+    },
+    {
+        name: "Rede AOBA",
+        subtitle: "Alimentos Orgânicos Acessíveis",
+        description: "Sistema de compra e assinatura de projetos orgânicos, conectando produtores rurais a centros urbanos.",
+        path: "/projects/rede-aoba",
+        language: "pt-BR",
+        translationKey: "redeAoba",
+        categories: ["design-de-produto, web-app, design-gráfico"],
+    },
+    {
+        name: "Van Hack",
+        subtitle: "Agência Global de Talentos para Programadores",
+        description: "Plataforma que oferece serviços de busca de emprego e profissionalização para profissionais de tecnologia.",
+        path: "/projects/van-hack",
+        language: "pt-BR",
+        translationKey: "vanHack",
+        categories: ["design-gráfico", "audiovisual"],
+    },
+    {
+        name: "Taborda Lima & Associados Lawyers",
+        subtitle: "Escritório de Advogados",
+        description: "Um escritório altamente capacitado que atende demandas principalmente relacionadas a imigração e comércio exterior.",
+        path: "/projects/taborda-lima",
+        language: "pt-BR",
+        translationKey: "tabordaLima",
+        categories: ["Design Gráfico", "Branding, Web-app"],
+    },
+    {
+        name: "Calisto Advocacy",
+        subtitle: "Escritório de Advocacia",
+        description: "Um escritório moderno focado em publicação de patentes e direitos digitais.",
+        path: "/projects/calisto-advocacy",
+        language: "pt-BR",
+        translationKey: "calistoAdvocacy",
+        categories: ["Design Gráfico", "Branding"],
+    },
+    {
+        name: "Collective",
+        subtitle: "Experiências Culturais em Todo o Mundo",
+        description: "Uma plataforma focada na busca e realização de experiências culturais.",
+        path: "/projects/colletive",
+        language: "pt-BR",
+        translationKey: "colletive",
+        categories: ["Audiovisual", "Design Gráfico", "Web-app"],
+    },
+    {
+        name: "Jeremias",
+        subtitle: "Cervejaria Artesanal",
+        description: "Uma pequena cervejaria com o objetivo de fazer as bebidas mais alegres da região.",
+        path: "/projects/jeremias",
+        language: "pt-BR",
+        translationKey: "jeremias",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+    {
+        name: "Komba",
+        subtitle: "Kombuchas Artesanais",
+        description: "Uma pequena fábrica de bebidas naturais fermentadas que refrescam até os viajantes mais sedentos.",
+        path: "/projects/komba",
+        language: "pt-BR",
+        translationKey: "komba",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+    {
+        name: "Diva's House",
+        subtitle: "Condomínio Residencial Sênior",
+        description: "Espaço dedicado ao cuidado de idosos.",
+        path: "/projects/divas-house",
+        language: "pt-BR",
+        translationKey: "divasHouse",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+    {
+        name: "Cogu GO",
+        subtitle: "Produtos Naturais",
+        description: "Uma loja de alimentos orgânicos e cogumelos psicotrópicos.",
+        path: "/projects/cogu-go",
+        language: "pt-BR",
+        translationKey: "coguGo",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+    {
+        name: "Central COPASOL",
+        subtitle: "Cooperativa de Alimentos",
+        description: "Uma rede de produtores orgânicos com uma ampla variedade de projetos localizados no Paraná.",
+        path: "/projects/central-copasol",
+        language: "pt-BR",
+        translationKey: "centralCopasol",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+    {
+        name: "Bem Bolado",
+        subtitle: "Evento Cultural",
+        description: "Um evento para a promoção da arte original e da cultura local.",
+        path: "/projects/bem-bolado",
+        language: "pt-BR",
+        translationKey: "bemBolado",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+    {
+        name: "Pocket",
+        subtitle: "Evento Cultural",
+        description: "Um evento para a promoção da arte original e da cultura local.",
+        path: "/projects/pocket",
+        language: "pt-BR",
+        translationKey: "pocket",
+        categories: ["Ilustração", "Design Gráfico"],
+    },
+];
+
 const services: Service[] = [
     {
         name: "Graphic Design",
@@ -433,6 +627,108 @@ const services: Service[] = [
         description: "We conduct design research, material research, ecosystem mapping, and user experience development.",
         path: "/what/research",
         items: ["Design Research", "Material Research", "Ecosystem Mapping", "User Experience (UX) Development"],
+    },
+];
+
+const services_ptBR: Service[] = [
+    {
+        name: "Design Gráfico",
+        subtitle: "Comunicação Visual",
+        description: "Desenvolvemos projetos de comunicação visual para sua marca, produto ou serviço.",
+        path: "/what/design-grafico",
+        items: [
+            "Desenvolvimento de Identidade Visual",
+            "Desenvolvimento de Materiais Impressos",
+            "Desenvolvimento de Sinalização",
+            "Ilustração e Pintura",
+            "Livros Pop-Up e Encadernação Artesanal",
+            "Redesigns e Reinterpretações",
+        ],
+    },
+    {
+        name: "Design de Produto",
+        subtitle: "Desenvolvimento de Produtos",
+        description: "Oferecemos uma variedade de serviços relacionados ao design e desenvolvimento de produtos.",
+        path: "/what/design-de-produto",
+        items: [
+            "Desenvolvimento de Produtos",
+            "Desenvolvimento de Mobiliário",
+            "Fabricação Digital",
+            "Desenvolvimento de Máquinas",
+            "Desenvolvimento de Protótipos",
+        ],
+    },
+    {
+        name: "Web & App",
+        subtitle: "Desenvolvimento Digital",
+        description: "Oferecemos uma variedade de serviços de desenvolvimento web e app.",
+        path: "/what/web-app",
+        items: [
+            "Desenvolvimento de Interface (UI)",
+            "Desenvolvimento de App iOS",
+            "Desenvolvimento de App Android",
+            "Desenvolvimento de Progressive Web App (PWA)",
+            "Desenvolvimento de Sites",
+            "Registro e Gerenciamento de Domínios Web",
+            "Hospedagem Web",
+            "Desenvolvimento de Jogos",
+        ],
+    },
+    {
+        name: "Negócios",
+        subtitle: "Desenvolvimento Empresarial",
+        description: "Fornecemos serviços para ajudar no desenvolvimento e análise do seu negócio e marca.",
+        path: "/what/negocios",
+        items: ["Diagnóstico de Marca (análise de marca)", "Desenvolvimento de Marca (branding)", "Diagnóstico de Modelo de Negócios (Strategyzer)"],
+    },
+    {
+        name: "Pensamento",
+        subtitle: "Serviços de Consultoria",
+        description: "Oferecemos serviços de consultoria em criatividade, inovação, sustentabilidade e várias estratégias de design e comunicação.",
+        path: "/what/pensamento",
+        items: [
+            "Consultoria em Criatividade, Inovação e Sustentabilidade",
+            "Consultoria em Design Gráfico, Produto, Branding e Estratégias de Comunicação",
+            "Consultoria em qualquer produto, serviço ou experiência que oferecemos",
+        ],
+    },
+    {
+        name: "Audiovisual",
+        subtitle: "Serviços Multimídia",
+        description: "Fornecemos uma variedade de serviços audiovisuais, desde animações e fotografia até desenvolvimento de roteiros e cenografia.",
+        path: "/what/audiovisual",
+        items: [
+            "Animações",
+            "Ensaio Fotográfico",
+            "Cobertura Fotográfica",
+            "Ensaio Audiovisual",
+            "Cobertura Audiovisual",
+            "Transmissão ao Vivo",
+            "Cenografia",
+            "Desenvolvimento de Roteiro",
+            "Desenvolvimento de Estereoscopia (3D)",
+            "Storyboard e Desenvolvimento de Roteiro",
+            "Desenvolvimento de Cenografia",
+        ],
+    },
+    {
+        name: "Sustentabilidade",
+        subtitle: "Soluções Sustentáveis",
+        description:
+            "Oferecemos consultoria em sustentabilidade corporativa e desenvolvemos planos de transição sustentável e designs de produtos ecológicos.",
+        path: "/what/sustentabilidade",
+        items: [
+            "Consultoria em Sustentabilidade Corporativa (ODS da ONU)",
+            "Desenvolvimento de Plano de Transição Sustentável",
+            "Design Ecológico de Produtos",
+        ],
+    },
+    {
+        name: "Pesquisa",
+        subtitle: "Serviços de Pesquisa",
+        description: "Realizamos pesquisas de design, pesquisa de materiais, mapeamento de ecossistemas e desenvolvimento de experiência do usuário.",
+        path: "/what/pesquisa",
+        items: ["Pesquisa de Design", "Pesquisa de Materiais", "Mapeamento de Ecossistemas", "Desenvolvimento de Experiência do Usuário (UX)"],
     },
 ];
 
@@ -778,12 +1074,315 @@ const englishWebStructure: WebStructure = {
 
 // O conteúdo do site em português é definido neste objeto
 const portugueseWebStructure: WebStructure = {
-    navbar: {},
-    menu: {},
+    navbar: {
+        logoTitle: "pragmata",
+        logoPath: "/",
+        logoWidth: 40,
+        logoHeight: 40,
+        logoAlt: "pragmata",
+
+        navbarLinks: [
+            {
+                name: "inicio",
+                path: "/",
+            },
+            {
+                name: "quem?",
+                path: "/who",
+            },
+            {
+                name: "o que?",
+                path: "/what",
+            },
+            {
+                name: "como?",
+                path: "/how",
+            },
+            {
+                name: "projetos",
+                path: "/projects",
+            },
+            {
+                name: "loja",
+                path: "/shop",
+            },
+            {
+                name: "contato",
+                path: "/contact",
+            },
+        ],
+
+        colorModeBtnPath: "/",
+        colorModeBtnText: "Modo de Cor",
+        colorModeBtnLabel: "Alterar Modo de Cor",
+
+        searchBtnPath: "/",
+        searchBtnText: "Pesquisar",
+        searchBtnPlaceholder: "Digite aqui sua busca...",
+        searchBtnLabel: "Procurar por projetos e produtos",
+
+        shareBtnPath: "/",
+        shareBtnText: "Partilhar",
+        shareBtnLabel: "Partilhe esta página",
+    },
+    menu: {
+        menuTitle: "Menu",
+        menuLinks: [
+            {
+                name: "inicio",
+                path: "/",
+            },
+            {
+                name: "quem?",
+                path: "/who",
+            },
+            {
+                name: "o que?",
+                path: "/what",
+            },
+            {
+                name: "como?",
+                path: "/how",
+            },
+            {
+                name: "projetos",
+                path: "/projects",
+            },
+            {
+                name: "loja",
+                path: "/shop",
+            },
+            {
+                name: "contato",
+                path: "/contact",
+            },
+            {
+                name: "politica de privacidade",
+                path: "/privacy-policy",
+            },
+            {
+                name: "termos de uso",
+                path: "/terms-of-use",
+            },
+        ],
+
+        languageBtnPath: "/",
+        languageBtnText: "Mudar Idioma",
+        languageBtnLabel: "Mudar idioma para Inglês",
+    },
     context: {},
-    cookies: {},
-    pages: [],
-    footer: {},
+    cookies: {
+        title: "Cookies",
+        text: "Este site usa cookies para garantir que você obtenha a melhor experiência em nosso site.",
+        btnText: "Entendi!",
+        btnPath: "/",
+    },
+    pages: [
+        // Home
+        {
+            pageIndex: 0,
+            name: "inicio",
+            path: "/",
+            language: "pt-BR",
+            translationKey: "home",
+
+            images: ["/imgs/pragmatas_black.png", "/imgs/noite_estrelada_black.png", "/imgs/padrao_01_black.png"],
+
+            paragraphs: [
+                "Num recanto tropical esquecido pelo tempo, onde criaturas vagavam despretensiosamente por praias paradisíacas e selvas, um seleto grupo de primatas ascendeu — e dele surgiu, assim, o misterioso povo dos Pragmatas.",
+                "Evoluíram, então, esses primatas, para inventores e visionários de mundos. Compreendendo a linguagem sutil da natureza e o sussurro ensurdecedor do cosmos, fizeram de si próprios criadores de tecnologias. E ergueram, neste mundo, mais que estruturas físicas, mas também teias de afetos, sistemas sociais e cultura. ",
+                "Naquelas praias esquecidas, forjaram ferramentas para desbloquear o extraordinário. Nutriram as almas e as mentes de todos aqueles que os buscavam, desesperados e famintos, ansiosos por partilhar do mais raro dos alimentos do mundo: uma ideia original, ou um pensamento que nunca ninguém antes teve. Engajaram, assim, corações e mentes, em um misterioso encantamento compartilhado.",
+                "Foi numa noite iluminada pelo brilho das estrelas, que tiveram uma visão transcendental: a de todas as tribos do mundo se unindo em uma colaboração épica, construindo algo que transcenderia o entendimento comum. Forjariam, então, um novo mundo, o mundo do amanhã.",
+                "Para concatenar os artífices deste futuro, ergueram então uma estrutura, que era ao mesmo tempo uma oficina e um farol, para síntese das ferramentas desta obra, e para atração de todas as mentes que destes anseios compartilhassem.  Era o Farol de Invenções Pragmatas. Conhecido como um epicentro do encanto tecnológico, tornou-se um santuário onde a natureza e a inovação se entrelaçam.",
+                "Hoje, os descendentes dos Pragmatas continuam a tradição de construir não apenas produtos e serviços, mas também pontes entre mundos, unindo comunidades em uma jornada criativa e lendária, onde a ajuda mútua é a chave para erguer algo verdadeiramente útil.",
+                "Convidamos você a explorar o Farol de Invenções - Descubra nosso universo de inovação e mergulhe em nossos produtos, serviços e experiências que costuram o passado, presente e futuro em uma cosmotrama fascinante.",
+                "Seja bem-vindo ao nosso mundo, onde o encanto da tecnologia e a tecnologia do encanto se entrelaçam, criando um futuro de possibilidades sustentáveis.",
+            ],
+        },
+
+        // Who
+        {
+            pageIndex: 1,
+            name: "quem?",
+            path: "/who",
+            language: "pt-BR",
+            translationKey: "who",
+
+            images: ["/imgs/pragmatas_logo_comercial_black.png"],
+            paragraphs: [
+                "Somos um Laboratório Criativo, centrado na prestação de serviços de Arte & Design e na Comercialização de Produtos e Serviços Autoriais, e oferecemos duas vertentes de soluções:",
+                "De um lado criamos e vendemos nossos próprios produtos em nossa loja astutamente curada para a sustentabilidade e modularidade - chamada de Farol de Invenções.",
+                "Buscamos um diálogo projetual e um esfumaçamento dos limites entre usuários e projetistas que estimula uma lógica de consumo alternativa, autopoiética, antropofágica, simbiótica e parasita através do upcycling, design aberto e livre e produção descentralizada.",
+                "Acreditamos que comprar um produto ou um serviço é mais do que usufruir de um bem - É apoiar uma ideia - E apoiar toda uma rede de produção por por trás dele.",
+                "De outro lado oferecemos nossos serviços de criatividade e inovação, nas áreas de design gráfico, produto, web, UI UX, serviço e consultorias - Caminhando também sempre na direção da sustentabilidade.",
+                "Nosso design é Crítico.",
+                "Através da proposição de projetos questionadores e inovadores, buscamos uma nova forma genuína de se fazer design modificando a realidade material e social de formas positivas E inclusivas para que nossa comunidade tenha acesso à alimentos, ferramentas, serviços e trabalhos dignos.",
+                "Gostou da Idéia? Então junte-se a nós, bora marcar uma conversa e criar algo significativo!",
+            ],
+        },
+
+        // What
+        {
+            pageIndex: 2,
+            name: "o que?",
+            path: "/what",
+            language: "pt-BR",
+            translationKey: "what",
+
+            services: services_ptBR,
+        },
+
+        // How
+        {
+            pageIndex: 3,
+            name: "como?",
+            path: "/how",
+            language: "pt-BR",
+            translationKey: "how",
+
+            paragraphs: [
+                "Usamos várias metodologias e ferramentas para criar soluções inovadoras e eficientes.",
+                "Todo bom projeto deve começar com uma pesquisa aprofundada. Nós nos esforçamos para entender o seu negócio, seus clientes e suas necessidades. A partir daí, podemos criar uma estratégia de design que irá ajudá-lo a alcançar seus objetivos.",
+                "O desenvolvimento de alternativas é a próxima parte do processo. Nós criamos várias soluções para o seu problema, e então refinamos as melhores ideias até que tenhamos uma solução que seja a mais eficaz e a mais atraente.",
+                "Depois de chegar à solução nós a prototipamos, testamos e aperfeiçoamos até que esteja pronta para ser implementada",
+                "Nós também podemos ajudá-lo a implementar a solução, se necessário, contamos com uma rede de parceiros que podem ajudá-lo a levar seu projeto para o próximo nível.",
+                "Aqui está uma lista de algumas das melhores referências para práticas de design que encontramos durante nossas pesquisas até agora:",
+            ],
+            references: references,
+        },
+
+        // Projects
+        {
+            pageIndex: 4,
+            name: "projetos",
+            path: "/projects",
+            language: "pt-BR",
+            translationKey: "projects",
+            projects: projects_ptBR,
+            subpages: [],
+        },
+
+        // Shop
+        {
+            pageIndex: 5,
+            name: "shop",
+            path: "/shop",
+            language: "pt-BR",
+            translationKey: "shop",
+            products: products_ptBR,
+            subpages: [],
+        },
+
+        // Contact
+        {
+            pageIndex: 6,
+            name: "contato",
+            path: "/contact",
+            language: "pt-BR",
+            translationKey: "contact",
+            paragraphs: [
+                "Estamos sempre abertos a novos projetos, colaborações e ideias. Se você tiver alguma dúvida ou gostaria de agendar uma reunião, entre em contato conosco.",
+                "Nosso laboratório está localizado em Curitiba, Paraná, Brasil.",
+                "Estamos disponíveis de segunda a sexta, das 10:00 às 18:00.",
+                "falapragmata@gmail.com",
+                "41 999 977 955",
+            ],
+        },
+
+        // Privacy Policy
+        {
+            pageIndex: 7,
+            name: "privacy-policy",
+            path: "/privacy-policy",
+            language: "pt-BR",
+            translationKey: "privacyPolicy",
+        },
+
+        // Terms of Use
+        {
+            pageIndex: 8,
+            name: "terms-of-use",
+            path: "/terms-of-use",
+            language: "pt-BR",
+            translationKey: "termsOfUse",
+        },
+
+        // 404
+        {
+            pageIndex: 9,
+            name: "404",
+            path: "/404",
+            language: "pt-BR",
+            translationKey: "err404",
+        },
+
+        // 500
+        {
+            pageIndex: 10,
+            name: "500",
+            path: "/500",
+            language: "pt-BR",
+            translationKey: "err500",
+        },
+    ],
+    footer: {
+        logoTitle: "pragmatas",
+        logoAlt: "pragmatas",
+        logoPath: "/",
+        logoWidth: 40,
+        logoHeight: 40,
+
+        footerLinks: [
+            {
+                name: "home",
+                path: "/",
+            },
+            {
+                name: "who?",
+                path: "/who",
+            },
+            {
+                name: "what?",
+                path: "/what",
+            },
+            {
+                name: "how?",
+                path: "/how",
+            },
+            {
+                name: "projects",
+                path: "/projects",
+            },
+            {
+                name: "shop",
+                path: "/shop",
+            },
+            {
+                name: "contact",
+                path: "/contact",
+            },
+        ],
+
+        menuBtnPath: "/",
+        menuBtnText: "Menu",
+        menuBtnLabel: "Acionar Menu",
+
+        contextBtnPath: "/",
+        contextBtnText: "Context",
+        contextBtnLabel: "Acionar Contexto",
+
+        shopBtnPath: "/",
+        shopBtnText: "Sacola de Desejos",
+        shopBtnLabel: "Acionar Sacola de Desejos",
+
+        nextPageBtnPath: "/",
+        nextPageBtnText: "Próxima Página",
+        nextPageBtnLabel: "Ir para a próxima página",
+
+        prevPageBtnPath: "/",
+        prevPageBtnText: "Página Anterior",
+        prevPageBtnLabel: "Ir para a página anterior",
+    },
 };
 
 // Os conteúdos em inglês e português são exportados

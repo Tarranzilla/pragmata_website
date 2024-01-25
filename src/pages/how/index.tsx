@@ -1,23 +1,24 @@
 import { motion as m } from "framer-motion";
 
-import { useTranslation, HowTranslations } from "@/international/useTranslation";
+import { Reference } from "@/types/WebStructure";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 export default function How() {
-    const t = useTranslation<HowTranslations>("how");
+    const tSimple = useSimpleTranslation();
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <p>{t.description1}</p>
-            <p>{t.description2}</p>
-            <p>{t.description3}</p>
-            <p>{t.description4}</p>
-            <p>{t.description5}</p>
+            <p>{tSimple.pages[3]?.paragraphs?.[0]}</p>
+            <p>{tSimple.pages[3]?.paragraphs?.[1]}</p>
+            <p>{tSimple.pages[3]?.paragraphs?.[2]}</p>
+            <p>{tSimple.pages[3]?.paragraphs?.[3]}</p>
+            <p>{tSimple.pages[3]?.paragraphs?.[4]}</p>
+            <p>{tSimple.pages[3]?.paragraphs?.[5]}</p>
 
-            <p>{t.referenceTitle}</p>
             <div className="ReferenceList">
-                {t.referenceList.map((reference, index) => (
+                {tSimple.pages[3]?.references?.map((reference: Reference, index: number) => (
                     <div key={index} className="Reference">
-                        <a href={reference.link} target="_blank" rel="noopener noreferrer" className="ReferenceTitle">
+                        <a href={reference.url} target="_blank" rel="noopener noreferrer" className="ReferenceTitle">
                             {reference.title}
                         </a>
                         <h4 className="ReferenceDescription">{reference.author}</h4>

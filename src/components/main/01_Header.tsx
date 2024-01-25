@@ -1,40 +1,18 @@
 import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 import { motion as m, AnimatePresence } from "framer-motion";
 
-import { useEffect } from "react";
-
-import { useRouter } from "next/router";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "@/store/store";
-import { setActivePage, setActiveSubpage, setActiveItem, toggleColorMode } from "@/store/slices/interfaceSlice";
-
-type PageTranslations = {
-    none: string;
-    langSwitch: string;
-    colorSwitch: string;
-    shareBtn: string;
-    menuBtn: string;
-    closeMenuBtn: string;
-    prevPage: string;
-    nextPage: string;
-    page1: string;
-    page2: string;
-    page3: string;
-    page4: string;
-    // Add more properties here as needed
-    pageTitle: string;
-    sharePageTitle: string;
-};
+import { toggleColorMode } from "@/store/slices/interfaceSlice";
 
 export default function Header() {
     const dispatch = useDispatch();
-    const router = useRouter();
 
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
 
-    const tPage = useTranslation<PageTranslations>(currentPage);
-    const tCommon = useTranslation<CommonTranslations>("common");
+    const tSimple = useSimpleTranslation();
 
     const toggleColorModeAction = () => {
         dispatch(toggleColorMode());
@@ -46,7 +24,7 @@ export default function Header() {
             navigator
                 .share({
                     title: "Pragmatas",
-                    text: tCommon.sharePageTitle,
+                    text: tSimple.navbar.shareBtnLabel,
                     url: window.location.href,
                 })
                 .then(() => console.log("Successful share"))
@@ -58,23 +36,23 @@ export default function Header() {
 
     return (
         <div className="Header">
-            <button onClick={toggleColorModeAction}>{tCommon.colorSwitch}</button>
+            <button onClick={toggleColorModeAction}>{tSimple.navbar.colorModeBtnText}</button>
 
             <div className="Header_Center">
                 <AnimatePresence mode="wait">
                     <m.h2
                         className="HeaderPageTitle"
-                        key={tPage.pageTitle}
+                        key={currentPage}
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
                     >
-                        {tPage.pageTitle}
+                        {currentPage}
                     </m.h2>
                 </AnimatePresence>
             </div>
 
-            <button onClick={share}>{tCommon.shareBtn}</button>
+            <button onClick={share}>{tSimple.navbar.shareBtnText}</button>
         </div>
     );
 }

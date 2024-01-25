@@ -7,7 +7,7 @@ export function useSimpleTranslation(): WebStructure {
     const { locale } = router;
 
     let t = englishWebStructure; // Default to English if locale is undefined
-    if (locale === "pt-BR") {
+    if (locale === "pt-BR" || locale === "pt") {
         t = portugueseWebStructure;
     }
 

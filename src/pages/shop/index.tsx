@@ -1,16 +1,17 @@
 import { motion as m } from "framer-motion";
 
-import { useTranslation, ShopTranslations } from "@/international/useTranslation";
+import { Product } from "@/types/WebStructure";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 export default function Shop() {
-    const t = useTranslation<ShopTranslations>("shop");
+    const tSimple = useSimpleTranslation();
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
             <div className="ShopList">
-                {t.products.map((product, index) => (
+                {tSimple.pages[5]?.products?.map((product: Product, index: number) => (
                     <div className="ShopItem" key={index}>
-                        <h2 className="ShopItemTitle">{product.title}</h2>
+                        <h2 className="ShopItemTitle">{product.name}</h2>
                         <div className="ShopItemSubtitle">{product.subtitle}</div>
                         <div className="ShopItemDescription">{product.description}</div>
                     </div>

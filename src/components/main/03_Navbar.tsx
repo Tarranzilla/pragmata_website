@@ -1,12 +1,12 @@
-import Link from "next/link";
-
 import LangSwitch from "@/components/buttons/LangSwitch";
-import { useTranslation, CommonTranslations } from "@/international/useTranslation";
+
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 import { motion as m, AnimatePresence } from "framer-motion";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
+
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { closeMenu, toggleMenuOpen, setActivePage } from "@/store/slices/interfaceSlice";
@@ -135,8 +135,7 @@ export default function Navbar() {
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
 
-    const tCommon = useTranslation<CommonTranslations>("common");
-    const tPage = useTranslation<PageTranslations>(currentPage);
+    const tSimple = useSimpleTranslation();
 
     const [exitDirection, setExitDirection] = useState(0);
     const [enterDirection, setEnterDirection] = useState(0);
@@ -167,21 +166,21 @@ export default function Navbar() {
                     className={"Nav_Button"}
                     href={prevPage.path}
                 >
-                    {tCommon["prevPage"]}
+                    {tSimple.footer.prevPageBtnText}
                 </Link>
                 <LangSwitch />
             </div>
             <div className="Navbar_Center">
                 <AnimatePresence mode="wait">
                     <m.h2
-                        key={tPage["pageName"]}
+                        key={currentPage}
                         initial={{ opacity: 0, x: enterDirection === 0 ? 100 : -100 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: exitDirection === 0 ? -100 : 100 }}
                         transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
                         className="PageName"
                     >
-                        {tPage["pageName"]}
+                        {currentPage}
                     </m.h2>
                 </AnimatePresence>
 
@@ -205,10 +204,10 @@ export default function Navbar() {
                     className={"Nav_Button"}
                     href={nextPage.path}
                 >
-                    {tCommon["nextPage"]}
+                    {tSimple.footer.nextPageBtnText}
                 </Link>
                 <button onClick={toggleMenuAction} className={"Nav_Button"}>
-                    {tCommon[isMenuOpen ? "closeMenuBtn" : "menuBtn"]}
+                    {tSimple.footer.menuBtnText}
                 </button>
             </div>
         </div>

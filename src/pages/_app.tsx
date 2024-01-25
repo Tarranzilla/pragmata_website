@@ -27,14 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
         setActiveSubpage(subpage);
         setActiveItem(item);
         setActivePageTranslationKey(pageTranslationKey);
-
-        console.log("activePage: " + page);
-        console.log("activePageLink: " + pageLink);
-        console.log("activeSubpage: " + subpage);
-        console.log("activeSubpageLink: " + subpageLink);
-        console.log("activeItem: " + item);
-        console.log("activeItemLink: " + itemLink);
-        console.log("activePageTranslationKey: " + pageTranslationKey);
     }, [router.pathname]);
 
     return (
