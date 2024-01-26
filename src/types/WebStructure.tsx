@@ -194,6 +194,8 @@ const products: Product[] = [
     },
 ];
 
+export const productPaths = products.map((product) => product.path.replace("/shop/", ""));
+
 const products_ptBR: Product[] = [
     {
         name: "SURU",
@@ -209,7 +211,7 @@ const products_ptBR: Product[] = [
         name: "Controle de Portão Nintendo",
         subtitle: "Controle de Portão",
         description: "Uma reinterpretação de um clássico do console, agora disponível para controlar o que você quiser dentro de sua casa!",
-        path: "/shop/controle-de-portão-nintendo",
+        path: "/shop/nintendo-gate-control",
         language: "en",
         translationKey: "controleDePortaoNintendo",
         categories: ["eletrônicos"],
@@ -382,6 +384,8 @@ const projects: Project[] = [
         categories: ["illustration", "graphic-design"],
     },
 ];
+
+export const projectPaths = projects.map((project) => project.path.replace("/projects/", ""));
 
 const projects_ptBR: Project[] = [
     {
@@ -629,6 +633,8 @@ const services: Service[] = [
         items: ["Design Research", "Material Research", "Ecosystem Mapping", "User Experience (UX) Development"],
     },
 ];
+
+export const servicePaths = services.map((service) => service.path.replace("/what/", ""));
 
 const services_ptBR: Service[] = [
     {
