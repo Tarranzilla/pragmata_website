@@ -1007,6 +1007,7 @@ const englishWebStructure: WebStructure = {
             path: "/404",
             language: "en",
             translationKey: "404",
+            paragraphs: ["Oops! This page doesn't exist."],
         },
 
         // 500
@@ -1015,7 +1016,8 @@ const englishWebStructure: WebStructure = {
             name: "500",
             path: "/500",
             language: "en",
-            translationKey: "404",
+            translationKey: "500",
+            paragraphs: ["Oops! Something went wrong with our server."],
         },
     ],
     footer: {
@@ -1320,6 +1322,7 @@ const portugueseWebStructure: WebStructure = {
             path: "/404",
             language: "pt-BR",
             translationKey: "404",
+            paragraphs: ["Esta página não existe."],
         },
 
         // 500
@@ -1329,6 +1332,7 @@ const portugueseWebStructure: WebStructure = {
             path: "/500",
             language: "pt-BR",
             translationKey: "500",
+            paragraphs: ["Oops! Algo deu errado com nosso servidor, tente novamente."],
         },
     ],
     footer: {

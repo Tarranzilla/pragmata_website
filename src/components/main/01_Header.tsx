@@ -1,4 +1,3 @@
-import { useTranslation, CommonTranslations } from "@/international/useTranslation";
 import { motion as m, AnimatePresence } from "framer-motion";
 
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";

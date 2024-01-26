@@ -1,11 +1,11 @@
-import { useTranslation, CommonTranslations } from "@/international/useTranslation";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 export default function Custom404() {
-    const t = useTranslation<CommonTranslations>("common");
+    const tSimple = useSimpleTranslation();
 
     return (
         <div>
-            <h4>{t.pageDescription404}</h4>
+            <h4>{tSimple.pages[9]?.paragraphs?.[0]}</h4>
         </div>
     );
 }

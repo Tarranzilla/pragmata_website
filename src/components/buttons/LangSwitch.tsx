@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import { useTranslation, CommonTranslations } from "@/international/useTranslation";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 export default function LangSwitch() {
     const router = useRouter();
-    const t = useTranslation<CommonTranslations>("common");
+    const tSimple = useSimpleTranslation();
 
     const changeLanguage = () => {
         const currentPath = router.asPath; // Get the current path
@@ -18,7 +18,7 @@ export default function LangSwitch() {
 
     return (
         <button className="Nav_Button" onClick={changeLanguage}>
-            {t.langSwitch}
+            {tSimple.menu.languageBtnText}
         </button>
     );
 }

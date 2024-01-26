@@ -1,11 +1,11 @@
-import { useTranslation, CommonTranslations } from "@/international/useTranslation";
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 export default function Custom500() {
-    const t = useTranslation<CommonTranslations>("common");
+    const tSimple = useSimpleTranslation();
 
     return (
         <div>
-            <h4>{t.pageDescription500}</h4>
+            <h4>{tSimple.pages[10]?.paragraphs?.[0]}</h4>
         </div>
     );
 }
