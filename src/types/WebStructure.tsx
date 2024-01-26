@@ -985,19 +985,23 @@ const englishWebStructure: WebStructure = {
         // Privacy Policy
         {
             pageIndex: 7,
-            name: "privacy-policy",
+            name: "privacy policy",
             path: "/privacy-policy",
             language: "en",
             translationKey: "privacy-policy",
+            paragraphs: [
+                "Your privacy is important to us. It is Pragmatas' policy to respect your privacy regarding any information we may collect from you across our website and other sites we own and operate.",
+            ],
         },
 
         // Terms of Use
         {
             pageIndex: 8,
-            name: "terms-of-use",
+            name: "terms of use",
             path: "/terms-of-use",
             language: "en",
             translationKey: "terms-of-use",
+            paragraphs: ["These terms and conditions outline the rules and regulations for the use of Pragmatas' Website."],
         },
 
         // 404
@@ -1304,6 +1308,9 @@ const portugueseWebStructure: WebStructure = {
             path: "/privacy-policy",
             language: "pt-BR",
             translationKey: "privacy-policy",
+            paragraphs: [
+                "Sua privacidade é importante para nós. Respeitamos sua privacidade em relação a qualquer informação sua que possamos coletar neste site e outros sites que possuímos e operamos.",
+            ],
         },
 
         // Terms of Use
@@ -1313,6 +1320,7 @@ const portugueseWebStructure: WebStructure = {
             path: "/terms-of-use",
             language: "pt-BR",
             translationKey: "terms-of-use",
+            paragraphs: ["Estes termos e condições definem as regras e regulamentos para o uso do site da Pragmatas."],
         },
 
         // 404

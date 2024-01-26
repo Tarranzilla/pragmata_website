@@ -1,7 +1,10 @@
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
+
 export default function PrivacyPolicy() {
+    const tSimple = useSimpleTranslation();
     return (
         <div>
-            <h1>Privacy Policy</h1>
+            <h4>{tSimple.pages[7]?.paragraphs?.[0]}</h4>
         </div>
     );
 }

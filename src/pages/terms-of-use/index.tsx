@@ -1,7 +1,10 @@
+import { useSimpleTranslation } from "@/international/useSimpleTranslation";
+
 export default function TermsOfUse() {
+    const tSimple = useSimpleTranslation();
     return (
         <div>
-            <h1>Terms of Use</h1>
+            <h4>{tSimple.pages[8]?.paragraphs?.[0]}</h4>
         </div>
     );
 }
