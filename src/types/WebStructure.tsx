@@ -178,7 +178,7 @@ const products: Product[] = [
         description: "A reinterpretation of a console classic, now available to control whatever you want inside your home!",
         path: "/shop/nintendo-gate-control",
         language: "en",
-        translationKey: "nintendoGateControl",
+        translationKey: "nintendo-gate-control",
         categories: ["electronics"],
         price: 240, // You need to provide the actual price
     },
@@ -213,7 +213,7 @@ const products_ptBR: Product[] = [
         description: "Uma reinterpretação de um clássico do console, agora disponível para controlar o que você quiser dentro de sua casa!",
         path: "/shop/nintendo-gate-control",
         language: "en",
-        translationKey: "controleDePortaoNintendo",
+        translationKey: "nintendo-gate-control",
         categories: ["eletrônicos"],
         price: 240, // Você precisa fornecer o preço real
     },
@@ -236,7 +236,7 @@ const projects: Project[] = [
         description: "The power of the sun manifested in flavor.",
         path: "/projects/tropical-cacau",
         language: "en",
-        translationKey: "tropicalCacau",
+        translationKey: "tropical-cacau",
         categories: ["product-design, graphic-design, branding, web-app"],
     },
     {
@@ -263,7 +263,7 @@ const projects: Project[] = [
         description: "Incredibly comfortable and stylish clothes made from recycled materials.",
         path: "/projects/atelie-floar",
         language: "en",
-        translationKey: "atelieFloar",
+        translationKey: "atelie-floar",
         categories: ["graphic-design", "branding", "web-app"],
     },
     {
@@ -272,7 +272,7 @@ const projects: Project[] = [
         description: "A sophisticated restaurant, a stage for renowned and incredibly talented artists.",
         path: "/projects/full-jazz",
         language: "en",
-        translationKey: "fullJazz",
+        translationKey: "full-jazz",
         categories: ["audiovisual"],
     },
     {
@@ -281,7 +281,7 @@ const projects: Project[] = [
         description: "A system for the purchase and subscription of organic projects, connecting rural producers to urban centers.",
         path: "/projects/rede-aoba",
         language: "en",
-        translationKey: "redeAoba",
+        translationKey: "rede-aoba",
         categories: ["product-design, web-app, graphic-design"],
     },
     {
@@ -290,7 +290,7 @@ const projects: Project[] = [
         description: "A platform offering job-hunting and professionalization services for technology professionals.",
         path: "/projects/van-hack",
         language: "en",
-        translationKey: "vanHack",
+        translationKey: "van-hack",
         categories: ["graphic-design", "audiovisual"],
     },
     {
@@ -299,7 +299,7 @@ const projects: Project[] = [
         description: "A highly capable office addressing demands primarily related to immigration and foreign trade.",
         path: "/projects/taborda-lima",
         language: "en",
-        translationKey: "tabordaLima",
+        translationKey: "taborda-lima",
         categories: ["Cgrapic-design", "branding, web-app"],
     },
     {
@@ -308,7 +308,7 @@ const projects: Project[] = [
         description: "A modern office focused on patent publication and digital rights.",
         path: "/projects/calisto-advocacy",
         language: "en",
-        translationKey: "calistoAdvocacy",
+        translationKey: "calisto-advocacy",
         categories: ["grapic-design", "branding"],
     },
     {
@@ -344,7 +344,7 @@ const projects: Project[] = [
         description: "Space dedicated to the care of senior citizens.",
         path: "/projects/divas-house",
         language: "en",
-        translationKey: "divasHouse",
+        translationKey: "divas-house",
         categories: ["illustration", "graphic-design"],
     },
     {
@@ -353,7 +353,7 @@ const projects: Project[] = [
         description: "A store of organic food and psychotropic mushrooms.",
         path: "/projects/cogu-go",
         language: "en",
-        translationKey: "coguGo",
+        translationKey: "cogu-go",
         categories: ["illustration", "graphic-design"],
     },
     {
@@ -362,7 +362,7 @@ const projects: Project[] = [
         description: "A network of organic producers with a wide variety of projects located in Paraná.",
         path: "/projects/central-copasol",
         language: "en",
-        translationKey: "centralCopasol",
+        translationKey: "central-copasol",
         categories: ["illustration", "graphic-design"],
     },
     {
@@ -371,7 +371,7 @@ const projects: Project[] = [
         description: "An event for the promotion of original art and local culture.",
         path: "/projects/bem-bolado",
         language: "en",
-        translationKey: "bemBolado",
+        translationKey: "bem-bolado",
         categories: ["illustration", "graphic-design"],
     },
     {
@@ -394,7 +394,7 @@ const projects_ptBR: Project[] = [
         description: "O poder do sol manifestado em sabor.",
         path: "/projects/tropical-cacau",
         language: "pt-BR",
-        translationKey: "tropicalCacau",
+        translationKey: "tropical-cacau",
         categories: ["design-de-produto, design-gráfico, branding, web-app"],
     },
     {
@@ -421,7 +421,7 @@ const projects_ptBR: Project[] = [
         description: "Roupas incrivelmente confortáveis e estilosas feitas de materiais reciclados.",
         path: "/projects/atelie-floar",
         language: "pt-BR",
-        translationKey: "atelieFloar",
+        translationKey: "atelie-floar",
         categories: ["design-gráfico, branding, web-app"],
     },
     {
@@ -430,7 +430,7 @@ const projects_ptBR: Project[] = [
         description: "Um restaurante sofisticado, palco para artistas renomados e incrivelmente talentosos.",
         path: "/projects/full-jazz",
         language: "pt-BR",
-        translationKey: "fullJazz",
+        translationKey: "full-jazz",
         categories: ["audiovisual"],
     },
     {
@@ -439,7 +439,7 @@ const projects_ptBR: Project[] = [
         description: "Sistema de compra e assinatura de projetos orgânicos, conectando produtores rurais a centros urbanos.",
         path: "/projects/rede-aoba",
         language: "pt-BR",
-        translationKey: "redeAoba",
+        translationKey: "rede-aoba",
         categories: ["design-de-produto, web-app, design-gráfico"],
     },
     {
@@ -448,7 +448,7 @@ const projects_ptBR: Project[] = [
         description: "Plataforma que oferece serviços de busca de emprego e profissionalização para profissionais de tecnologia.",
         path: "/projects/van-hack",
         language: "pt-BR",
-        translationKey: "vanHack",
+        translationKey: "van-hack",
         categories: ["design-gráfico", "audiovisual"],
     },
     {
@@ -457,7 +457,7 @@ const projects_ptBR: Project[] = [
         description: "Um escritório altamente capacitado que atende demandas principalmente relacionadas a imigração e comércio exterior.",
         path: "/projects/taborda-lima",
         language: "pt-BR",
-        translationKey: "tabordaLima",
+        translationKey: "taborda-lima",
         categories: ["Design Gráfico", "Branding, Web-app"],
     },
     {
@@ -466,7 +466,7 @@ const projects_ptBR: Project[] = [
         description: "Um escritório moderno focado em publicação de patentes e direitos digitais.",
         path: "/projects/calisto-advocacy",
         language: "pt-BR",
-        translationKey: "calistoAdvocacy",
+        translationKey: "calisto-advocacy",
         categories: ["Design Gráfico", "Branding"],
     },
     {
@@ -502,7 +502,7 @@ const projects_ptBR: Project[] = [
         description: "Espaço dedicado ao cuidado de idosos.",
         path: "/projects/divas-house",
         language: "pt-BR",
-        translationKey: "divasHouse",
+        translationKey: "divas-house",
         categories: ["Ilustração", "Design Gráfico"],
     },
     {
@@ -511,7 +511,7 @@ const projects_ptBR: Project[] = [
         description: "Uma loja de alimentos orgânicos e cogumelos psicotrópicos.",
         path: "/projects/cogu-go",
         language: "pt-BR",
-        translationKey: "coguGo",
+        translationKey: "cogu-go",
         categories: ["Ilustração", "Design Gráfico"],
     },
     {
@@ -520,7 +520,7 @@ const projects_ptBR: Project[] = [
         description: "Uma rede de produtores orgânicos com uma ampla variedade de projetos localizados no Paraná.",
         path: "/projects/central-copasol",
         language: "pt-BR",
-        translationKey: "centralCopasol",
+        translationKey: "central-copasol",
         categories: ["Ilustração", "Design Gráfico"],
     },
     {
@@ -529,7 +529,7 @@ const projects_ptBR: Project[] = [
         description: "Um evento para a promoção da arte original e da cultura local.",
         path: "/projects/bem-bolado",
         language: "pt-BR",
-        translationKey: "bemBolado",
+        translationKey: "bem-bolado",
         categories: ["Ilustração", "Design Gráfico"],
     },
     {
@@ -988,7 +988,7 @@ const englishWebStructure: WebStructure = {
             name: "privacy-policy",
             path: "/privacy-policy",
             language: "en",
-            translationKey: "privacyPolicy",
+            translationKey: "privacy-policy",
         },
 
         // Terms of Use
@@ -997,7 +997,7 @@ const englishWebStructure: WebStructure = {
             name: "terms-of-use",
             path: "/terms-of-use",
             language: "en",
-            translationKey: "termsOfUse",
+            translationKey: "terms-of-use",
         },
 
         // 404
@@ -1006,7 +1006,7 @@ const englishWebStructure: WebStructure = {
             name: "404",
             path: "/404",
             language: "en",
-            translationKey: "err404",
+            translationKey: "404",
         },
 
         // 500
@@ -1015,7 +1015,7 @@ const englishWebStructure: WebStructure = {
             name: "500",
             path: "/500",
             language: "en",
-            translationKey: "err500",
+            translationKey: "404",
         },
     ],
     footer: {
@@ -1271,7 +1271,7 @@ const portugueseWebStructure: WebStructure = {
         // Shop
         {
             pageIndex: 5,
-            name: "shop",
+            name: "loja",
             path: "/shop",
             language: "pt-BR",
             translationKey: "shop",
@@ -1298,19 +1298,19 @@ const portugueseWebStructure: WebStructure = {
         // Privacy Policy
         {
             pageIndex: 7,
-            name: "privacy-policy",
+            name: "politica de privacidade",
             path: "/privacy-policy",
             language: "pt-BR",
-            translationKey: "privacyPolicy",
+            translationKey: "privacy-policy",
         },
 
         // Terms of Use
         {
             pageIndex: 8,
-            name: "terms-of-use",
+            name: "termos de uso",
             path: "/terms-of-use",
             language: "pt-BR",
-            translationKey: "termsOfUse",
+            translationKey: "terms-of-use",
         },
 
         // 404
@@ -1319,7 +1319,7 @@ const portugueseWebStructure: WebStructure = {
             name: "404",
             path: "/404",
             language: "pt-BR",
-            translationKey: "err404",
+            translationKey: "404",
         },
 
         // 500
@@ -1328,7 +1328,7 @@ const portugueseWebStructure: WebStructure = {
             name: "500",
             path: "/500",
             language: "pt-BR",
-            translationKey: "err500",
+            translationKey: "500",
         },
     ],
     footer: {

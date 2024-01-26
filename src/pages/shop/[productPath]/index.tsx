@@ -45,19 +45,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
         return <div>Product not found</div>;
     }
 
-    const dispatch = useDispatch();
-
-    const setActivePageAction = (pageName: string) => {
-        dispatch(setActivePage(pageName));
-    };
-
-    useEffect(() => {
-        setActivePageAction(product.name);
-        return () => {
-            setActivePageAction(page);
-        };
-    }, [path, dispatch]);
-
     return (
         <div>
             <h1>{product.name}</h1>

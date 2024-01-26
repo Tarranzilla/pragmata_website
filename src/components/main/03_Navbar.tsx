@@ -6,137 +6,51 @@ import { motion as m, AnimatePresence } from "framer-motion";
 
 import Link from "next/link";
 
+import { useEffect } from "react";
+
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { closeMenu, toggleMenuOpen, setActivePage } from "@/store/slices/interfaceSlice";
 
-const pages = [
-    {
-        name: "home",
-        path: "/",
-        translation: "home",
-        subpages: null,
-    },
-    {
-        name: "who",
-        path: "/who",
-        translation: "who",
-        subpages: null,
-    },
-    {
-        name: "what",
-        path: "/what",
-        translation: "what",
-        subpages: null,
-    },
-    {
-        name: "how",
-        path: "/how",
-        translation: "how",
-        subpages: null,
-    },
-    {
-        name: "projects",
-        path: "/projects",
-        translation: "projects",
-        subpages: [
-            {
-                name: "product-design",
-                path: "/projects/product-design",
-                translation: "product-design",
-                items: [],
-            },
-            {
-                name: "graphic-design",
-                path: "/projects/graphic-design",
-                translation: "graphic-design",
-                items: [],
-            },
-            {
-                name: "web-app",
-                path: "/projects/web-app",
-                translation: "web-app",
-                items: [],
-            },
-        ],
-    },
-    {
-        name: "shop",
-        path: "/shop",
-        translation: "shop",
-        subpages: [
-            {
-                name: "all",
-                path: "/shop/all",
-                translation: "all",
-                items: [],
-            },
-            {
-                name: "artifacts",
-                path: "/shop/artifacts",
-                translation: "artifacts",
-                items: [],
-            },
-            {
-                name: "photography",
-                path: "/shop/photography",
-                translation: "photography",
-                items: [],
-            },
-            {
-                name: "clothing",
-                path: "/shop/clothing",
-                translation: "clothing",
-                items: [],
-            },
-        ],
-    },
-    {
-        name: "contact",
-        path: "/contact",
-        translation: "contact",
-        subpages: null,
-    },
-    {
-        name: "404",
-        path: "/404",
-        translation: "err404",
-        subpages: null,
-    },
-    {
-        name: "500",
-        path: "/500",
-        translation: "err500",
-        subpages: null,
-    },
-];
-
-function getPrevAndNextPages(currentPage: string) {
-    // Filter out the pages you don't want to include
-    const filteredPages = pages.filter((page) => page.name !== "404" && page.name !== "500");
-
-    // Find the index of the current page
-    const currentIndex = filteredPages.findIndex((page) => page.name === currentPage);
-
-    // Get the previous and next pages
-    const prevPage = currentIndex > 0 ? filteredPages[currentIndex - 1] : filteredPages[filteredPages.length - 1];
-    const nextPage = currentIndex < filteredPages.length - 1 ? filteredPages[currentIndex + 1] : filteredPages[0];
-
-    return { prevPage, nextPage, filteredPages };
-}
-
 export default function Navbar() {
     const dispatch = useDispatch();
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
+    const currentSubpage = useSelector((state: RootState) => state.interface.activeSubpage);
     const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
 
     const tSimple = useSimpleTranslation();
+    const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
+
+    const translatedSubpage =
+        translatedPage?.products?.find((product) => product.translationKey === currentSubpage) ||
+        translatedPage?.projects?.find((project) => project.translationKey === currentSubpage);
+
+    const navIndicator = translatedSubpage ? translatedSubpage.name : translatedPage ? translatedPage.name : "";
 
     const [exitDirection, setExitDirection] = useState(0);
     const [enterDirection, setEnterDirection] = useState(0);
+    const [lastDirection, setLastDirection] = useState(0);
+
+    const getPrevAndNextPages = (currentPage: string) => {
+        // Filter out the pages you don't want to include
+        const filteredPages = tSimple.pages.filter((page) => page.translationKey !== "404" && page.translationKey !== "500");
+
+        // Find the index of the current page
+        const currentIndex = filteredPages.findIndex((page) => page.translationKey === currentPage);
+
+        // Get the previous and next pages
+        const prevPage = currentIndex > 0 ? filteredPages[currentIndex - 1] : filteredPages[filteredPages.length - 1];
+        const nextPage = currentIndex < filteredPages.length - 1 ? filteredPages[currentIndex + 1] : filteredPages[0];
+
+        return { prevPage, nextPage, filteredPages };
+    };
 
     const { prevPage, nextPage, filteredPages } = getPrevAndNextPages(currentPage);
+
+    // Add these state variables to track if the exit and enter directions have been updated
+    const [exitDirectionUpdated, setExitDirectionUpdated] = useState(false);
+    const [enterDirectionUpdated, setEnterDirectionUpdated] = useState(false);
 
     const toggleMenuAction = () => {
         dispatch(toggleMenuOpen());
@@ -150,14 +64,32 @@ export default function Navbar() {
         dispatch(setActivePage(page));
     };
 
+    // Update the useEffect hook
+    useEffect(() => {
+        // If both the exit and enter directions have been updated, navigate to the new page
+        if (exitDirectionUpdated && enterDirectionUpdated) {
+            setActivePageAction(lastDirection === 0 ? prevPage.name : nextPage.name);
+            // Reset the updated flags
+            setExitDirectionUpdated(false);
+            setEnterDirectionUpdated(false);
+        }
+    }, [exitDirectionUpdated, enterDirectionUpdated]);
+
     return (
         <div className="Navbar">
             <div className="Navbar_Left">
                 <Link
                     onClick={() => {
                         closeMenuAction();
-                        setExitDirection(0); // Set direction to left for previous page
-                        setActivePageAction(prevPage.name);
+                        // Set the exit direction to the right
+                        setExitDirection(1);
+                        // Set the enter direction to the right
+                        setEnterDirection(0);
+                        // Update the last direction to indicate that we're navigating to the previous page
+                        setLastDirection(0);
+                        // Set the updated flags
+                        setExitDirectionUpdated(true);
+                        setEnterDirectionUpdated(true);
                     }}
                     className={"Nav_Button"}
                     href={prevPage.path}
@@ -170,20 +102,21 @@ export default function Navbar() {
                 <AnimatePresence mode="wait">
                     <m.h2
                         key={currentPage}
-                        initial={{ opacity: 0, x: enterDirection === 0 ? 100 : -100 }}
+                        initial={{ opacity: 0, x: enterDirection === 0 ? -100 : 100 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: exitDirection === 0 ? -100 : 100 }}
                         transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
                         className="PageName"
                     >
-                        {currentPage}
+                        {navIndicator}
                     </m.h2>
                 </AnimatePresence>
 
+                {/* Navigation Dot Indicator  */}
                 {currentPage !== "/404" && currentPage !== "/500" && (
                     <div className="NavigationIndicator">
                         {filteredPages.map((page, index) => (
-                            <div key={index} className={`NavigationCircle ${currentPage === page.name ? "Active" : ""}`} />
+                            <div key={index} className={`NavigationCircle ${currentPage === page.translationKey ? "Active" : ""}`} />
                         ))}
                     </div>
                 )}
@@ -194,8 +127,15 @@ export default function Navbar() {
                 <Link
                     onClick={() => {
                         closeMenuAction();
-                        setExitDirection(1); // Set direction to right for next page
-                        setActivePageAction(nextPage.name);
+                        // Set the exit direction to the left
+                        setExitDirection(0);
+                        // Set the enter direction to the left
+                        setEnterDirection(1);
+                        // Update the last direction to indicate that we're navigating to the next page
+                        setLastDirection(1);
+                        // Set the updated flags
+                        setExitDirectionUpdated(true);
+                        setEnterDirectionUpdated(true);
                     }}
                     className={"Nav_Button"}
                     href={nextPage.path}
