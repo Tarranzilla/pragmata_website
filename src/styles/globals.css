@@ -1,3 +1,5 @@
+/* Fontes Customizadas */
+
 @font-face {
     font-family: "Delimiter";
     src: url("/fonts/Delimiter/Delimiter.ttf") format("truetype");
@@ -25,6 +27,8 @@
     font-weight: 700;
     font-style: normal;
 }
+
+/* Estilos Globais */
 
 :root {
     --bg-color: #f5f5f5;
@@ -65,6 +69,12 @@
 p {
     font-size: 1.15rem;
     line-height: 1.8rem;
+}
+
+.Image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
 }
 
 html,
@@ -124,6 +134,8 @@ button {
     transition: background-color 0.2s ease-in-out;
 }
 
+/* Content Viewer */
+
 .ContentViewer_Wrapper {
     display: flex;
     flex-direction: column;
@@ -154,6 +166,7 @@ button {
     align-items: flex-start;
 }
 
+/* Menu */
 .Menu {
     position: fixed;
     top: 0;
@@ -176,6 +189,19 @@ button {
     background-color: var(--text-color);
 }
 
+.MenuLink {
+    color: var(--bg-color);
+    font-size: 2rem;
+    text-underline-offset: 0.75rem;
+
+    transition: font-size 0.2s ease-in-out;
+}
+
+.MenuLink:hover,
+.MenuLink:focus-within {
+    font-size: 2.4rem;
+}
+
 .PageList {
     display: flex;
     flex-direction: column;
@@ -184,6 +210,23 @@ button {
 
     gap: 1rem;
     color: var(--bg-color);
+}
+
+.SearchList {
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    z-index: 2;
+    height: calc(100vh - 12rem);
+    width: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 4rem;
+
+    gap: 1rem;
 }
 
 .ShopItem,
@@ -203,14 +246,18 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     gap: 1rem;
     padding: 1rem;
+    flex: 1;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
 }
 
 .CategoryList {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
 
@@ -223,35 +270,26 @@ button {
     padding: 1rem;
 }
 
-.MenuLink {
-    color: var(--bg-color);
-    font-size: 2rem;
-    text-underline-offset: 0.75rem;
-
-    transition: font-size 0.2s ease-in-out;
-}
-
-.SearchList {
-    position: absolute;
-    top: 6rem;
-    left: 0;
-    z-index: 2;
-    height: calc(100vh - 12rem);
-    width: 100%;
-    background-color: var(--bg-color);
+.ShopList,
+.ServiceList {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 2rem;
+}
 
+.ServiceList {
+    padding: 1rem;
+}
+
+.ReferenceList {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
     gap: 1rem;
 }
 
-.MenuLink:hover,
-.MenuLink:focus-within {
-    font-size: 3rem;
-}
-
+/* Header */
 .Header {
     height: 6rem;
     display: flex;
@@ -278,6 +316,8 @@ button {
     background-color: var(--bg-color);
     color: var(--text-color);
 }
+
+/* Navbar */
 
 .Navbar {
     height: 6rem;
@@ -332,23 +372,6 @@ button {
     width: 0.5rem;
     height: 0.5rem;
     background-color: var(--text-color);
-}
-
-.ShopList,
-.ServiceList {
-    display: flex;
-    flex-direction: column;
-
-    padding: 1rem;
-    gap: 2rem;
-}
-
-.ReferenceList {
-    display: flex;
-    flex-direction: column;
-
-    padding: 1rem;
-    gap: 1rem;
 }
 
 .PageName {

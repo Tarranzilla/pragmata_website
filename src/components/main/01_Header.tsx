@@ -25,6 +25,11 @@ export default function Header() {
     const [isSearchBarFocused, setSearchBarFocused] = useState(false);
 
     function searchWebStructure(query: string) {
+        // If the query is an empty string, return all pages except 404 and 500
+        if (query === "") {
+            return tSimple.pages.filter((page) => page.name !== "404" && page.name !== "500");
+        }
+
         let results: (Page | Project | Product | Service)[] = [];
         const lowerCaseQuery = query.toLowerCase();
 
@@ -65,7 +70,7 @@ export default function Header() {
     useEffect(() => {
         const results = searchWebStructure(searchQuery);
         setSearchResults(results);
-    }, [searchQuery]);
+    }, [searchQuery, translatedPage]);
 
     return (
         <div className="Header">

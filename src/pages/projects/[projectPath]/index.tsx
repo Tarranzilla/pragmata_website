@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 import { Project } from "@/types/WebStructure";
+import Image from "next/image";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const projectPath = params?.projectPath;
@@ -33,6 +34,13 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
                 {project.categories.map((category) => (
                     <div key={category} className="CategoryItem">
                         {category}
+                    </div>
+                ))}
+            </div>
+            <div className="ImageList">
+                {project.images?.map((image) => (
+                    <div key={image} className="ImageItem">
+                        <Image className="Image" width={800} height={800} src={image} alt={project.name} />
                     </div>
                 ))}
             </div>
