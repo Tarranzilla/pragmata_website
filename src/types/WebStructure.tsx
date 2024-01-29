@@ -237,7 +237,7 @@ const projects: Project[] = [
         path: "/projects/tropical-cacau",
         language: "en",
         translationKey: "tropical-cacau",
-        categories: ["product-design, graphic-design, branding, web-app"],
+        categories: ["product-design", "graphic-design", "branding web-app"],
     },
     {
         name: "Rewave",
@@ -246,7 +246,7 @@ const projects: Project[] = [
         path: "/projects/rewave",
         language: "en",
         translationKey: "rewave",
-        categories: ["product-design, graphic-design, branding"],
+        categories: ["product-design", "graphic-design", "branding"],
     },
     {
         name: "Human Robotics",
@@ -282,7 +282,7 @@ const projects: Project[] = [
         path: "/projects/rede-aoba",
         language: "en",
         translationKey: "rede-aoba",
-        categories: ["product-design, web-app, graphic-design"],
+        categories: ["product-design", "web-app", "graphic-design"],
     },
     {
         name: "Van Hack",
@@ -395,7 +395,7 @@ const projects_ptBR: Project[] = [
         path: "/projects/tropical-cacau",
         language: "pt-BR",
         translationKey: "tropical-cacau",
-        categories: ["design-de-produto, design-gráfico, branding, web-app"],
+        categories: ["design-de-produto", "design-gráfico", "branding", "web-app"],
     },
     {
         name: "Rewave",
@@ -404,7 +404,7 @@ const projects_ptBR: Project[] = [
         path: "/projects/rewave",
         language: "pt-BR",
         translationKey: "rewave",
-        categories: ["design-de-produto, design-gráfico, branding"],
+        categories: ["design-de-produto", "design-gráfico", "branding"],
     },
     {
         name: "Human Robotics",
@@ -413,7 +413,7 @@ const projects_ptBR: Project[] = [
         path: "/projects/robotics",
         language: "pt-BR",
         translationKey: "robotics",
-        categories: ["design-de-produto, design-gráfico, branding, web-app"],
+        categories: ["design-de-produto", "design-gráfico", "branding", "web-app"],
     },
     {
         name: "Ateliê Floar",
@@ -422,7 +422,7 @@ const projects_ptBR: Project[] = [
         path: "/projects/atelie-floar",
         language: "pt-BR",
         translationKey: "atelie-floar",
-        categories: ["design-gráfico, branding, web-app"],
+        categories: ["design-gráfico", "branding", "web-app"],
     },
     {
         name: "Full Jazz",
@@ -440,7 +440,7 @@ const projects_ptBR: Project[] = [
         path: "/projects/rede-aoba",
         language: "pt-BR",
         translationKey: "rede-aoba",
-        categories: ["design-de-produto, web-app, design-gráfico"],
+        categories: ["design-de-produto", "web-app", "design-gráfico"],
     },
     {
         name: "Van Hack",
@@ -1067,8 +1067,8 @@ const englishWebStructure: WebStructure = {
         menuBtnLabel: "Toggle Menu",
 
         contextBtnPath: "/",
-        contextBtnText: "Context",
-        contextBtnLabel: "Toggle Context",
+        contextBtnText: "Return to ",
+        contextBtnLabel: "Return to the previous page",
 
         shopBtnPath: "/",
         shopBtnText: "Wish Bag",
@@ -1386,8 +1386,8 @@ const portugueseWebStructure: WebStructure = {
         menuBtnLabel: "Acionar Menu",
 
         contextBtnPath: "/",
-        contextBtnText: "Context",
-        contextBtnLabel: "Acionar Contexto",
+        contextBtnText: "Retornar para ",
+        contextBtnLabel: "Retornar para a página anterior",
 
         shopBtnPath: "/",
         shopBtnText: "Sacola de Desejos",

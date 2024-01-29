@@ -4,54 +4,123 @@ import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "@/store/store";
-import { toggleColorMode } from "@/store/slices/interfaceSlice";
+
+import ShareBtn from "../buttons/ShareBtn";
+import ThemeSwitch from "../buttons/ThemeSwitch";
+
+import { Page, Project, Product, Service } from "@/types/WebStructure";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Header() {
     const dispatch = useDispatch();
-
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
-
+    const isSubpageActive = useSelector((state: RootState) => state.interface.isSubpageActive);
     const tSimple = useSimpleTranslation();
+    const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
 
-    const toggleColorModeAction = () => {
-        dispatch(toggleColorMode());
-        document.body.classList.toggle("dark-mode");
-    };
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState<(Page | Project | Product | Service)[]>([]);
+    const [isSearchBarFocused, setSearchBarFocused] = useState(false);
 
-    const share = () => {
-        if (navigator.share) {
-            navigator
-                .share({
-                    title: "Pragmatas",
-                    text: tSimple.navbar.shareBtnLabel,
-                    url: window.location.href,
-                })
-                .then(() => console.log("Successful share"))
-                .catch((error) => console.log("Error sharing", error));
-        } else {
-            console.log("Web Share API is not supported in your browser.");
-        }
-    };
+    function searchWebStructure(query: string) {
+        let results: (Page | Project | Product | Service)[] = [];
+        const lowerCaseQuery = query.toLowerCase();
+
+        tSimple.pages.forEach((page) => {
+            // Check if the page name matches the query
+            if (page.name.toLowerCase().includes(lowerCaseQuery)) {
+                results.push(page);
+            }
+
+            // Check if any project name matches the query
+            if (page.projects) {
+                const matchingProject = page.projects.find((project) => project.name.toLowerCase().includes(lowerCaseQuery));
+                if (matchingProject) {
+                    results.push(matchingProject);
+                }
+            }
+
+            // Check if any product name matches the query
+            if (page.products) {
+                const matchingProduct = page.products.find((product) => product.name.toLowerCase().includes(lowerCaseQuery));
+                if (matchingProduct) {
+                    results.push(matchingProduct);
+                }
+            }
+
+            // Check if any service name matches the query
+            if (page.services) {
+                const matchingService = page.services.find((service) => service.name.toLowerCase().includes(lowerCaseQuery));
+                if (matchingService) {
+                    results.push(matchingService);
+                }
+            }
+        });
+
+        return results;
+    }
+
+    useEffect(() => {
+        const results = searchWebStructure(searchQuery);
+        setSearchResults(results);
+    }, [searchQuery]);
 
     return (
         <div className="Header">
-            <button onClick={toggleColorModeAction}>{tSimple.navbar.colorModeBtnText}</button>
+            {/* Color Mode Button */}
+            <ThemeSwitch />
 
+            {/* Page Title */}
             <div className="Header_Center">
-                <AnimatePresence mode="wait">
-                    <m.h2
-                        className="HeaderPageTitle"
-                        key={currentPage}
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -50 }}
-                    >
-                        {currentPage}
-                    </m.h2>
+                <AnimatePresence mode="popLayout">
+                    {isSubpageActive && (
+                        <m.h2
+                            className="HeaderPageTitle"
+                            key={translatedPage?.translationKey}
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -50 }}
+                        >
+                            {translatedPage?.name}
+                        </m.h2>
+                    )}
+
+                    {!isSubpageActive && (
+                        <m.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }} className="SearchBar">
+                            <input
+                                type="text"
+                                placeholder={tSimple.navbar.searchBtnPlaceholder}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onFocus={() => setSearchBarFocused(true)}
+                                onBlur={() => setTimeout(() => setSearchBarFocused(false), 200)}
+                                className="SearchBar_Input"
+                            />
+                        </m.div>
+                    )}
+
+                    {!isSubpageActive && isSearchBarFocused && (
+                        <m.ul
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -50 }}
+                            className="SearchList"
+                            key={"SearchList"}
+                        >
+                            {searchResults.map((result, index) => (
+                                <li key={index}>
+                                    <Link href={result.path}>{result.name}</Link>
+                                </li>
+                            ))}
+                        </m.ul>
+                    )}
                 </AnimatePresence>
             </div>
 
-            <button onClick={share}>{tSimple.navbar.shareBtnText}</button>
+            {/* Share Button */}
+            <ShareBtn />
         </div>
     );
 }

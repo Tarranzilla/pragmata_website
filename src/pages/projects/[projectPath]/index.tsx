@@ -25,11 +25,17 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
     }
 
     return (
-        <div>
+        <div className="Project_Page">
             <h1>{project.name}</h1>
             <h2>{project.subtitle}</h2>
             <h3>{project.description}</h3>
-            {/* Render other project details */}
+            <div className="CategoryList">
+                {project.categories.map((category) => (
+                    <div key={category} className="CategoryItem">
+                        {category}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

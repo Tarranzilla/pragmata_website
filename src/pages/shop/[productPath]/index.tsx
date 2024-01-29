@@ -46,10 +46,27 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
     }
 
     return (
-        <div>
+        <div className="Project_Page">
             <h1>{product.name}</h1>
             <h2>{product.subtitle}</h2>
             <h3>{product.description}</h3>
+            <div className="CategoryList">
+                {product.categories.map((category) => (
+                    <div key={category} className="CategoryItem">
+                        {category}
+                    </div>
+                ))}
+            </div>
+            <h2 className="ProductPrice">R${product.price},00</h2>
+            <button>
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://api.whatsapp.com/send?phone=5541999977955&text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20um%20produto"
+                >
+                    Comprar
+                </a>
+            </button>
             {/* Render other project details */}
         </div>
     );

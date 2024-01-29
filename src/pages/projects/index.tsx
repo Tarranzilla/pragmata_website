@@ -14,6 +14,13 @@ export default function Projects() {
                     <h2>{project.name}</h2>
                     <h3>{project.subtitle}</h3>
                     <p>{project.description}</p>
+                    <div className="CategoryList">
+                        {project.categories.map((category) => (
+                            <div className="CategoryItem" key={category}>
+                                {category}
+                            </div>
+                        ))}
+                    </div>
                 </Link>
             ))}
         </m.div>

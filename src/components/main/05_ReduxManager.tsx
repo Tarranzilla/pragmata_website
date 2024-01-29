@@ -22,9 +22,6 @@ export default function ReduxManager() {
 
     useEffect(() => {
         setActivePageAction(page, subpage, item, pageTranslationKey);
-        console.log(page);
-        console.log(subpage);
-        console.log(item);
     }, [page, subpage, item]);
 
     return null;

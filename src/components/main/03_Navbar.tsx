@@ -1,4 +1,5 @@
 import LangSwitch from "@/components/buttons/LangSwitch";
+import MenuSwitch from "../buttons/MenuSwitch";
 
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
@@ -6,18 +7,16 @@ import { motion as m, AnimatePresence } from "framer-motion";
 
 import Link from "next/link";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { closeMenu, toggleMenuOpen, setActivePage } from "@/store/slices/interfaceSlice";
+import { closeMenu, setActivePage, toggleIsSubpageActive } from "@/store/slices/interfaceSlice";
 
 export default function Navbar() {
     const dispatch = useDispatch();
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const currentSubpage = useSelector((state: RootState) => state.interface.activeSubpage);
-    const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
 
     const tSimple = useSimpleTranslation();
     const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
@@ -31,6 +30,11 @@ export default function Navbar() {
     const [exitDirection, setExitDirection] = useState(0);
     const [enterDirection, setEnterDirection] = useState(0);
     const [lastDirection, setLastDirection] = useState(0);
+
+    const [exitDirectionUpdated, setExitDirectionUpdated] = useState(false);
+    const [enterDirectionUpdated, setEnterDirectionUpdated] = useState(false);
+
+    const [isSubpage, setIsSubpage] = useState(false);
 
     const getPrevAndNextPages = (currentPage: string) => {
         // Filter out the pages you don't want to include
@@ -47,14 +51,6 @@ export default function Navbar() {
     };
 
     const { prevPage, nextPage, filteredPages } = getPrevAndNextPages(currentPage);
-
-    // Add these state variables to track if the exit and enter directions have been updated
-    const [exitDirectionUpdated, setExitDirectionUpdated] = useState(false);
-    const [enterDirectionUpdated, setEnterDirectionUpdated] = useState(false);
-
-    const toggleMenuAction = () => {
-        dispatch(toggleMenuOpen());
-    };
 
     const closeMenuAction = () => {
         dispatch(closeMenu());
@@ -75,30 +71,53 @@ export default function Navbar() {
         }
     }, [exitDirectionUpdated, enterDirectionUpdated]);
 
+    useEffect(() => {
+        setIsSubpage(!!translatedSubpage);
+        if (!!translatedSubpage) {
+            dispatch(toggleIsSubpageActive(true));
+        }
+        return () => {
+            dispatch(toggleIsSubpageActive(false));
+        };
+    }, [translatedSubpage]);
+
     return (
         <div className="Navbar">
             <div className="Navbar_Left">
-                <Link
-                    onClick={() => {
-                        closeMenuAction();
-                        // Set the exit direction to the right
-                        setExitDirection(1);
-                        // Set the enter direction to the right
-                        setEnterDirection(0);
-                        // Update the last direction to indicate that we're navigating to the previous page
-                        setLastDirection(0);
-                        // Set the updated flags
-                        setExitDirectionUpdated(true);
-                        setEnterDirectionUpdated(true);
-                    }}
-                    className={"Nav_Button"}
-                    href={prevPage.path}
-                >
-                    {tSimple.footer.prevPageBtnText}
-                </Link>
+                {/* Previous Page Button */}
+                {!isSubpage && (
+                    <Link
+                        onClick={() => {
+                            closeMenuAction();
+                            // Set the exit direction to the right
+                            setExitDirection(1);
+                            // Set the enter direction to the right
+                            setEnterDirection(0);
+                            // Update the last direction to indicate that we're navigating to the previous page
+                            setLastDirection(0);
+                            // Set the updated flags
+                            setExitDirectionUpdated(true);
+                            setEnterDirectionUpdated(true);
+                        }}
+                        className={"Nav_Button"}
+                        href={prevPage.path}
+                    >
+                        {tSimple.footer.prevPageBtnText}
+                    </Link>
+                )}
+
+                {/* Back to Page Button */}
+                {isSubpage && (
+                    <Link href={`${translatedPage?.path}`} className={"Nav_Button"}>
+                        {tSimple.footer.contextBtnText} {translatedPage?.name}
+                    </Link>
+                )}
+
+                {/* Language Switch */}
                 <LangSwitch />
             </div>
             <div className="Navbar_Center">
+                {/* Page Name Indicator */}
                 <AnimatePresence mode="wait">
                     <m.h2
                         key={currentPage}
@@ -121,30 +140,34 @@ export default function Navbar() {
                     </div>
                 )}
 
+                {/* Brand Name */}
                 <h1 className="BrandName">pragmatas</h1>
             </div>
             <div className="Navbar_Right">
-                <Link
-                    onClick={() => {
-                        closeMenuAction();
-                        // Set the exit direction to the left
-                        setExitDirection(0);
-                        // Set the enter direction to the left
-                        setEnterDirection(1);
-                        // Update the last direction to indicate that we're navigating to the next page
-                        setLastDirection(1);
-                        // Set the updated flags
-                        setExitDirectionUpdated(true);
-                        setEnterDirectionUpdated(true);
-                    }}
-                    className={"Nav_Button"}
-                    href={nextPage.path}
-                >
-                    {tSimple.footer.nextPageBtnText}
-                </Link>
-                <button onClick={toggleMenuAction} className={"Nav_Button"}>
-                    {tSimple.footer.menuBtnText}
-                </button>
+                {/* Next Page Button */}
+                {!isSubpage && (
+                    <Link
+                        onClick={() => {
+                            closeMenuAction();
+                            // Set the exit direction to the left
+                            setExitDirection(0);
+                            // Set the enter direction to the left
+                            setEnterDirection(1);
+                            // Update the last direction to indicate that we're navigating to the next page
+                            setLastDirection(1);
+                            // Set the updated flags
+                            setExitDirectionUpdated(true);
+                            setEnterDirectionUpdated(true);
+                        }}
+                        className={"Nav_Button"}
+                        href={nextPage.path}
+                    >
+                        {tSimple.footer.nextPageBtnText}
+                    </Link>
+                )}
+
+                {/* Menu Switch */}
+                <MenuSwitch />
             </div>
         </div>
     );

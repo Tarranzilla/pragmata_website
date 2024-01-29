@@ -7,28 +7,17 @@ export function pathNameHelper(pathname: string) {
     const parts = pathname.split("/").filter(Boolean); // filter(Boolean) removes any empty strings from the array
 
     let page = "";
-
     if (pathname === "/") {
         page = "home";
     } else {
         page = parts[0] || "";
     }
-
-    console.log("page: " + page);
-
     const subpage = parts[1] || "";
-    console.log("subpage: " + subpage);
     const item = parts[2] || "";
-    console.log("item: " + item);
 
     const pageLink = "/" + page;
-    console.log("pageLink: " + pageLink);
-
     const subpageLink = pageLink + "/" + subpage;
-    console.log("subpageLink: " + subpageLink);
-
     const itemLink = subpageLink + "/" + item;
-    console.log("itemLink: " + itemLink);
 
     const generatePageTranslationKey = (page: string) => {
         switch (page) {
@@ -56,7 +45,6 @@ export function pathNameHelper(pathname: string) {
     };
 
     const pageTranslationKey = generatePageTranslationKey(page);
-    console.log("pageTranslationKey: " + pageTranslationKey);
 
     return { page, pageLink, subpage, subpageLink, item, itemLink, pageTranslationKey };
 }
@@ -64,6 +52,7 @@ export function pathNameHelper(pathname: string) {
 // Tipo para a Lógica da Interface
 type InterfaceState = {
     activePage: string;
+    isSubpageActive: boolean;
     activeSubpage: string;
     activeItem: string;
     isCookiesOpen: boolean;
@@ -78,6 +67,7 @@ type InterfaceState = {
 // Estado inicial da interface
 const initialState: InterfaceState = {
     activePage: "home",
+    isSubpageActive: false,
     activeSubpage: "",
     activeItem: "",
     isCookiesOpen: false,
@@ -96,6 +86,9 @@ const InterfaceSlice = createSlice({
     reducers: {
         setActivePage: (state, action: PayloadAction<string>) => {
             state.activePage = action.payload;
+        },
+        toggleIsSubpageActive: (state, action: PayloadAction<boolean>) => {
+            state.isSubpageActive = action.payload;
         },
         setActiveSubpage: (state, action: PayloadAction<string>) => {
             state.activeSubpage = action.payload;
@@ -132,6 +125,7 @@ const InterfaceSlice = createSlice({
 
 export const {
     setActivePage,
+    toggleIsSubpageActive,
     setActiveSubpage,
     setActiveItem,
     toggleCookiesOpen,

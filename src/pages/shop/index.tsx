@@ -16,6 +16,13 @@ export default function Shop() {
                         <h2 className="ShopItemTitle">{product.name}</h2>
                         <div className="ShopItemSubtitle">{product.subtitle}</div>
                         <div className="ShopItemDescription">{product.description}</div>
+                        <div className="CategoryList">
+                            {product.categories.map((category) => (
+                                <div key={category} className="CategoryItem">
+                                    {category}
+                                </div>
+                            ))}
+                        </div>
                     </Link>
                 ))}
             </div>
