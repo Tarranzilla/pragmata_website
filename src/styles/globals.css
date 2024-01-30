@@ -201,12 +201,12 @@ button {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     width: 100%;
     height: var(--full-height);
@@ -217,29 +217,41 @@ button {
 
     transition: background-color 0.5s ease-in-out;
     background-color: var(--text-color);
-}
-
-.MenuLink {
-    color: var(--bg-color);
-    font-size: 2rem;
-    text-underline-offset: 0.75rem;
-
-    transition: font-size 0.2s ease-in-out;
-}
-
-.MenuLink:hover,
-.MenuLink:focus-within {
-    font-size: 2.4rem;
+    padding-block: 6rem;
 }
 
 .PageList {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     gap: 1rem;
     color: var(--bg-color);
+    list-style: none;
+
+    margin-block: auto;
+    overflow-y: auto;
+    max-height: var(--content-viewer-height);
+}
+
+.MenuLink {
+    color: var(--bg-color);
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    text-decoration: none;
+
+    width: 100%;
+    max-width: 20rem;
+    transition: font-size 0.2s ease-in-out;
+    border-bottom: 0.25rem solid var(--bg-color);
+    padding-bottom: 0.5rem;
+}
+
+.MenuLink:hover,
+.MenuLink:focus-within {
+    font-size: 2.4rem;
 }
 
 .SearchList {
@@ -383,7 +395,7 @@ button {
     height: 6rem;
     display: flex;
     justify-content: space-between;
-    z-index: 2;
+    z-index: 3;
 }
 
 .Header_Center {
@@ -404,11 +416,13 @@ button {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    margin-top: 2rem;
 }
 
 .SearchBar > svg {
     width: 2rem;
     height: 2rem;
+    fill: var(--bg-color);
 }
 
 .SearchBar_Input {
