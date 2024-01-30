@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { closeMenu, setActivePage, toggleIsSubpageActive } from "@/store/slices/interfaceSlice";
+import { closeMenu, setActivePage, toggleIsSubpageActive, toggleCartOpen } from "@/store/slices/interfaceSlice";
 
 import ArrowBack_Icon from "../icons/ArrowBack_Icon";
 import ArrowNext_Icon from "../icons/ArrowNext_Icon";

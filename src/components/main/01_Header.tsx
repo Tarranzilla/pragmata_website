@@ -12,6 +12,7 @@ export default function Header() {
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const isSubpageActive = useSelector((state: RootState) => state.interface.isSubpageActive);
     const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
+    const isCartOpen = useSelector((state: RootState) => state.interface.isCartOpen);
     const tSimple = useSimpleTranslation();
     const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
 
@@ -22,7 +23,7 @@ export default function Header() {
 
             {/* Page Title */}
             <div className="Header_Center">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
                     {isSubpageActive && !isMenuOpen && (
                         <m.h2
                             className="HeaderPageTitle"
@@ -34,6 +35,19 @@ export default function Header() {
                             {translatedPage?.name}
                         </m.h2>
                     )}
+
+                    {isCartOpen && !isMenuOpen && (
+                        <m.h2
+                            className="HeaderPageTitle MenuHeader"
+                            key={"bag-header"}
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -50 }}
+                        >
+                            sacola de desejos
+                        </m.h2>
+                    )}
+
                     {isMenuOpen && (
                         <m.h2
                             className="HeaderPageTitle MenuHeader"

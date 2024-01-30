@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Header from "@/components/main/01_Header";
 import Navbar from "@/components/main/03_Navbar";
 import Menu from "@/components/main/04_Menu";
+import ShoppingBag from "@/components/main/06_ShoppingBag";
 import ReduxManager from "@/components/main/05_ReduxManager";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     </AnimatePresence>
                 </div>
 
+                <ShoppingBag />
                 <Navbar />
             </Provider>
         </>
