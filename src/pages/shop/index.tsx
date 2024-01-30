@@ -10,12 +10,12 @@ export default function Shop() {
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <div className="ShopList">
+            <div className="ProductList">
                 {tSimple.pages[5]?.products?.map((product: Product, index: number) => (
-                    <Link href={product.path} className="ShopItem" key={index}>
-                        <h2 className="ShopItemTitle">{product.name}</h2>
-                        <div className="ShopItemSubtitle">{product.subtitle}</div>
-                        <div className="ShopItemDescription">{product.description}</div>
+                    <Link href={product.path} className="Product_Container" key={index}>
+                        <h2 className="ProductTitle">{product.name}</h2>
+                        <div className="ProductSubtitle">{product.subtitle}</div>
+                        <div className="ProductDescription">{product.description}</div>
                         <div className="CategoryList">
                             {product.categories.map((category) => (
                                 <div key={category} className="CategoryItem">
@@ -23,6 +23,7 @@ export default function Shop() {
                                 </div>
                             ))}
                         </div>
+                        <img src={product.images ? product.images[0] : ""} className="ProjectBgImage" alt="" />
                     </Link>
                 ))}
             </div>

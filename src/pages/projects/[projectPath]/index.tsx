@@ -27,9 +27,9 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
 
     return (
         <div className="Project_Page">
-            <h1>{project.name}</h1>
-            <h2>{project.subtitle}</h2>
-            <h3>{project.description}</h3>
+            <h1 className={"ProjectTitle"}>{project.name}</h1>
+            <h2 className={"ProjectSubtitle"}>{project.subtitle}</h2>
+            <h3 className={"ProjectDescription"}>{project.description}</h3>
             <div className="CategoryList">
                 {project.categories.map((category) => (
                     <div key={category} className="CategoryItem">
@@ -40,7 +40,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
             <div className="ImageList">
                 {project.images?.map((image) => (
                     <div key={image} className="ImageItem">
-                        <Image className="Image" width={800} height={800} src={image} alt={project.name} />
+                        <Image className="DetailImage" width={800} height={800} src={image} alt={project.name} />
                     </div>
                 ))}
             </div>

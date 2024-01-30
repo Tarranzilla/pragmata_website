@@ -4,6 +4,8 @@ import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import { setActivePage } from "@/store/slices/interfaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+import Image from "next/image";
+
 import { pathNameHelper } from "@/store/slices/interfaceSlice";
 
 import { useRouter } from "next/router";
@@ -47,9 +49,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
 
     return (
         <div className="Project_Page">
-            <h1>{product.name}</h1>
-            <h2>{product.subtitle}</h2>
-            <h3>{product.description}</h3>
+            <h1 className="ProductTitle">{product.name}</h1>
+            <h2 className="ProductSubtitle">{product.subtitle}</h2>
+            <h3 className="ProductDescription">{product.description}</h3>
             <div className="CategoryList">
                 {product.categories.map((category) => (
                     <div key={category} className="CategoryItem">
@@ -67,7 +69,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                     Comprar
                 </a>
             </button>
-            {/* Render other project details */}
+            <div className="ImageList">
+                {product.images?.map((image) => (
+                    <div key={image} className="ImageItem">
+                        <Image className="DetailImage" width={800} height={800} src={image} alt={product.name} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

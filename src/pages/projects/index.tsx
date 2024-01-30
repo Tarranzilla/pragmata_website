@@ -11,15 +11,16 @@ export default function Projects() {
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer Project_ContentViewer">
             {tSimple.pages[4]?.projects?.map((project: Project, index: number) => (
                 <Link href={project.path} key={index} className="Project_Container">
-                    <h2>{project.name}</h2>
-                    <h3>{project.subtitle}</h3>
-                    <p>{project.description}</p>
+                    <h2 className="ProjectTitle">{project.name}</h2>
+                    <h3 className="ProjectSubtitle">{project.subtitle}</h3>
+                    <p className="ProjectDescription">{project.description}</p>
                     <div className="CategoryList">
                         {project.categories.map((category) => (
                             <div className="CategoryItem" key={category}>
                                 {category}
                             </div>
                         ))}
+                        <img src={project.images ? project.images[0] : ""} className="ProjectBgImage" alt="" />
                     </div>
                 </Link>
             ))}
