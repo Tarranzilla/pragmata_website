@@ -15,6 +15,7 @@ import { closeMenu, setActivePage, toggleIsSubpageActive } from "@/store/slices/
 
 import ArrowBack_Icon from "../icons/ArrowBack_Icon";
 import ArrowNext_Icon from "../icons/ArrowNext_Icon";
+import CartSwitch from "../buttons/CartSwitch";
 
 export default function Navbar() {
     const dispatch = useDispatch();
@@ -119,7 +120,7 @@ export default function Navbar() {
                 )}
 
                 {/* Language Switch */}
-                <LangSwitch />
+                <CartSwitch />
             </div>
             <div className="Navbar_Center">
                 {/* Page Name Indicator */}

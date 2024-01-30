@@ -51,6 +51,7 @@ export function pathNameHelper(pathname: string) {
 
 // Tipo para a Lógica da Interface
 type InterfaceState = {
+    selectedLanguage: "none" | "en" | "pt-BR";
     activePage: string;
     isSubpageActive: boolean;
     activeSubpage: string;
@@ -66,6 +67,7 @@ type InterfaceState = {
 
 // Estado inicial da interface
 const initialState: InterfaceState = {
+    selectedLanguage: "none", // "none" | "en" | "pt-BR
     activePage: "home",
     isSubpageActive: false,
     activeSubpage: "",
@@ -84,6 +86,9 @@ const InterfaceSlice = createSlice({
     name: "interface",
     initialState,
     reducers: {
+        setActiveLanguage: (state, action: PayloadAction<"none" | "en" | "pt-BR">) => {
+            state.selectedLanguage = action.payload;
+        },
         setActivePage: (state, action: PayloadAction<string>) => {
             state.activePage = action.payload;
         },
@@ -124,6 +129,7 @@ const InterfaceSlice = createSlice({
 });
 
 export const {
+    setActiveLanguage,
     setActivePage,
     toggleIsSubpageActive,
     setActiveSubpage,

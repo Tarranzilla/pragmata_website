@@ -8,12 +8,16 @@ import { RootState } from "@/store/store";
 import { toggleMenuOpen } from "@/store/slices/interfaceSlice";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import { Page, Project, Product, Service } from "@/types/WebStructure";
 
 import ContextIcon from "../icons/Context_Icon";
+import LangSwitch from "../buttons/LangSwitch";
+import Language_Icon from "../icons/Language_Icon";
 
 export default function Menu() {
+    const router = useRouter();
     const dispatch = useDispatch();
     const tSimple = useSimpleTranslation();
 
@@ -28,7 +32,6 @@ export default function Menu() {
 
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState<(Page | Project | Product | Service)[]>([]);
-    const [isSearchBarFocused, setSearchBarFocused] = useState(false);
 
     function searchWebStructure(query: string) {
         // If the query is an empty string, return all pages except 404 and 500
@@ -73,6 +76,13 @@ export default function Menu() {
         return results;
     }
 
+    const changeLanguage = () => {
+        const currentLocale = router.locale;
+        const newLocale = currentLocale === "en" ? "pt-BR" : "en";
+        const currentPath = router.asPath;
+        router.push(currentPath, currentPath, { locale: newLocale });
+    };
+
     useEffect(() => {
         const results = searchWebStructure(searchQuery);
         setSearchResults(results);
@@ -87,14 +97,7 @@ export default function Menu() {
                     exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
                     className="Menu"
                 >
-                    <m.div
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -50 }}
-                        onFocus={() => setSearchBarFocused(true)}
-                        onBlur={() => setTimeout(() => setSearchBarFocused(false), 200)}
-                        className="SearchBar"
-                    >
+                    <m.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }} className="SearchBar">
                         <ContextIcon />
                         <input
                             type="text"
@@ -118,6 +121,11 @@ export default function Menu() {
                             </Link>
                         ))}
                     </m.ul>
+
+                    <button className="Nav_Button" onClick={changeLanguage}>
+                        <Language_Icon />
+                        <p className="">{tSimple.menu.languageBtnText}</p>
+                    </button>
                 </m.div>
             )}
         </AnimatePresence>

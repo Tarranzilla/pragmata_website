@@ -146,14 +146,12 @@ a {
 
 .Nav_Button,
 button {
-    width: 100%;
     max-width: 10rem;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-inline: 1rem;
+    padding: 0.5rem;
 
     border: 1px solid var(--text-color);
     background-color: var(--bg-color);
