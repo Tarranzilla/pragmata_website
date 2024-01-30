@@ -11,6 +11,7 @@ import ThemeSwitch from "../buttons/ThemeSwitch";
 export default function Header() {
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const isSubpageActive = useSelector((state: RootState) => state.interface.isSubpageActive);
+    const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
     const tSimple = useSimpleTranslation();
     const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
 
@@ -22,7 +23,7 @@ export default function Header() {
             {/* Page Title */}
             <div className="Header_Center">
                 <AnimatePresence mode="popLayout">
-                    {isSubpageActive && (
+                    {isSubpageActive && !isMenuOpen && (
                         <m.h2
                             className="HeaderPageTitle"
                             key={translatedPage?.translationKey}
@@ -31,6 +32,17 @@ export default function Header() {
                             exit={{ opacity: 0, y: -50 }}
                         >
                             {translatedPage?.name}
+                        </m.h2>
+                    )}
+                    {isMenuOpen && (
+                        <m.h2
+                            className="HeaderPageTitle MenuHeader"
+                            key={"menu-header"}
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -50 }}
+                        >
+                            menu
                         </m.h2>
                     )}
                 </AnimatePresence>

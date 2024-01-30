@@ -122,7 +122,7 @@ export default function Menu() {
                         ))}
                     </m.ul>
 
-                    <button className="Nav_Button" onClick={changeLanguage}>
+                    <button className="Lang_Btn" onClick={changeLanguage}>
                         <Language_Icon />
                         <p className="">{tSimple.menu.languageBtnText}</p>
                     </button>
