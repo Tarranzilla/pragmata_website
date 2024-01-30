@@ -13,6 +13,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { closeMenu, setActivePage, toggleIsSubpageActive } from "@/store/slices/interfaceSlice";
 
+import ArrowBack_Icon from "../icons/ArrowBack_Icon";
+import ArrowNext_Icon from "../icons/ArrowNext_Icon";
+
 export default function Navbar() {
     const dispatch = useDispatch();
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
@@ -102,14 +105,16 @@ export default function Navbar() {
                         className={"Nav_Button"}
                         href={prevPage.path}
                     >
-                        {tSimple.footer.prevPageBtnText}
+                        <ArrowBack_Icon />
+                        <p className="DesktopOnly ButtonLabel">{tSimple.footer.prevPageBtnText}</p>
                     </Link>
                 )}
 
                 {/* Back to Page Button */}
                 {isSubpage && (
                     <Link href={`${translatedPage?.path}`} className={"Nav_Button"}>
-                        {tSimple.footer.contextBtnText} {translatedPage?.name}
+                        <ArrowBack_Icon />
+                        <p className="DesktopOnly ButtonLabel">{translatedPage?.name}</p>
                     </Link>
                 )}
 
@@ -162,7 +167,8 @@ export default function Navbar() {
                         className={"Nav_Button"}
                         href={nextPage.path}
                     >
-                        {tSimple.footer.nextPageBtnText}
+                        <p className="DesktopOnly ButtonLabel">{tSimple.footer.nextPageBtnText}</p>
+                        <ArrowNext_Icon />
                     </Link>
                 )}
 

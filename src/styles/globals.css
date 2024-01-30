@@ -78,6 +78,13 @@ p {
     line-height: 1.8rem;
 }
 
+svg {
+    fill: var(--text-color);
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+}
+
 .Image {
     width: 100%;
     height: auto;
@@ -392,11 +399,28 @@ button {
     font-size: clamp(2rem, 2vw, 2rem);
 }
 
+.SearchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.SearchBar > svg {
+    width: 2rem;
+    height: 2rem;
+}
+
 .SearchBar_Input {
     padding: 1rem;
-    border: 1px solid var(--text-color);
     background-color: var(--bg-color);
     color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+
+.HeaderButton {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Navbar */
@@ -462,9 +486,21 @@ button {
 }
 
 @media (max-width: 900px) {
+    .DesktopOnly {
+        display: none;
+    }
+
+    .ButtonLabel {
+        display: none;
+    }
+
+    .ButtonLabel {
+        font-size: 0.75rem;
+    }
+
     .Nav_Button,
     button {
-        max-width: 6rem;
+        max-width: 8rem;
         font-size: 0.75rem;
     }
 

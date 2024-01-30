@@ -1,5 +1,7 @@
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
+import Share_Icon from "../icons/Share_Icon";
+
 export default function ShareBtn() {
     const tSimple = useSimpleTranslation();
     const share = () => {
@@ -17,5 +19,10 @@ export default function ShareBtn() {
         }
     };
 
-    return <button onClick={share}>{tSimple.navbar.shareBtnText}</button>;
+    return (
+        <button className="HeaderButton ShareButton" onClick={share}>
+            <Share_Icon />
+            <p className="DesktopOnly ButtonLabel">{tSimple.navbar.shareBtnText}</p>
+        </button>
+    );
 }

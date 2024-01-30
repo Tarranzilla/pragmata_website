@@ -13,6 +13,8 @@ import { Page, Project, Product, Service } from "@/types/WebStructure";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+import ContextIcon from "../icons/Context_Icon";
+
 export default function Header() {
     const dispatch = useDispatch();
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
@@ -93,14 +95,20 @@ export default function Header() {
                     )}
 
                     {!isSubpageActive && (
-                        <m.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }} className="SearchBar">
+                        <m.div
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -50 }}
+                            onFocus={() => setSearchBarFocused(true)}
+                            onBlur={() => setTimeout(() => setSearchBarFocused(false), 200)}
+                            className="SearchBar"
+                        >
+                            <ContextIcon />
                             <input
                                 type="text"
                                 placeholder={tSimple.navbar.searchBtnPlaceholder}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                onFocus={() => setSearchBarFocused(true)}
-                                onBlur={() => setTimeout(() => setSearchBarFocused(false), 200)}
                                 className="SearchBar_Input"
                             />
                         </m.div>

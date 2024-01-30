@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
+import Language_Icon from "../icons/Language_Icon";
+
 export default function LangSwitch() {
     const router = useRouter();
     const tSimple = useSimpleTranslation();
@@ -18,7 +20,8 @@ export default function LangSwitch() {
 
     return (
         <button className="Nav_Button" onClick={changeLanguage}>
-            {tSimple.menu.languageBtnText}
+            <Language_Icon />
+            <p className="DesktopOnly ButtonLabel">{tSimple.menu.languageBtnText}</p>
         </button>
     );
 }

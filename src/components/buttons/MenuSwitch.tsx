@@ -2,6 +2,8 @@ import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import { toggleMenuOpen } from "@/store/slices/interfaceSlice";
 import { useSelector, useDispatch } from "react-redux";
 
+import Menu_Icon from "../icons/Menu_Icon";
+
 export default function MenuSwitch() {
     const tSimple = useSimpleTranslation();
     const dispatch = useDispatch();
@@ -11,7 +13,8 @@ export default function MenuSwitch() {
     };
     return (
         <button onClick={toggleMenuAction} className={"Nav_Button"}>
-            {tSimple.footer.menuBtnText}
+            <p className="DesktopOnly ButtonLabel">{tSimple.footer.menuBtnText}</p>
+            <Menu_Icon />
         </button>
     );
 }
