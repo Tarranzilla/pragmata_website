@@ -161,7 +161,7 @@ export type WebStructure = {
     };
 };
 
-const products: Product[] = [
+export const products: Product[] = [
     {
         name: "SURU",
         subtitle: "Universal Recombinant Utility System",

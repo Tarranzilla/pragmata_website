@@ -122,6 +122,9 @@ const InterfaceSlice = createSlice({
         toggleCartOpen: (state) => {
             state.isCartOpen = !state.isCartOpen;
         },
+        setCartOpen: (state, action: PayloadAction<boolean>) => {
+            state.isCartOpen = action.payload;
+        },
         setActivePageTranslationKey: (state, action: PayloadAction<string>) => {
             state.activePageTranslationKey = action.payload;
         },
@@ -139,6 +142,7 @@ export const {
     toggleMenuOpen,
     toggleSearchOpen,
     toggleCartOpen,
+    setCartOpen,
     setContentViewerMode,
     toggleColorMode,
     setActivePageTranslationKey,

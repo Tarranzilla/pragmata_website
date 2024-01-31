@@ -1,25 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Product = {
-    id: string;
-    name: string;
-    price: number;
-};
-
-type Products = {
-    [key: string]: Product;
-};
-
-const products: Products = {
-    product1: { id: "product1", name: "Product 1", price: 100 },
-    product2: { id: "product2", name: "Product 2", price: 200 },
-    product3: { id: "product3", name: "Product 3", price: 300 },
-    product4: { id: "product4", name: "Product 4", price: 400 },
-};
+import { Product } from "@/types/WebStructure";
+import { products } from "@/types/WebStructure";
 
 type CartItem = {
     id: string;
-    name: string;
     price: number;
     quantity: number;
 };
@@ -46,9 +31,9 @@ const cartSlice = createSlice({
                 existingCartItem.quantity += 1;
             } else {
                 // Get the product details from the products object
-                const product = products[cartItemId];
+                const product = products.find((product) => product.translationKey === cartItemId);
                 if (product) {
-                    state.cartItems.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+                    state.cartItems.push({ id: product.translationKey, price: product.price, quantity: 1 });
                 }
             }
 

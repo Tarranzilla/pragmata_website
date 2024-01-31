@@ -4,11 +4,39 @@ import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { toggleMenuOpen } from "@/store/slices/interfaceSlice";
+import { addCartItem, decrementCartItem, removeCartItem } from "@/store/slices/cartSlice";
 
 import { useEffect, useState } from "react";
 
 export default function ShoppingBag() {
+    const dispatch = useDispatch();
     const isCartOpen = useSelector((state: RootState) => state.interface.isCartOpen);
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+    const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
+
+    const tSimple = useSimpleTranslation();
+    const products = tSimple.pages[5]?.products;
+
+    const generateCartMessage = () => {
+        let message = "Olá Pragmatas, tenho interesse em adquirir os seguintes itens:\n\n";
+
+        cartItems.forEach((cartItem) => {
+            if (products) {
+                const product = products.find((product) => product.translationKey === cartItem.id);
+                if (product) {
+                    message += `${cartItem.quantity}X ${product.name}\n`;
+                }
+            }
+        });
+
+        message += `\nTotal = ${cartTotal.toFixed(2)}`;
+
+        // Encode the message in a URL
+        const encodedMessage = encodeURIComponent(message);
+
+        // Return a WhatsApp Click to Chat URL
+        return `https://wa.me/5541999977955?text=${encodedMessage}`;
+    };
 
     return (
         <AnimatePresence>
@@ -19,80 +47,60 @@ export default function ShoppingBag() {
                     exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
                     className="ShoppingBag"
                 >
-                    <h5>Sua sacola de desejos está vazia no momento...</h5>
-                    <div className="BagList">
-                        <div className="BagItem">
-                            <div className="Bag_Item_Left">imagem</div>
-                            <div className="Bag_Item_Right">
-                                <h2>Product Title</h2>
-                                <h3>R$ 420,00</h3>
-                                <div className="BagItemFooter">
-                                    <div className="QttySelector">
-                                        <div className="BtnLeft">-</div>
-                                        <div className="QttyValue">8</div>
-                                        <div className="BtnRight">+</div>
-                                    </div>
-                                    <div className="RemoveBtn">X</div>
-                                </div>
-                            </div>
+                    {cartItems.length < 1 && <h5 className="EmptyCartTitle">Sua sacola de desejos está vazia no momento...</h5>}
+
+                    {cartItems.length > 0 && (
+                        <div className="BagList">
+                            {cartItems.map((cartItem) => {
+                                if (products) {
+                                    const product = products.find((product) => product.translationKey === cartItem.id);
+                                    if (product) {
+                                        return (
+                                            <div className="BagItem" key={cartItem.id}>
+                                                <div className="Bag_Item_Left">imagem</div>
+                                                <div className="Bag_Item_Right">
+                                                    <h2>{product.name}</h2>
+                                                    <h3>R$ {cartItem.price}</h3>
+                                                    <div className="BagItemFooter">
+                                                        <div className="QttySelector">
+                                                            <div className="BtnLeft" onClick={() => dispatch(decrementCartItem(cartItem.id))}>
+                                                                -
+                                                            </div>
+                                                            <div className="QttyValue">{cartItem.quantity}</div>
+                                                            <div className="BtnRight" onClick={() => dispatch(addCartItem(cartItem.id))}>
+                                                                +
+                                                            </div>
+                                                        </div>
+                                                        <div className="RemoveBtn" onClick={() => dispatch(removeCartItem(cartItem.id))}>
+                                                            X
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                }
+                            })}
                         </div>
-                        <div className="BagItem">
-                            <div className="Bag_Item_Left">imagem</div>
-                            <div className="Bag_Item_Right">
-                                <h2>Product Title</h2>
-                                <h3>R$ 420,00</h3>
-                                <div className="BagItemFooter">
-                                    <div className="QttySelector">
-                                        <div className="BtnLeft">-</div>
-                                        <div className="QttyValue">8</div>
-                                        <div className="BtnRight">+</div>
-                                    </div>
-                                    <div className="RemoveBtn">X</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="BagItem">
-                            <div className="Bag_Item_Left">imagem</div>
-                            <div className="Bag_Item_Right">
-                                <h2>Product Title</h2>
-                                <h3>R$ 420,00</h3>
-                                <div className="BagItemFooter">
-                                    <div className="QttySelector">
-                                        <div className="BtnLeft">-</div>
-                                        <div className="QttyValue">8</div>
-                                        <div className="BtnRight">+</div>
-                                    </div>
-                                    <div className="RemoveBtn">X</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="BagItem">
-                            <div className="Bag_Item_Left">imagem</div>
-                            <div className="Bag_Item_Right">
-                                <h2>Product Title</h2>
-                                <h3>R$ 420,00</h3>
-                                <div className="BagItemFooter">
-                                    <div className="QttySelector">
-                                        <div className="BtnLeft">-</div>
-                                        <div className="QttyValue">8</div>
-                                        <div className="BtnRight">+</div>
-                                    </div>
-                                    <div className="RemoveBtn">X</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    )}
+
                     <div className="BagFooter">
                         <div className="BagItem BagTotal">
                             <div className="BagTotal_Left">
                                 <h2>Total</h2>
                             </div>
                             <div className="BagTotal_Right">
-                                <h3>R$ 2400,00</h3>
+                                <h3>R$ {cartTotal}</h3>
                             </div>
                         </div>
                         <button className="CheckoutBtn CheckoutHelpBtn">Como os pedidos são efetuados?</button>
-                        <button className="CheckoutBtn">Finalizar Pedido</button>
+                        {cartItems.length === 0 ? (
+                            <div className="CheckoutBtn Disabled">Adicione itens ao carrinho para finalizar o pedido</div>
+                        ) : (
+                            <a className="CheckoutBtn" href={generateCartMessage()} target="_blank" rel="noopener noreferrer">
+                                Finalizar Pedido
+                            </a>
+                        )}
                     </div>
                 </m.div>
             )}

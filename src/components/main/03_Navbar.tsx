@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { closeMenu, setActivePage, toggleIsSubpageActive, toggleCartOpen } from "@/store/slices/interfaceSlice";
+import { closeMenu, setActivePage, toggleIsSubpageActive, setCartOpen } from "@/store/slices/interfaceSlice";
 
 import ArrowBack_Icon from "../icons/ArrowBack_Icon";
 import ArrowNext_Icon from "../icons/ArrowNext_Icon";
@@ -64,6 +64,10 @@ export default function Navbar() {
         dispatch(setActivePage(page));
     };
 
+    const setCartOpenAction = (isOpen: boolean) => {
+        dispatch(setCartOpen(isOpen));
+    };
+
     // Update the useEffect hook
     useEffect(() => {
         // If both the exit and enter directions have been updated, navigate to the new page
@@ -102,6 +106,7 @@ export default function Navbar() {
                             // Set the updated flags
                             setExitDirectionUpdated(true);
                             setEnterDirectionUpdated(true);
+                            setCartOpenAction(false);
                         }}
                         className={"Nav_Button"}
                         href={prevPage.path}
@@ -164,6 +169,7 @@ export default function Navbar() {
                             // Set the updated flags
                             setExitDirectionUpdated(true);
                             setEnterDirectionUpdated(true);
+                            setCartOpenAction(false);
                         }}
                         className={"Nav_Button"}
                         href={nextPage.path}

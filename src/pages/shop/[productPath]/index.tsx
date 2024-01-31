@@ -1,8 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
-import { setActivePage } from "@/store/slices/interfaceSlice";
+import { setActivePage, setCartOpen } from "@/store/slices/interfaceSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { addCartItem } from "@/store/slices/cartSlice";
 
 import Image from "next/image";
 
@@ -35,13 +36,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
+    const dispatch = useDispatch();
     const tSimple = useSimpleTranslation();
-    const product = tSimple.pages[5].products?.find((product: Product) => `/shop/${productPath}` === product.path);
 
+    const product = tSimple.pages[5].products?.find((product: Product) => `/shop/${productPath}` === product.path);
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+    let quantity = 0;
+
+    if (product) {
+        const cartItem = cartItems.find((item) => item.id === product.translationKey);
+        quantity = cartItem ? cartItem.quantity : 0;
+    }
     const router = useRouter();
     const path = router.asPath;
 
     const { page, pageLink, subpage, subpageLink, item, itemLink, pageTranslationKey } = pathNameHelper(path);
+
+    const addToCartAction = (translationKey: string) => {
+        dispatch(addCartItem(translationKey));
+        dispatch(setCartOpen(true));
+    };
 
     if (!product) {
         return <div>Product not found</div>;
@@ -60,14 +74,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                 ))}
             </div>
             <h2 className="ProductPrice">R${product.price},00</h2>
-            <button>
-                <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://api.whatsapp.com/send?phone=5541999977955&text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20um%20produto"
-                >
-                    Comprar
-                </a>
+            <button
+                className="AddToCartButton"
+                onClick={() => {
+                    addToCartAction(product.translationKey);
+                }}
+            >
+                Adicionar ao Carrinho {quantity > 0 ? `(${quantity})` : ""}
             </button>
             <div className="ImageList">
                 {product.images?.map((image) => (
