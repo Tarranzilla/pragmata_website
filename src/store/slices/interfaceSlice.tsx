@@ -60,6 +60,7 @@ type InterfaceState = {
     isMenuOpen: boolean;
     isSearchOpen: boolean;
     isCartOpen: boolean;
+    isCartHelperOpen: boolean;
     contentViewerMode: "standard" | "media" | "text";
     colorMode: "light" | "dark";
     activePageTranslationKey: string;
@@ -76,6 +77,7 @@ const initialState: InterfaceState = {
     isMenuOpen: false,
     isSearchOpen: false,
     isCartOpen: false,
+    isCartHelperOpen: false,
     contentViewerMode: "standard",
     colorMode: "light",
     activePageTranslationKey: "home",
@@ -125,6 +127,9 @@ const InterfaceSlice = createSlice({
         setCartOpen: (state, action: PayloadAction<boolean>) => {
             state.isCartOpen = action.payload;
         },
+        setCartHelperOpen: (state, action: PayloadAction<boolean>) => {
+            state.isCartHelperOpen = action.payload;
+        },
         setActivePageTranslationKey: (state, action: PayloadAction<string>) => {
             state.activePageTranslationKey = action.payload;
         },
@@ -143,6 +148,7 @@ export const {
     toggleSearchOpen,
     toggleCartOpen,
     setCartOpen,
+    setCartHelperOpen,
     setContentViewerMode,
     toggleColorMode,
     setActivePageTranslationKey,

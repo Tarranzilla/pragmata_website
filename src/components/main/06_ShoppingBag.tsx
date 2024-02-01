@@ -3,14 +3,17 @@ import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { toggleMenuOpen } from "@/store/slices/interfaceSlice";
+import { toggleMenuOpen, setCartHelperOpen } from "@/store/slices/interfaceSlice";
 import { addCartItem, decrementCartItem, removeCartItem } from "@/store/slices/cartSlice";
 
 import { useEffect, useState } from "react";
 
 export default function ShoppingBag() {
     const dispatch = useDispatch();
+
     const isCartOpen = useSelector((state: RootState) => state.interface.isCartOpen);
+    const isCartHelperOpen = useSelector((state: RootState) => state.interface.isCartHelperOpen);
+
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
     const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
 
@@ -38,14 +41,19 @@ export default function ShoppingBag() {
         return `https://wa.me/5541999977955?text=${encodedMessage}`;
     };
 
+    const setCartHelperOpenAction = (value: boolean) => {
+        dispatch(setCartHelperOpen(value));
+    };
+
     return (
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
             {isCartOpen && (
                 <m.div
                     initial={{ opacity: 0, y: "100vh" }}
                     animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
                     exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
                     className="ShoppingBag"
+                    key={"ShoppingBag"}
                 >
                     {cartItems.length < 1 && <h5 className="EmptyCartTitle">{tSimple.cart.emptyCartMessage}</h5>}
 
@@ -93,7 +101,14 @@ export default function ShoppingBag() {
                                 <h3>R$ {cartTotal}</h3>
                             </div>
                         </div>
-                        <button className="CheckoutBtn CheckoutHelpBtn">{tSimple.cart.checkOutHelpTitle}</button>
+                        <button
+                            className="CheckoutBtn CheckoutHelpBtn"
+                            onClick={() => {
+                                setCartHelperOpenAction(true);
+                            }}
+                        >
+                            {tSimple.cart.checkOutHelpTitle}
+                        </button>
                         {cartItems.length === 0 ? (
                             <div className="CheckoutBtn Disabled">{tSimple.cart.checkOutActionEmptyCartText}</div>
                         ) : (
@@ -102,6 +117,27 @@ export default function ShoppingBag() {
                             </a>
                         )}
                     </div>
+                </m.div>
+            )}
+            {isCartHelperOpen && isCartOpen && (
+                <m.div
+                    className="CartHelper"
+                    initial={{ opacity: 0, y: "100vh" }}
+                    animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+                    exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+                    key={"CartHelper"}
+                >
+                    {tSimple.cart.checkOutHelpParagraphs.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                    ))}
+                    <button
+                        className="CartHelperCloseBtn"
+                        onClick={() => {
+                            setCartHelperOpenAction(false);
+                        }}
+                    >
+                        Entendi
+                    </button>
                 </m.div>
             )}
         </AnimatePresence>
