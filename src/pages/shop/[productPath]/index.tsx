@@ -14,8 +14,10 @@ import { useRouter } from "next/router";
 import { productPaths } from "@/types/WebStructure";
 
 import { Product } from "@/types/WebStructure";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
+
+import { AnimatePresence } from "framer-motion";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
@@ -43,10 +45,19 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
     let quantity = 0;
 
+    const [loadedImages, setLoadedImages] = useState(0);
+
+    useEffect(() => {
+        if (product && loadedImages === product.imageGroups?.reduce((total, group) => total + group.images.length, 0)) {
+            // All images have loaded
+        }
+    }, [loadedImages, product]);
+
     if (product) {
         const cartItem = cartItems.find((item) => item.id === product.translationKey);
         quantity = cartItem ? cartItem.quantity : 0;
     }
+
     const router = useRouter();
     const path = router.asPath;
 
@@ -88,7 +99,15 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                         <h2>{imageGroup.name}</h2>
                         {imageGroup.images.map((image) => (
                             <div key={image} className="ImageItem">
-                                <Image className="DetailImage" width={800} height={800} src={image} alt={product.name} />
+                                <Image
+                                    className="DetailImage"
+                                    width={800}
+                                    height={800}
+                                    src={image}
+                                    alt={product.name}
+                                    onLoad={() => setLoadedImages((prev) => prev + 1)}
+                                    style={{ opacity: loadedImages ? 1 : 0 }}
+                                />
                             </div>
                         ))}
                     </div>
