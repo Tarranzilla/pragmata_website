@@ -83,9 +83,14 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                 Adicionar ao Carrinho {quantity > 0 ? `(${quantity})` : ""}
             </button>
             <div className="ImageList">
-                {product.images?.map((image) => (
-                    <div key={image} className="ImageItem">
-                        <Image className="DetailImage" width={800} height={800} src={image} alt={product.name} />
+                {product.imageGroups?.map((imageGroup) => (
+                    <div key={imageGroup.name} className={`ImageGroup ${imageGroup.layout}`}>
+                        <h2>{imageGroup.name}</h2>
+                        {imageGroup.images.map((image) => (
+                            <div key={image} className="ImageItem">
+                                <Image className="DetailImage" width={800} height={800} src={image} alt={product.name} />
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>

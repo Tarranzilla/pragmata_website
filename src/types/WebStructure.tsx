@@ -1,3 +1,9 @@
+export type ImageGroup = {
+    name: string;
+    images: string[];
+    layout: string;
+};
+
 export type Project = {
     name: string;
     subtitle: string;
@@ -8,8 +14,9 @@ export type Project = {
     categories: string[];
 
     // propriedades opcionais
+    bannerImage?: string;
     images?: string[];
-    imagesLength?: number;
+    imageGroups?: ImageGroup[];
     paragraphs?: string[];
     paragraphsLength?: number;
     date?: string;
@@ -27,14 +34,17 @@ export type Product = {
     price: number;
 
     // propriedades opcionais
+    bannerImage?: string;
     images?: string[];
-    imagesLength?: number;
+    imageGroups?: ImageGroup[];
     paragraphs?: string[];
     paragraphsLength?: number;
     originDate?: string;
     isReleased?: boolean;
     releaseDate?: string;
     isPromoted?: boolean;
+
+    subproducts?: Product[];
 };
 
 export type Service = {
@@ -179,9 +189,65 @@ export const products: Product[] = [
         translationKey: "suru",
         categories: ["furniture"],
         price: 420, // You need to provide the actual price
+        bannerImage: "/productsFiles/suru/imgs/suru_img_banner_512.png",
+        imageGroups: [
+            {
+                name: "Project for Thomie Ohtake Institute",
+                images: [
+                    "/productsFiles/suru/imgs/suru_img_thomie_ohtake_001.png",
+                    "/productsFiles/suru/imgs/suru_img_thomie_ohtake_002.png",
+                    "/productsFiles/suru/imgs/suru_img_thomie_ohtake_003.png",
+                ],
+                layout: "1-col",
+            },
+            {
+                name: "Modules",
+                images: [
+                    "/productsFiles/suru/imgs/suru_img_modulo_001.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_002.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_003.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_004.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_005.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_006.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_007.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_008.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_009.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_010.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_011.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_012.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_013.png",
+                ],
+                layout: "2-col",
+            },
+            {
+                name: "Mobilia",
+                images: [
+                    "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_002.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_004.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_005.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_006.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_007.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_008.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_009.png",
+                ],
+                layout: "2-col",
+            },
+            {
+                name: "SURUMAC",
+                images: ["/productsFiles/suru/imgs/suru_img_surumac_001.png"],
+                layout: "1-col",
+            },
+            {
+                name: "Extras",
+                images: ["/productsFiles/suru/imgs/suru_img_extra_001.png", "/productsFiles/suru/imgs/suru_img_extra_002.png"],
+                layout: "1-col",
+            },
+        ],
     },
     {
-        name: "Nintendo Gate Control",
+        name: "naointendo",
         subtitle: "Gate Control",
         description: "A reinterpretation of a console classic, now available to control whatever you want inside your home!",
         path: "/shop/nintendo-gate-control",
@@ -189,6 +255,19 @@ export const products: Product[] = [
         translationKey: "nintendo-gate-control",
         categories: ["electronics"],
         price: 240, // You need to provide the actual price
+        bannerImage: "/productsFiles/naointendo/imgs/naointendo_img_banner_512.png",
+        imageGroups: [
+            {
+                name: "Press Kit",
+                images: [
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001.png",
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001_top.png",
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001_isometric_001.png",
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001_isometric_002.png",
+                ],
+                layout: "1-col",
+            },
+        ],
     },
     {
         name: "UNVRS",
@@ -199,6 +278,26 @@ export const products: Product[] = [
         translationKey: "unvrs",
         categories: ["clothing"],
         price: 150, // You need to provide the actual price
+        bannerImage: "/productsFiles/unvrs/imgs/unvrs_img_banner_512.png",
+        imageGroups: [
+            {
+                name: "Illustrations",
+                images: [
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                ],
+                layout: "1-col",
+            },
+            {
+                name: "Clothing",
+                images: ["/productsFiles/unvrs/imgs/unvrs_img_cloth_001.png"],
+                layout: "1-col",
+            },
+        ],
     },
 ];
 
@@ -214,9 +313,65 @@ const products_ptBR: Product[] = [
         translationKey: "suru",
         categories: ["mobiliário"],
         price: 420, // Você precisa fornecer o preço real
+        bannerImage: "/productFiles/suru/imgs/suru_img_banner_512.png",
+        imageGroups: [
+            {
+                name: "Projeto para o Instituto Thomie Ohtake",
+                images: [
+                    "/productsFiles/suru/imgs/suru_img_thomie_ohtake_001.png",
+                    "/productsFiles/suru/imgs/suru_img_thomie_ohtake_002.png",
+                    "/productsFiles/suru/imgs/suru_img_thomie_ohtake_003.png",
+                ],
+                layout: "1-col",
+            },
+            {
+                name: "Modulos",
+                images: [
+                    "/productsFiles/suru/imgs/suru_img_modulo_001.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_002.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_003.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_004.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_005.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_006.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_007.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_008.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_009.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_010.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_011.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_012.png",
+                    "/productsFiles/suru/imgs/suru_img_modulo_013.png",
+                ],
+                layout: "2-col",
+            },
+            {
+                name: "Mobilia",
+                images: [
+                    "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_002.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_004.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_005.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_006.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_007.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_008.png",
+                    "/productsFiles/suru/imgs/suru_img_mobilia_009.png",
+                ],
+                layout: "2-col",
+            },
+            {
+                name: "SURUMAC",
+                images: ["/productsFiles/suru/imgs/suru_img_surumac_001.png"],
+                layout: "1-col",
+            },
+            {
+                name: "Extras",
+                images: ["/productsFiles/suru/imgs/suru_img_extra_001.png", "/productsFiles/suru/imgs/suru_img_extra_002.png"],
+                layout: "1-col",
+            },
+        ],
     },
     {
-        name: "Controle de Portão Nintendo",
+        name: "naointendo",
         subtitle: "Controle de Portão",
         description: "Uma reinterpretação de um clássico do console, agora disponível para controlar o que você quiser dentro de sua casa!",
         path: "/shop/nintendo-gate-control",
@@ -224,6 +379,19 @@ const products_ptBR: Product[] = [
         translationKey: "nintendo-gate-control",
         categories: ["eletrônicos"],
         price: 240, // Você precisa fornecer o preço real
+        bannerImage: "/productsFiles/naointendo/imgs/naointendo_img_banner_512.png",
+        imageGroups: [
+            {
+                name: "Press Kit",
+                images: [
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001.png",
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001_top.png",
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001_isometric_001.png",
+                    "/productsFiles/naointendo/imgs/naointendo_img_product_001_isometric_002.png",
+                ],
+                layout: "1-col",
+            },
+        ],
     },
     {
         name: "UNVRS",
@@ -233,7 +401,27 @@ const products_ptBR: Product[] = [
         language: "en",
         translationKey: "unvrs",
         categories: ["roupas"],
-        price: 150, // Você precisa fornecer o preço real
+        price: 150, // Você precisa fornecer o preço
+        bannerImage: "/productsFiles/unvrs/imgs/unvrs_img_banner_512.png",
+        imageGroups: [
+            {
+                name: "Ilustrações",
+                images: [
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                    "/productsFiles/unvrs/imgs/unvrs_img_ilustration_001.png",
+                ],
+                layout: "1-col",
+            },
+            {
+                name: "Roupas",
+                images: ["/productsFiles/unvrs/imgs/unvrs_img_cloth_001.png"],
+                layout: "1-col",
+            },
+        ],
     },
 ];
 

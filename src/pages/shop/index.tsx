@@ -23,7 +23,7 @@ export default function Shop() {
                                 </div>
                             ))}
                         </div>
-                        <img src={product.images ? product.images[0] : ""} className="ProjectBgImage" alt="" />
+                        <img src={product.bannerImage ? product.bannerImage : ""} className="ProjectBgImage" alt="" />
                     </Link>
                 ))}
             </div>
