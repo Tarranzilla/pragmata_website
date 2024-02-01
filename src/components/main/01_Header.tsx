@@ -44,7 +44,7 @@ export default function Header() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -50 }}
                         >
-                            sacola de desejos
+                            {tSimple.cart.cartTitle}
                         </m.h2>
                     )}
 

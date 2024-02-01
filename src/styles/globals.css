@@ -33,6 +33,7 @@
 :root {
     --bg-color: #f5f5f5;
     --text-color: #000000;
+    --active-color: #ffb800;
 
     --bg-color-very-light: #00000025;
     --text-color-very-light: #f5f5f525;
@@ -48,6 +49,8 @@
 .dark-mode {
     --bg-color: #000000;
     --text-color: #f5f5f5;
+
+    --active-color: #5200ff;
 
     --bg-color-very-light: #ffffff25;
 }
@@ -160,6 +163,10 @@ a {
     cursor: pointer;
 
     transition: background-color 0.2s ease-in-out;
+}
+
+.Nav_Button.Active {
+    background-color: var(--active-color);
 }
 
 .Lang_Btn {
@@ -565,6 +572,7 @@ a {
 
 .EmptyCartTitle {
     margin-block: auto;
+    text-align: center;
 }
 
 .BagList {

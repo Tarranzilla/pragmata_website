@@ -117,6 +117,14 @@ export type WebStructure = {
         languageBtnText?: string;
         languageBtnLabel?: string;
     };
+    cart: {
+        cartTitle: string;
+        emptyCartMessage: string;
+        checkOutHelpTitle: string;
+        checkOutHelpParagraphs: string[];
+        checkOutActionText: string;
+        checkOutActionEmptyCartText: string;
+    };
     context: {
         contextTitle?: string;
         contextLinks?: NavLink[];
@@ -1105,6 +1113,19 @@ const englishWebStructure: WebStructure = {
         languageBtnText: "Change Language",
         languageBtnLabel: "Change Language to Portuguese",
     },
+    cart: {
+        cartTitle: "Wish Basket",
+        emptyCartMessage: "Your basket is empty at the moment...",
+        checkOutHelpTitle: "How the checkout works?",
+        checkOutHelpParagraphs: [
+            "The checkout is simple and secure.",
+            "You just need to choose the your desired products and add them to the basket.",
+            "Then, click on the basket icon and proceed to the checkout.",
+            "When you click on the checkout button you will be redirected to our whatsapp chat to finish the purchase.",
+        ],
+        checkOutActionText: "Checkout Order",
+        checkOutActionEmptyCartText: "Add items to your basket in order to checkout",
+    },
     context: {},
     cookies: {
         title: "Cookies",
@@ -1423,6 +1444,19 @@ const portugueseWebStructure: WebStructure = {
         languageBtnPath: "/",
         languageBtnText: "Mudar Idioma",
         languageBtnLabel: "Mudar idioma para Inglês",
+    },
+    cart: {
+        cartTitle: "Cesto de Desejos",
+        emptyCartMessage: "Seu cesto está vazio no momento...",
+        checkOutHelpTitle: "Como os pedidos são efetuados?",
+        checkOutHelpParagraphs: [
+            "The checkout is simple and secure.",
+            "You just need to choose the your desired products and add them to the basket.",
+            "Then, click on the basket icon and proceed to the checkout.",
+            "When you click on the checkout button you will be redirected to our whatsapp chat to finish the purchase.",
+        ],
+        checkOutActionText: "Efetuar Pedido",
+        checkOutActionEmptyCartText: "Adicione itens ao cesto para efetuar o pedido",
     },
     context: {},
     cookies: {

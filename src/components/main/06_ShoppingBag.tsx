@@ -47,7 +47,7 @@ export default function ShoppingBag() {
                     exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
                     className="ShoppingBag"
                 >
-                    {cartItems.length < 1 && <h5 className="EmptyCartTitle">Sua sacola de desejos está vazia no momento...</h5>}
+                    {cartItems.length < 1 && <h5 className="EmptyCartTitle">{tSimple.cart.emptyCartMessage}</h5>}
 
                     {cartItems.length > 0 && (
                         <div className="BagList">
@@ -93,12 +93,12 @@ export default function ShoppingBag() {
                                 <h3>R$ {cartTotal}</h3>
                             </div>
                         </div>
-                        <button className="CheckoutBtn CheckoutHelpBtn">Como os pedidos são efetuados?</button>
+                        <button className="CheckoutBtn CheckoutHelpBtn">{tSimple.cart.checkOutHelpTitle}</button>
                         {cartItems.length === 0 ? (
-                            <div className="CheckoutBtn Disabled">Adicione itens ao carrinho para finalizar o pedido</div>
+                            <div className="CheckoutBtn Disabled">{tSimple.cart.checkOutActionEmptyCartText}</div>
                         ) : (
                             <a className="CheckoutBtn" href={generateCartMessage()} target="_blank" rel="noopener noreferrer">
-                                Finalizar Pedido
+                                {tSimple.cart.checkOutActionText}
                             </a>
                         )}
                     </div>
