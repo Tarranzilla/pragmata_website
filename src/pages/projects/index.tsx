@@ -20,7 +20,7 @@ export default function Projects() {
                                 {category}
                             </div>
                         ))}
-                        <img src={project.images ? project.images[0] : ""} className="ProjectBgImage" alt="" />
+                        <img src={project.bannerImage ? project.bannerImage : ""} className="ProjectBgImage" alt="" />
                     </div>
                 </Link>
             ))}
