@@ -313,7 +313,7 @@ const products_ptBR: Product[] = [
         translationKey: "suru",
         categories: ["mobiliário"],
         price: 420, // Você precisa fornecer o preço real
-        bannerImage: "/productFiles/suru/imgs/suru_img_banner_512.png",
+        bannerImage: "/productsFiles/suru/imgs/suru_img_banner_512.png",
         imageGroups: [
             {
                 name: "Projeto para o Instituto Thomie Ohtake",
