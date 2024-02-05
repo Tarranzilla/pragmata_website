@@ -47,9 +47,17 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
 
     const [loadedImages, setLoadedImages] = useState(0);
 
+    const [contextIsOpen, setContextIsOpen] = useState(false);
+    const [activeSubproductGroup, setActiveSubproductGroup] = useState<string | null>(null);
+
     useEffect(() => {
         if (product && loadedImages === product.imageGroups?.reduce((total, group) => total + group.images.length, 0)) {
             // All images have loaded
+        }
+
+        // Set the active subproduct group to the first subgroup when the product changes
+        if (product && product.subproducts && product.subproducts.length > 0) {
+            setActiveSubproductGroup(product.subproducts[0].key);
         }
     }, [loadedImages, product]);
 
@@ -74,47 +82,105 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
 
     return (
         <div className="Project_Page">
-            <h1 className="ProductTitle">{product.name}</h1>
-            <h2 className="ProductSubtitle">{product.subtitle}</h2>
-            <h3 className="ProductDescription">{product.description}</h3>
-            <div className="CategoryList">
-                {product.categories.map((category) => (
-                    <div key={category} className="CategoryItem">
-                        {category}
-                    </div>
-                ))}
+            <div className="Product_Page_Header">
+                <h1 className="ProductTitle">{product.name}</h1>
+                <h2 className="ProductSubtitle">{product.subtitle}</h2>
+                <h3 className="ProductDescription">{product.description}</h3>
+                <div className="CategoryList">
+                    {product.categories.map((category) => (
+                        <div key={category} className="CategoryItem Inverted_CategoryItem">
+                            {category}
+                        </div>
+                    ))}
+                </div>
             </div>
-            <h2 className="ProductPrice">R${product.price},00</h2>
-            <button
-                className="AddToCartButton"
-                onClick={() => {
-                    addToCartAction(product.translationKey);
-                }}
-            >
-                Adicionar ao Carrinho {quantity > 0 ? `(${quantity})` : ""}
-            </button>
-            <div className="ImageList">
-                {product.imageGroups?.map((imageGroup) => (
-                    <div key={imageGroup.name} className={`ImageGroup ${imageGroup.layout}`}>
-                        <h2>{imageGroup.name}</h2>
-                        {imageGroup.images.map((image) => (
-                            <div key={image} className="ImageItem">
-                                <Image
-                                    className="DetailImage"
-                                    width={800}
-                                    height={800}
-                                    src={image}
-                                    alt={product.name}
-                                    onLoad={() => setLoadedImages((prev) => prev + 1)}
-                                    style={{ opacity: loadedImages ? 1 : 0 }}
-                                />
+
+            {product.subproducts && (
+                <>
+                    <div className="subproducts_classes_container">
+                        {product.subproducts.map((subproductGroup) => (
+                            <div
+                                key={subproductGroup.key}
+                                className={`subproduct_class ${activeSubproductGroup === subproductGroup.key ? "active" : ""}`}
+                                onClick={() => setActiveSubproductGroup(subproductGroup.key)}
+                            >
+                                {subproductGroup.name}
                             </div>
                         ))}
                     </div>
-                ))}
-            </div>
+
+                    <div className="Subproducts_Container">
+                        {product.subproducts
+                            .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
+                            ?.products.map((product) => (
+                                <div key={product.name} className="Subproduct">
+                                    <div className="SubproductImageContainer">
+                                        <img className="subproduct_image" src={product.bannerImage} alt="" />
+                                    </div>
+                                    {/* Render your product here */}
+                                    <button
+                                        className="AddToCartButton"
+                                        onClick={() => {
+                                            addToCartAction(product.translationKey);
+                                        }}
+                                    >
+                                        Adicionar ao Carrinho {quantity > 0 ? `(${quantity})` : ""}
+                                    </button>
+                                </div>
+                            ))}
+                    </div>
+                </>
+            )}
+
+            <button
+                className="Product_Page_ContextButton"
+                onClick={() => {
+                    setContextIsOpen(!contextIsOpen);
+                }}
+            >
+                + Contexto
+            </button>
+
+            {contextIsOpen && (
+                <div className="ImageList">
+                    {product.imageGroups?.map((imageGroup) => (
+                        <div key={imageGroup.name} className={`ImageGroup ${imageGroup.layout}`}>
+                            <h2>{imageGroup.name}</h2>
+                            {imageGroup.images.map((image) => (
+                                <div key={image} className="ImageItem">
+                                    <Image
+                                        className="DetailImage"
+                                        width={800}
+                                        height={800}
+                                        src={image}
+                                        alt={product.name}
+                                        onLoad={() => setLoadedImages((prev) => prev + 1)}
+                                        style={{ opacity: loadedImages ? 1 : 0 }}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
 
 export default ProductPage;
+
+/*
+
+                <div className="Product_Buy_Info">
+                    <h2 className="ProductPrice">R${product.price},00</h2>
+                    <button
+                        className="AddToCartButton"
+                        onClick={() => {
+                            addToCartAction(product.translationKey);
+                        }}
+                    >
+                        Adicionar ao Carrinho {quantity > 0 ? `(${quantity})` : ""}
+                    </button>
+                </div>
+
+*/

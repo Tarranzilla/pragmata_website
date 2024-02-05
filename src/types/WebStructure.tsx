@@ -23,6 +23,12 @@ export type Project = {
     client?: string;
 };
 
+export type SubProductGroup = {
+    key: string;
+    name: string;
+    products: Product[];
+};
+
 export type Product = {
     name: string;
     subtitle: string;
@@ -44,7 +50,8 @@ export type Product = {
     releaseDate?: string;
     isPromoted?: boolean;
 
-    subproducts?: Product[];
+    subproducts?: SubProductGroup[];
+    components?: Product[];
     type?: string;
 };
 
@@ -249,78 +256,91 @@ export const products: Product[] = [
 
         subproducts: [
             {
-                name: "SURU SURU",
-                subtitle: "Módulo Básico",
-                description: "A peça que pode ser recombinada várias vezes para criar móveis diversos para a sua casa!",
-                path: "/shop/suru/suru-suru",
-                language: "en",
-                translationKey: "suru-suru",
-                categories: ["furniture"],
-                price: 80,
-                bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
-                type: "modulo",
+                key: "modules",
+                name: "modules",
+                products: [
+                    {
+                        name: "SURU SURU",
+                        subtitle: "Módulo Básico",
+                        description: "A peça que pode ser recombinada várias vezes para criar móveis diversos para a sua casa!",
+                        path: "/shop/suru/suru-suru",
+                        language: "en",
+                        translationKey: "suru-suru",
+                        categories: ["furniture"],
+                        price: 80,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
+                        type: "modulo",
+                    },
+                    {
+                        name: "SUR",
+                        subtitle: "Módulo Estrutural",
+                        description:
+                            "Uma peça usada para adicionar mais rigidez para estruturas, talvez possa ser o pé de uma mesinha também, quem sabe?",
+                        path: "/shop/suru/sur",
+                        language: "en",
+                        translationKey: "sur",
+                        categories: ["furniture"],
+                        price: 30,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_002.png",
+                        type: "modulo",
+                    },
+                    {
+                        name: "SU",
+                        subtitle: "Módulo Estrutural",
+                        description:
+                            "Uma peça usada para ligar peças entre elas e adicionar mais rigidez para estruturas, pode servir para segurar pequenos objetos e agir como pézinho de móveis.",
+                        path: "/shop/suru/su",
+                        language: "en",
+                        translationKey: "su",
+                        categories: ["furniture"],
+                        price: 30,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_003.png",
+                        type: "modulo",
+                    },
+                ],
             },
             {
-                name: "SUR",
-                subtitle: "Módulo Estrutural",
-                description: "Uma peça usada para adicionar mais rigidez para estruturas, talvez possa ser o pé de uma mesinha também, quem sabe?",
-                path: "/shop/suru/sur",
-                language: "en",
-                translationKey: "sur",
-                categories: ["furniture"],
-                price: 30,
-                bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_002.png",
-                type: "modulo",
-            },
-            {
-                name: "SU",
-                subtitle: "Módulo Estrutural",
-                description:
-                    "Uma peça usada para ligar peças entre elas e adicionar mais rigidez para estruturas, pode servir para segurar pequenos objetos e agir como pézinho de móveis.",
-                path: "/shop/suru/su",
-                language: "en",
-                translationKey: "su",
-                categories: ["furniture"],
-                price: 30,
-                bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_003.png",
-                type: "modulo",
-            },
-            {
-                name: "cadeira",
-                subtitle: "Objeto Simples",
-                description: "Uma cadeira composta por 4 módulos suru.",
-                path: "/shop/suru/cadeira",
-                language: "en",
-                translationKey: "cadeira",
-                categories: ["furniture"],
-                price: 30,
-                bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
-                type: "objeto",
-            },
-            {
-                name: "mesa",
-                subtitle: "Objeto Simples",
-                description: "Uma mesa composta por 4 módulos suru.",
-                path: "/shop/suru/mesa",
-                language: "en",
-                translationKey: "mesa",
-                categories: ["furniture"],
-                price: 30,
-                bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_002.png",
-                type: "objeto",
-            },
-            {
-                name: "estante",
-                subtitle: "Objeto Simples",
-                description: "Uma estante composta por 4 módulos suru.",
-                path: "/shop/suru/estante",
-                language: "en",
-                translationKey: "estante",
-                categories: ["furniture"],
-                price: 30,
-                bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
-                type: "objeto",
-            },
+                key: "objects",
+                name: "objects",
+                products: [
+                    {
+                        name: "cadeira",
+                        subtitle: "Objeto Simples",
+                        description: "Uma cadeira composta por 4 módulos suru.",
+                        path: "/shop/suru/cadeira",
+                        language: "en",
+                        translationKey: "cadeira",
+                        categories: ["furniture"],
+                        price: 300,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
+                        type: "objeto",
+                    },
+                    {
+                        name: "mesa",
+                        subtitle: "Objeto Simples",
+                        description: "Uma mesa composta por 4 módulos suru.",
+                        path: "/shop/suru/mesa",
+                        language: "en",
+                        translationKey: "mesa",
+                        categories: ["furniture"],
+                        price: 300,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_002.png",
+                        type: "objeto",
+                    },
+                    {
+                        name: "estante",
+                        subtitle: "Objeto Simples",
+                        description: "Uma estante composta por 4 módulos suru.",
+                        path: "/shop/suru/estante",
+                        language: "en",
+                        translationKey: "estante",
+                        categories: ["furniture"],
+                        price: 400,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
+                        type: "objeto",
+                    },
+                ]
+            }
         ],
     },
     {

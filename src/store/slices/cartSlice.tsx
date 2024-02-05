@@ -30,8 +30,19 @@ const cartSlice = createSlice({
             if (existingCartItem) {
                 existingCartItem.quantity += 1;
             } else {
-                // Get the product details from the products object
-                const product = products.find((product) => product.translationKey === cartItemId);
+                // Iterate over each product and its subproducts to find the product with the matching translationKey
+                let product: Product | undefined;
+                for (const prod of products) {
+                    if (prod.subproducts) {
+                        // Check if prod.subproducts is defined
+                        for (const subproductGroup of prod.subproducts) {
+                            product = subproductGroup.products.find((product) => product.translationKey === cartItemId);
+                            if (product) break;
+                        }
+                    }
+                    if (product) break;
+                }
+
                 if (product) {
                     state.cartItems.push({ id: product.translationKey, price: product.price, quantity: 1 });
                 }

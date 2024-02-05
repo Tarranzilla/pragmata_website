@@ -25,7 +25,16 @@ export default function ShoppingBag() {
 
         cartItems.forEach((cartItem) => {
             if (products) {
-                const product = products.find((product) => product.translationKey === cartItem.id);
+                let product;
+                for (const prod of products) {
+                    if (prod.subproducts) {
+                        for (const subproductGroup of prod.subproducts) {
+                            product = subproductGroup.products.find((product) => product.translationKey === cartItem.id);
+                            if (product) break;
+                        }
+                    }
+                    if (product) break;
+                }
                 if (product) {
                     message += `${cartItem.quantity}X ${product.name}\n`;
                 }
@@ -61,7 +70,16 @@ export default function ShoppingBag() {
                         <div className="BagList">
                             {cartItems.map((cartItem) => {
                                 if (products) {
-                                    const product = products.find((product) => product.translationKey === cartItem.id);
+                                    let product;
+                                    for (const prod of products) {
+                                        if (prod.subproducts) {
+                                            for (const subproductGroup of prod.subproducts) {
+                                                product = subproductGroup.products.find((product) => product.translationKey === cartItem.id);
+                                                if (product) break;
+                                            }
+                                        }
+                                        if (product) break;
+                                    }
                                     if (product) {
                                         return (
                                             <div className="BagItem" key={cartItem.id}>
