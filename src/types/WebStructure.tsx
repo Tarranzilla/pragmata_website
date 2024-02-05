@@ -340,6 +340,54 @@ export const products: Product[] = [
                         type: "objeto",
                     },
                 ]
+            },
+            {
+                key: "collections",
+                name: "coleção",
+                products: [
+                    {
+                        name: "Pacote Iniciante",
+                        subtitle: "Coleção de Objetos",
+                        description: "Uma pacote composto por 8 SURUs, 8 SURs e 24 SUs.",
+                        path: "/shop/suru/pacote_iniciante",
+                        language: "en",
+                        translationKey: "pacote_iniciante",
+                        categories: ["furniture"],
+                        price: 1000,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_extra_001.png",
+                        type: "colecao",
+                    },
+                    {
+                        name: "Pacote Avançado",
+                        subtitle: "Coleção de Objetos",
+                        description: "Um pacote com todos os móveis da linha SURU 2024.",
+                        path: "/shop/suru/pacote_avancado",
+                        language: "en",
+                        translationKey: "pacote_avancado",
+                        categories: ["furniture"],
+                        price: 3000,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_extra_002.png",
+                        type: "colecao",
+                    },
+                ]
+            },
+            {
+                key: "machine",
+                name: "máquinas",
+                products: [
+                    {
+                        name: "SURUMAC",
+                        subtitle: "Máquina CNC Modular",
+                        description: "Uma máquina para prototipar seus sonhos.",
+                        path: "/shop/suru/surumac",
+                        language: "en",
+                        translationKey: "surumac",
+                        categories: ["machine"],
+                        price: 5000,
+                        bannerImage: "/productsFiles/suru/imgs/suru_img_surumac_001.png",
+                        type: "colecao",
+                    }
+                ]
             }
         ],
     },

@@ -83,7 +83,9 @@ export default function ShoppingBag() {
                                     if (product) {
                                         return (
                                             <div className="BagItem" key={cartItem.id}>
-                                                <div className="Bag_Item_Left">imagem</div>
+                                                <div className="Bag_Item_Left">
+                                                    <img src={""} alt="" />
+                                                </div>
                                                 <div className="Bag_Item_Right">
                                                     <h2>{product.name}</h2>
                                                     <h3>R$ {cartItem.price}</h3>

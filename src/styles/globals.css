@@ -449,6 +449,7 @@ a {
     min-height: 200px;
 
     padding-bottom: 1rem;
+    flex-shrink: 0;
 }
 
 .Subproduct {
@@ -460,6 +461,8 @@ a {
 
     width: 75%;
     min-width: 300px;
+    height: 100%;
+    aspect-ratio: 1/1;
 
     gap: 1rem;
 
@@ -471,6 +474,7 @@ a {
     object-fit: cover;
     border-radius: 1rem;
     width: 100%;
+    aspect-ratio: 1/1;
     height: auto;
 }
 
@@ -490,6 +494,10 @@ a {
     flex-direction: row;
     gap: 0.5rem;
     z-index: 2;
+    overflow-x: auto;
+    flex-shrink: 0;
+    padding-bottom: 0.5rem;
+    width: 100%;
 }
 
 .subproduct_class {
@@ -503,6 +511,23 @@ a {
 
 .subproduct_class.active {
     background-color: var(--active-color);
+}
+
+.InfoButton {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid var(--bg-color);
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Product_Page_ContextButton {
@@ -839,8 +864,8 @@ a {
 
 .AddToCartButton {
     position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid var(--bg-color);

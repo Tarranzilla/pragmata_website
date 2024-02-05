@@ -118,6 +118,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                                         <img className="subproduct_image" src={product.bannerImage} alt="" />
                                     </div>
                                     {/* Render your product here */}
+                                    <button className="InfoButton">...</button>
                                     <button
                                         className="AddToCartButton"
                                         onClick={() => {
