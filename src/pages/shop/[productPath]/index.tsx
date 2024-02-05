@@ -125,7 +125,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                                             addToCartAction(product.translationKey);
                                         }}
                                     >
-                                        Adicionar ao Carrinho {quantity > 0 ? `(${quantity})` : ""}
+                                        {tSimple.common.addToCartBtn} {quantity > 0 ? `(${quantity})` : ""}
                                     </button>
                                 </div>
                             ))}
@@ -139,7 +139,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                     setContextIsOpen(!contextIsOpen);
                 }}
             >
-                + Contexto
+                {tSimple.common.contextBtn}
             </button>
 
             {contextIsOpen && (

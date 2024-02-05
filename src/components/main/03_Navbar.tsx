@@ -118,7 +118,14 @@ export default function Navbar() {
 
                 {/* Back to Page Button */}
                 {isSubpage && (
-                    <Link href={`${translatedPage?.path}`} className={"Nav_Button"}>
+                    <Link
+                        href={`${translatedPage?.path}`}
+                        onClick={() => {
+                            closeMenuAction();
+                            setCartOpenAction(false);
+                        }}
+                        className={"Nav_Button"}
+                    >
                         <ArrowBack_Icon />
                         <p className="DesktopOnly ButtonLabel">{translatedPage?.name}</p>
                     </Link>
