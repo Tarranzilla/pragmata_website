@@ -46,9 +46,9 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
+            <img className="ImageItem" src={product?.bannerImage} alt="" />
             <h1>{product?.name}</h1>
             <p>{product?.description}</p>
-            <img className="ImageItem" src={product?.bannerImage} alt="" />
         </m.div>
     );
 };
