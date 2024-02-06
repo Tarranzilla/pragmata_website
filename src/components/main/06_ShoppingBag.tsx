@@ -8,6 +8,12 @@ import { addCartItem, decrementCartItem, removeCartItem } from "@/store/slices/c
 
 import { useEffect, useState } from "react";
 
+const cartItemVariants = {
+    hidden: { opacity: 0, transition: { duration: 0.5 } },
+    show: { opacity: 1, transition: { duration: 0.5 } },
+    exit: { opacity: 0, transition: { duration: 0.5 } },
+};
+
 export default function ShoppingBag() {
     const dispatch = useDispatch();
 
@@ -68,7 +74,7 @@ export default function ShoppingBag() {
 
                     {cartItems.length > 0 && (
                         <div className="BagList">
-                            {cartItems.map((cartItem) => {
+                            {cartItems.map((cartItem, index) => {
                                 if (products) {
                                     let product;
                                     for (const prod of products) {
@@ -82,9 +88,17 @@ export default function ShoppingBag() {
                                     }
                                     if (product) {
                                         return (
-                                            <div className="BagItem" key={cartItem.id}>
+                                            <m.div
+                                                layoutId={`item-${index}`}
+                                                className="BagItem"
+                                                key={cartItem.id}
+                                                variants={cartItemVariants}
+                                                initial="hidden"
+                                                animate="show"
+                                                exit="exit"
+                                            >
                                                 <div className="Bag_Item_Left">
-                                                    <img src={""} alt="" />
+                                                    <img className="CartItem_Image" src={cartItem.bannerImage} alt="" />
                                                 </div>
                                                 <div className="Bag_Item_Right">
                                                     <h2>{product.name}</h2>
@@ -104,7 +118,7 @@ export default function ShoppingBag() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </m.div>
                                         );
                                     }
                                 }

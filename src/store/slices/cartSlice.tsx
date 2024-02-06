@@ -7,6 +7,7 @@ type CartItem = {
     id: string;
     price: number;
     quantity: number;
+    bannerImage?: string;
 };
 
 type CartState = {
@@ -44,7 +45,7 @@ const cartSlice = createSlice({
                 }
 
                 if (product) {
-                    state.cartItems.push({ id: product.translationKey, price: product.price, quantity: 1 });
+                    state.cartItems.push({ id: product.translationKey, price: product.price, quantity: 1, bannerImage: product.bannerImage });
                 }
             }
 
