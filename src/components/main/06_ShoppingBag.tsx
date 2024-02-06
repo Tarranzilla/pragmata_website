@@ -74,7 +74,7 @@ export default function ShoppingBag() {
 
                     {cartItems.length > 0 && (
                         <div className="BagList">
-                            {cartItems.map((cartItem, index) => {
+                            {[...cartItems].reverse().map((cartItem, index) => {
                                 if (products) {
                                     let product;
                                     for (const prod of products) {

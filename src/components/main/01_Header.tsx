@@ -8,13 +8,37 @@ import { RootState } from "@/store/store";
 import ShareBtn from "../buttons/ShareBtn";
 import ThemeSwitch from "../buttons/ThemeSwitch";
 
+import { findProductByTranslationKeyWebStruc } from "@/types/WebStructure";
+
 export default function Header() {
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
+    const currentSubpage = useSelector((state: RootState) => state.interface.activeSubpage);
+    const currentItem = useSelector((state: RootState) => state.interface.activeItem);
+
     const isSubpageActive = useSelector((state: RootState) => state.interface.isSubpageActive);
+
     const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
     const isCartOpen = useSelector((state: RootState) => state.interface.isCartOpen);
+
     const tSimple = useSimpleTranslation();
+
     const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
+
+    console.log(translatedPage);
+
+    const translatedSubpage =
+        translatedPage?.products?.find((product) => product.translationKey === currentSubpage) ||
+        translatedPage?.projects?.find((project) => project.translationKey === currentSubpage);
+
+    if (translatedSubpage) {
+        console.log(translatedSubpage);
+    }
+
+    const translatedItem = findProductByTranslationKeyWebStruc(currentItem, tSimple);
+
+    if (translatedItem) {
+        console.log(translatedItem);
+    }
 
     return (
         <div className="Header">
@@ -24,7 +48,7 @@ export default function Header() {
             {/* Page Title */}
             <div className="Header_Center">
                 <AnimatePresence mode="wait">
-                    {isSubpageActive && !isMenuOpen && (
+                    {translatedSubpage && !translatedItem && !isMenuOpen && !isCartOpen && (
                         <m.h2
                             className="HeaderPageTitle"
                             key={translatedPage?.translationKey}
@@ -32,31 +56,19 @@ export default function Header() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -50 }}
                         >
-                            {translatedPage?.name}
+                            {translatedSubpage?.name}
                         </m.h2>
                     )}
 
-                    {isCartOpen && !isMenuOpen && (
+                    {translatedItem && !isMenuOpen && !isCartOpen && (
                         <m.h2
-                            className="HeaderPageTitle MenuHeader"
+                            className="HeaderPageTitle"
                             key={"bag-header"}
                             initial={{ opacity: 0, y: -50 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -50 }}
                         >
-                            {tSimple.cart.cartTitle}
-                        </m.h2>
-                    )}
-
-                    {isMenuOpen && (
-                        <m.h2
-                            className="HeaderPageTitle MenuHeader"
-                            key={"menu-header"}
-                            initial={{ opacity: 0, y: -50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -50 }}
-                        >
-                            menu
+                            {translatedItem?.name}
                         </m.h2>
                     )}
                 </AnimatePresence>

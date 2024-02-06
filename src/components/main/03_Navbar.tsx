@@ -17,6 +17,8 @@ import ArrowBack_Icon from "../icons/ArrowBack_Icon";
 import ArrowNext_Icon from "../icons/ArrowNext_Icon";
 import CartSwitch from "../buttons/CartSwitch";
 
+import { findProductByTranslationKeyWebStruc } from "@/types/WebStructure";
+
 import { useRouter } from "next/router";
 
 export default function Navbar() {
@@ -24,6 +26,7 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const currentSubpage = useSelector((state: RootState) => state.interface.activeSubpage);
+    const currentItem = useSelector((state: RootState) => state.interface.activeItem);
 
     const tSimple = useSimpleTranslation();
     const translatedPage = tSimple.pages.find((page) => page.translationKey === currentPage);
@@ -32,7 +35,9 @@ export default function Navbar() {
         translatedPage?.products?.find((product) => product.translationKey === currentSubpage) ||
         translatedPage?.projects?.find((project) => project.translationKey === currentSubpage);
 
-    const navIndicator = translatedSubpage ? translatedSubpage.name : translatedPage ? translatedPage.name : "";
+    const translatedItem = findProductByTranslationKeyWebStruc(currentItem, tSimple);
+
+    const navIndicator = translatedPage ? translatedPage.name : "";
 
     const [exitDirection, setExitDirection] = useState(0);
     const [enterDirection, setEnterDirection] = useState(0);
@@ -121,17 +126,17 @@ export default function Navbar() {
 
                 {/* Back to Page Button */}
                 {isSubpage && (
-                    <div
+                    <Link
+                        href={translatedItem ? (translatedSubpage ? translatedSubpage.path : "") : translatedPage ? translatedPage.path : ""}
                         onClick={() => {
                             closeMenuAction();
                             setCartOpenAction(false);
-                            router.back();
                         }}
                         className={"Nav_Button"}
                     >
                         <ArrowBack_Icon />
                         <p className="DesktopOnly ButtonLabel">{translatedPage?.name}</p>
-                    </div>
+                    </Link>
                 )}
 
                 {/* Language Switch */}
