@@ -24,6 +24,10 @@ import { useRouter } from "next/router";
 export default function Navbar() {
     const router = useRouter();
     const dispatch = useDispatch();
+
+    const isMenuOpen = useSelector((state: RootState) => state.interface.isMenuOpen);
+    const isCartOpen = useSelector((state: RootState) => state.interface.isCartOpen);
+
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const currentSubpage = useSelector((state: RootState) => state.interface.activeSubpage);
     const currentItem = useSelector((state: RootState) => state.interface.activeItem);
@@ -103,7 +107,13 @@ export default function Navbar() {
                 {/* Previous Page Button */}
                 {!isSubpage && (
                     <Link
-                        onClick={() => {
+                        onClick={(e) => {
+                            if (isMenuOpen || isCartOpen) {
+                                e.preventDefault();
+                                closeMenuAction();
+                                setCartOpenAction(false);
+                                return;
+                            }
                             closeMenuAction();
                             // Set the exit direction to the right
                             setExitDirection(1);
@@ -128,7 +138,12 @@ export default function Navbar() {
                 {isSubpage && (
                     <Link
                         href={translatedItem ? (translatedSubpage ? translatedSubpage.path : "") : translatedPage ? translatedPage.path : ""}
-                        onClick={() => {
+                        onClick={(e) => {
+                            if (isMenuOpen || isCartOpen) {
+                                e.preventDefault();
+                                closeMenuAction();
+                                setCartOpenAction(false);
+                            }
                             closeMenuAction();
                             setCartOpenAction(false);
                         }}
@@ -167,13 +182,22 @@ export default function Navbar() {
                 )}
 
                 {/* Brand Name */}
-                <h1 className="BrandName">pragmatas</h1>
+                <Link href={"/"} className="BrandName">
+                    pragmatas
+                </Link>
             </div>
             <div className="Navbar_Right">
                 {/* Next Page Button */}
                 {!isSubpage && (
                     <Link
-                        onClick={() => {
+                        onClick={(e) => {
+                            if (isMenuOpen || isCartOpen) {
+                                e.preventDefault();
+                                closeMenuAction();
+                                setCartOpenAction(false);
+                                return;
+                            }
+
                             closeMenuAction();
                             // Set the exit direction to the left
                             setExitDirection(0);

@@ -3,7 +3,7 @@ import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { toggleMenuOpen, setCartHelperOpen } from "@/store/slices/interfaceSlice";
+import { toggleMenuOpen, setCartHelperOpen, closeMenu, setCartOpen } from "@/store/slices/interfaceSlice";
 import { addCartItem, decrementCartItem, removeCartItem } from "@/store/slices/cartSlice";
 
 import { useEffect, useState } from "react";
@@ -13,6 +13,8 @@ const cartItemVariants = {
     show: { opacity: 1, transition: { duration: 0.5 } },
     exit: { opacity: 0, transition: { duration: 0.5 } },
 };
+
+import Link from "next/link";
 
 export default function ShoppingBag() {
     const dispatch = useDispatch();
@@ -60,6 +62,10 @@ export default function ShoppingBag() {
         dispatch(setCartHelperOpen(value));
     };
 
+    const setCartOpenAction = (value: boolean) => {
+        dispatch(setCartOpen(false));
+    };
+
     return (
         <AnimatePresence mode="popLayout">
             {isCartOpen && (
@@ -70,6 +76,9 @@ export default function ShoppingBag() {
                     className="ShoppingBag"
                     key={"ShoppingBag"}
                 >
+                    <div className="BagHeader">
+                        <h2>{tSimple.cart.cartTitle}</h2>
+                    </div>
                     {cartItems.length < 1 && <h5 className="EmptyCartTitle">{tSimple.cart.emptyCartMessage}</h5>}
 
                     {cartItems.length > 0 && (
@@ -144,7 +153,15 @@ export default function ShoppingBag() {
                             {tSimple.cart.checkOutHelpTitle}
                         </button>
                         {cartItems.length === 0 ? (
-                            <div className="CheckoutBtn Disabled">{tSimple.cart.checkOutActionEmptyCartText}</div>
+                            <Link
+                                href={"/shop"}
+                                onClick={() => {
+                                    setCartOpenAction(false);
+                                }}
+                                className="CheckoutBtn Disabled"
+                            >
+                                {tSimple.cart.checkOutActionEmptyCartText}
+                            </Link>
                         ) : (
                             <a className="CheckoutBtn" href={generateCartMessage()} target="_blank" rel="noopener noreferrer">
                                 {tSimple.cart.checkOutActionText}
