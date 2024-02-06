@@ -36,12 +36,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath }) => {
     const router = useRouter();
+    const tSimple = useSimpleTranslation();
 
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
 
-    const tSimple = useSimpleTranslation();
     const product = findProductByTranslationKeyWebStruc(objectPath, tSimple);
 
     return (
