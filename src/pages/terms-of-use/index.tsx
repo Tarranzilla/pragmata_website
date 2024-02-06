@@ -1,10 +1,11 @@
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
+import { motion as m } from "framer-motion";
 
 export default function TermsOfUse() {
     const tSimple = useSimpleTranslation();
     return (
-        <div className="ContentViewer">
+        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
             <h4>{tSimple.pages[8]?.paragraphs?.[0]}</h4>
-        </div>
+        </m.div>
     );
 }
