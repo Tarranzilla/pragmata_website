@@ -18,6 +18,9 @@ import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 
 import { AnimatePresence } from "framer-motion";
+import Link from "next/link";
+
+import { motion as m } from "framer-motion";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
@@ -81,7 +84,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
     }
 
     return (
-        <div className="Project_Page">
+        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
             <div className="Product_Page_Header">
                 <h1 className="ProductTitle">{product.name}</h1>
                 <h2 className="ProductSubtitle">{product.subtitle}</h2>
@@ -118,7 +121,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                                         <img className="subproduct_image" src={product.bannerImage} alt="" />
                                     </div>
                                     {/* Render your product here */}
-                                    <button className="InfoButton">...</button>
+                                    <Link href={product.path} className="InfoButton">
+                                        ...
+                                    </Link>
                                     <button
                                         className="AddToCartButton"
                                         onClick={() => {
@@ -164,7 +169,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                     ))}
                 </div>
             )}
-        </div>
+        </m.div>
     );
 };
 

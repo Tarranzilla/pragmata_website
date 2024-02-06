@@ -17,7 +17,10 @@ import ArrowBack_Icon from "../icons/ArrowBack_Icon";
 import ArrowNext_Icon from "../icons/ArrowNext_Icon";
 import CartSwitch from "../buttons/CartSwitch";
 
+import { useRouter } from "next/router";
+
 export default function Navbar() {
+    const router = useRouter();
     const dispatch = useDispatch();
     const currentPage = useSelector((state: RootState) => state.interface.activePage);
     const currentSubpage = useSelector((state: RootState) => state.interface.activeSubpage);
@@ -118,17 +121,17 @@ export default function Navbar() {
 
                 {/* Back to Page Button */}
                 {isSubpage && (
-                    <Link
-                        href={`${translatedPage?.path}`}
+                    <div
                         onClick={() => {
                             closeMenuAction();
                             setCartOpenAction(false);
+                            router.back();
                         }}
                         className={"Nav_Button"}
                     >
                         <ArrowBack_Icon />
                         <p className="DesktopOnly ButtonLabel">{translatedPage?.name}</p>
-                    </Link>
+                    </div>
                 )}
 
                 {/* Language Switch */}

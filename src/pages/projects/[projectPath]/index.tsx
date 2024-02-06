@@ -5,6 +5,8 @@ import { Project } from "@/types/WebStructure";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
+import { motion as m } from "framer-motion";
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const projectPath = params?.projectPath;
 
@@ -36,7 +38,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
     }
 
     return (
-        <div className="Project_Page">
+        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
             <h1 className={"ProjectTitle"}>{project.name}</h1>
             <h2 className={"ProjectSubtitle"}>{project.subtitle}</h2>
             <h3 className={"ProjectDescription"}>{project.description}</h3>
@@ -67,7 +69,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </m.div>
     );
 };
 

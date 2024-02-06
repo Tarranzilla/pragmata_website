@@ -1,3 +1,19 @@
+export const findProductByTranslationKeyWebStruc = (translationKey: string, webStructure: WebStructure): Product | undefined => {
+    for (const page of webStructure.pages) {
+        if (page.products) {
+            for (const prod of page.products) {
+                if (prod.subproducts) {
+                    for (const subproductGroup of prod.subproducts) {
+                        const product = subproductGroup.products.find((product: Product) => product.translationKey === translationKey);
+                        if (product) return product;
+                    }
+                }
+            }
+        }
+    }
+    return undefined;
+};
+
 export type ImageGroup = {
     name: string;
     images: string[];
@@ -461,6 +477,9 @@ export const products: Product[] = [
 ];
 
 export const productPaths = products.map((product) => product.path.replace("/shop/", ""));
+export const subproductPaths = products.flatMap((product) =>
+    product.subproducts ? product.subproducts.flatMap((subproduct) => subproduct.products.map((product) => product.path.replace("/shop/", ""))) : []
+);
 
 const products_ptBR: Product[] = [
     {
@@ -560,7 +579,8 @@ const products_ptBR: Product[] = [
                     {
                         name: "SU",
                         subtitle: "Módulo Estrutural",
-                        description: "Uma pequena peça que pode ser usada para unir estruturas, mas também pode ser usada para segurar objetos pequenos.",
+                        description:
+                            "Uma pequena peça que pode ser usada para unir estruturas, mas também pode ser usada para segurar objetos pequenos.",
                         path: "/shop/suru/su",
                         language: "en",
                         translationKey: "su",
