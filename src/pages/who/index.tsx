@@ -11,21 +11,23 @@ export default function Who() {
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <Image
-                src="/imgs/pragmatas_logo_comercial_black.png"
-                width={500}
-                height={500}
-                alt="pragmatas"
-                className={`Image ${colorMode === "dark" ? "InvertedImage" : ""}`}
-            />
-            <p>{tSimple.pages[1]?.paragraphs?.[0]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[1]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[2]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[3]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[4]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[5]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[6]}</p>
-            <p>{tSimple.pages[1]?.paragraphs?.[7]}</p>
+            <div className="Page_Card">
+                <Image
+                    src="/imgs/pragmatas_logo_comercial_black.png"
+                    width={500}
+                    height={500}
+                    alt="pragmatas"
+                    className={`Image ${colorMode === "dark" ? "InvertedImage" : ""}`}
+                />
+                <p>{tSimple.pages[1]?.paragraphs?.[0]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[1]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[2]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[3]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[4]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[5]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[6]}</p>
+                <p>{tSimple.pages[1]?.paragraphs?.[7]}</p>
+            </div>
         </m.div>
     );
 }

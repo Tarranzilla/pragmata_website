@@ -16,7 +16,7 @@ export default function MenuSwitch() {
         dispatch(setCartOpen(false));
     };
     return (
-        <button onClick={toggleMenuAction} className={isMenuOpen ? "Nav_Button Active" : "Nav_Button"}>
+        <button onClick={toggleMenuAction} className={isMenuOpen ? "Nav_Button Menu_Button Active" : "Menu_Button Nav_Button"}>
             <p className="DesktopOnly ButtonLabel">{tSimple.footer.menuBtnText}</p>
             <Menu_Icon />
         </button>

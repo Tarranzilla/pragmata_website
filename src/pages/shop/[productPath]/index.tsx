@@ -100,41 +100,47 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
             {product.subproducts && (
                 <>
-                    <div className="Subproducts_Container">
-                        {product.subproducts
-                            .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
-                            ?.products.map((product) => (
-                                <div key={product.name} className="Subproduct">
-                                    <div className="SubproductImageContainer">
-                                        <img className="subproduct_image" src={product.bannerImage} alt="" />
-                                    </div>
+                    <div className="Subproducts_Container_Wrapper">
+                        <div className="Subproducts_Container_Fader"></div>
+                        <div className="Subproducts_Container">
+                            {product.subproducts
+                                .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
+                                ?.products.map((product) => (
+                                    <div key={product.name} className="Subproduct">
+                                        <div className="SubproductImageContainer">
+                                            <img className="subproduct_image" src={product.bannerImage} alt="" />
+                                        </div>
 
-                                    <Link href={product.path} className="InfoButton">
-                                        ...
-                                    </Link>
-                                    <button
-                                        className="AddToCartButton"
-                                        onClick={() => {
-                                            addToCartAction(product.translationKey);
-                                        }}
-                                    >
-                                        {tSimple.common.addToCartBtn}{" "}
-                                        {quantities[product.translationKey] > 0 ? `(${quantities[product.translationKey]})` : ""}
-                                    </button>
-                                </div>
-                            ))}
+                                        <Link href={product.path} className="InfoButton">
+                                            ...
+                                        </Link>
+                                        <button
+                                            className="AddToCartButton"
+                                            onClick={() => {
+                                                addToCartAction(product.translationKey);
+                                            }}
+                                        >
+                                            {tSimple.common.addToCartBtn}{" "}
+                                            {quantities[product.translationKey] > 0 ? `(${quantities[product.translationKey]})` : ""}
+                                        </button>
+                                    </div>
+                                ))}
+                        </div>
                     </div>
 
-                    <div className="subproducts_classes_container">
-                        {product.subproducts.map((subproductGroup) => (
-                            <div
-                                key={subproductGroup.key}
-                                className={`subproduct_class ${activeSubproductGroup === subproductGroup.key ? "active" : ""}`}
-                                onClick={() => setActiveSubproductGroup(subproductGroup.key)}
-                            >
-                                {subproductGroup.name}
-                            </div>
-                        ))}
+                    <div className="subproducts_classes_container_wrapper">
+                        <div className="subproducts_classes_container_fader"></div>
+                        <div className="subproducts_classes_container">
+                            {product.subproducts.map((subproductGroup) => (
+                                <div
+                                    key={subproductGroup.key}
+                                    className={`subproduct_class ${activeSubproductGroup === subproductGroup.key ? "active" : ""}`}
+                                    onClick={() => setActiveSubproductGroup(subproductGroup.key)}
+                                >
+                                    {subproductGroup.name}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </>
             )}

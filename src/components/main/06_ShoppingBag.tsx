@@ -110,7 +110,7 @@ export default function ShoppingBag() {
                                                     <img className="CartItem_Image" src={cartItem.bannerImage} alt="" />
                                                 </div>
                                                 <div className="Bag_Item_Right">
-                                                    <h2>{product.name}</h2>
+                                                    <h2 className="Bag_Item_Name">{product.name}</h2>
                                                     <h3>R$ {cartItem.price}</h3>
                                                     <div className="BagItemFooter">
                                                         <div className="QttySelector">
@@ -158,12 +158,12 @@ export default function ShoppingBag() {
                                 onClick={() => {
                                     setCartOpenAction(false);
                                 }}
-                                className="CheckoutBtn Disabled"
+                                className="CheckoutBtn CheckoutActionButton Disabled"
                             >
                                 {tSimple.cart.checkOutActionEmptyCartText}
                             </Link>
                         ) : (
-                            <a className="CheckoutBtn" href={generateCartMessage()} target="_blank" rel="noopener noreferrer">
+                            <a className="CheckoutBtn CheckoutActionButton" href={generateCartMessage()} target="_blank" rel="noopener noreferrer">
                                 {tSimple.cart.checkOutActionText}
                             </a>
                         )}

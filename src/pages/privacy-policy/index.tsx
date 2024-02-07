@@ -5,7 +5,9 @@ export default function PrivacyPolicy() {
     const tSimple = useSimpleTranslation();
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
-            <h4>{tSimple.pages[7]?.paragraphs?.[0]}</h4>
+            <div className="Page_Card">
+                <h4>{tSimple.pages[7]?.paragraphs?.[0]}</h4>
+            </div>
         </m.div>
     );
 }
