@@ -449,6 +449,7 @@ a {
     gap: 1rem;
     padding-inline: 2.5rem;
     padding-left: 3rem;
+    padding-bottom: 1rem;
     max-height: var(--content-viewer-height);
     width: 100%;
     overflow-y: auto;
