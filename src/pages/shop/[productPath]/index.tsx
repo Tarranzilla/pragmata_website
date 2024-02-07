@@ -17,10 +17,9 @@ import { Product } from "@/types/WebStructure";
 import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 
-import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-import { motion as m } from "framer-motion";
+import { motion as m, AnimatePresence } from "framer-motion";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
@@ -103,28 +102,44 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                     <div className="Subproducts_Container_Wrapper">
                         <div className="Subproducts_Container_Fader"></div>
                         <div className="Subproducts_Container">
-                            {product.subproducts
-                                .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
-                                ?.products.map((product) => (
-                                    <div key={product.name} className="Subproduct">
-                                        <div className="SubproductImageContainer">
-                                            <img className="subproduct_image" src={product.bannerImage} alt="" />
-                                        </div>
-
-                                        <Link href={product.path} className="InfoButton">
-                                            ...
-                                        </Link>
-                                        <button
-                                            className="AddToCartButton"
-                                            onClick={() => {
-                                                addToCartAction(product.translationKey);
-                                            }}
+                            <AnimatePresence mode="wait">
+                                {product.subproducts
+                                    .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
+                                    ?.products.map((product) => (
+                                        <m.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            key={product.name}
+                                            className="Subproduct"
                                         >
-                                            {tSimple.common.addToCartBtn}{" "}
-                                            {quantities[product.translationKey] > 0 ? `(${quantities[product.translationKey]})` : ""}
-                                        </button>
-                                    </div>
-                                ))}
+                                            <div className="SubproductImageContainer">
+                                                <img className="subproduct_image" src={product.bannerImage} alt="" />
+                                            </div>
+
+                                            <Link href={product.path} className="InfoButton">
+                                                ...
+                                            </Link>
+                                            <button className="Subproduct_Material_Selector">
+                                                <p className="Material_Icon">M</p>
+                                                <img
+                                                    className="Subproduct_Material_Image"
+                                                    src="/materialFiles/material_003_plastico.png"
+                                                    alt="plastico reciclavel"
+                                                />
+                                            </button>
+                                            <button
+                                                className="AddToCartButton"
+                                                onClick={() => {
+                                                    addToCartAction(product.translationKey);
+                                                }}
+                                            >
+                                                {tSimple.common.addToCartBtn}{" "}
+                                                {quantities[product.translationKey] > 0 ? `(${quantities[product.translationKey]})` : ""}
+                                            </button>
+                                        </m.div>
+                                    ))}
+                            </AnimatePresence>
                         </div>
                     </div>
 

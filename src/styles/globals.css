@@ -280,13 +280,12 @@ a {
     overflow-y: auto;
 
     padding: 1rem;
-    padding-inline: 2.5rem;
     gap: 1rem;
 }
 
 .Project_ContentViewer {
     align-items: flex-start;
-    padding-left: 3rem;
+    padding-left: 1.5rem;
 }
 
 /* Menu */
@@ -447,8 +446,8 @@ a {
     justify-content: flex-start;
 
     gap: 1rem;
-    padding-inline: 2.5rem;
-    padding-left: 3rem;
+    padding-inline: 1rem;
+    padding-left: 1.5rem;
     padding-bottom: 1rem;
     max-height: var(--content-viewer-height);
     width: 100%;
@@ -497,7 +496,7 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    overflow-x: auto;
+    overflow-x: scroll;
     gap: 1rem;
     flex: 1;
     min-height: 200px;
@@ -551,9 +550,10 @@ a {
     flex-direction: row;
     gap: 0.5rem;
     z-index: 2;
-    overflow-x: auto;
+    overflow-x: scroll;
     flex-shrink: 0;
     padding-bottom: 1rem;
+    padding-inline: 1rem;
     width: 100%;
 }
 
@@ -595,6 +595,38 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.Subproduct_Material_Selector {
+    position: absolute;
+    bottom: 0rem;
+    right: 0;
+    padding: 0.5rem;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid var(--bg-color);
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.Material_Icon {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    font-size: 2rem;
+}
+
+.Subproduct_Material_Image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .Product_Page_ContextButton {
