@@ -111,7 +111,7 @@ export default function ShoppingBag() {
                                                 </div>
                                                 <div className="Bag_Item_Right">
                                                     <h2 className="Bag_Item_Name">{product.name}</h2>
-                                                    <h3>R$ {cartItem.price}</h3>
+                                                    <h3>R$ {cartItem.price},00</h3>
                                                     <div className="BagItemFooter">
                                                         <div className="QttySelector">
                                                             <div className="BtnLeft" onClick={() => dispatch(decrementCartItem(cartItem.id))}>
@@ -122,10 +122,10 @@ export default function ShoppingBag() {
                                                                 +
                                                             </div>
                                                         </div>
-                                                        <div className="RemoveBtn" onClick={() => dispatch(removeCartItem(cartItem.id))}>
-                                                            X
-                                                        </div>
                                                     </div>
+                                                </div>
+                                                <div className="RemoveBtn" onClick={() => dispatch(removeCartItem(cartItem.id))}>
+                                                    X
                                                 </div>
                                             </m.div>
                                         );
@@ -141,7 +141,7 @@ export default function ShoppingBag() {
                                 <h2>Total</h2>
                             </div>
                             <div className="BagTotal_Right">
-                                <h3>R$ {cartTotal}</h3>
+                                <h3>R$ {cartTotal},00</h3>
                             </div>
                         </div>
                         <button

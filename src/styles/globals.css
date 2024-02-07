@@ -884,7 +884,7 @@ a {
     width: 100%;
     padding-bottom: 7rem;
     padding-top: 0;
-    padding-inline: 3rem;
+    padding-inline: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -915,7 +915,7 @@ a {
     width: 100%;
     flex: 1;
     overflow-y: auto;
-    padding-inline: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .BagList::-webkit-scrollbar-thumb {
@@ -934,7 +934,6 @@ a {
     gap: 1rem;
     width: 100%;
     position: relative;
-    padding-right: 0.5rem;
     background-color: var(--bg-color);
     border-radius: 1rem;
 }
@@ -957,7 +956,9 @@ a {
     gap: 0.5rem;
     flex: 1;
     color: var(--text-color);
-    margin: 0.5rem;
+    height: 100%;
+    padding: 0.5rem 0rem;
+    padding-right: 0.5rem;
 }
 
 .Bag_Item_Name {
@@ -968,8 +969,9 @@ a {
 .BagItemFooter {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 0.5rem;
+    margin-top: auto;
 }
 
 .QttySelector {
@@ -983,12 +985,13 @@ a {
     background-color: var(--text-color);
     color: var(--bg-color);
     width: 100%;
-    max-width: 6rem;
+    max-width: 5rem;
 }
 
 .RemoveBtn {
-    bottom: 0.5rem;
-    right: 0.5rem;
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -997,6 +1000,8 @@ a {
     height: 2rem;
     border-radius: 50%;
     border: 2px solid var(--text-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-size: 1.6rem;
 }
 
@@ -1056,6 +1061,7 @@ a {
     color: var(--bg-color);
     text-align: center;
     text-decoration: none;
+    letter-spacing: 0.05rem;
 }
 
 .CheckoutBtn.Disabled {
@@ -1069,6 +1075,9 @@ a {
     color: var(--bg-color);
     border-radius: 1.5rem;
     height: 3rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 800;
 }
 
 .AddToCartButton {
