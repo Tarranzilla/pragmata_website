@@ -22,6 +22,8 @@ import { Suru } from "@/components/objects3D/Suru";
 import { Sur } from "@/components/objects3D/Sur";
 import { Sururu } from "@/components/objects3D/Sururu";
 
+import Head from "next/head";
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
     const objectPath = params?.objectPath;
@@ -71,71 +73,79 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
     };
 
     return (
-        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
-            <div className="object3dCanvas_Container">
-                <div
-                    className="object3d_material"
-                    onClick={() => {
-                        setMaterialIsOpen(!materialIsOpen);
-                    }}
-                >
-                    <div className="object3d_material_item">
-                        <img src="/materialFiles/material_003_plastico.png" className="object3d_material_thumb" />
-                        <p className="object3d_material_name">plástico reciclado</p>
+        <>
+            <Head>
+                <title>{product?.name}</title>
+                <meta name="description" content={product?.description} />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
+                <div className="object3dCanvas_Container">
+                    <div
+                        className="object3d_material"
+                        onClick={() => {
+                            setMaterialIsOpen(!materialIsOpen);
+                        }}
+                    >
+                        <div className="object3d_material_item">
+                            <img src="/materialFiles/material_003_plastico.png" className="object3d_material_thumb" />
+                            <p className="object3d_material_name">plástico reciclado</p>
+                        </div>
+
+                        {materialIsOpen && (
+                            <>
+                                <div className="object3d_material_item">
+                                    <img src="/materialFiles/material_002_compensado.png" className="object3d_material_thumb" />
+                                    <p className="object3d_material_name">compensado naval</p>
+                                </div>
+
+                                <div className="object3d_material_item">
+                                    <img src="/materialFiles/material_001_mdf.png" className="object3d_material_thumb" />
+                                    <p className="object3d_material_name">mdf</p>
+                                </div>
+                            </>
+                        )}
                     </div>
+                    <button
+                        onClick={() => {
+                            addToCartAction(objectPath);
+                        }}
+                        className="AddToCartButton"
+                    >
+                        {tSimple.common.addToCartBtn} {quantity && quantity > 0 ? `(${quantity})` : ""}{" "}
+                    </button>
 
-                    {materialIsOpen && (
-                        <>
-                            <div className="object3d_material_item">
-                                <img src="/materialFiles/material_002_compensado.png" className="object3d_material_thumb" />
-                                <p className="object3d_material_name">compensado naval</p>
-                            </div>
+                    <div className="ImageItem object3dCanvas">
+                        <Canvas shadows camera={{ position: [0, 0, 1.5], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
+                            <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />
 
-                            <div className="object3d_material_item">
-                                <img src="/materialFiles/material_001_mdf.png" className="object3d_material_thumb" />
-                                <p className="object3d_material_name">mdf</p>
-                            </div>
-                        </>
-                    )}
+                            <group position={[0, -0.275, 0]}>
+                                <Center top>
+                                    <Suru rotate_Z={-0.001} />
+                                    <Sur x={0} rotate_X={0.01} />
+                                    <Sur x={-0.075} rotate_X={-0.01} />
+                                    <Sur x={-0.15} rotate_X={0.01} />
+                                    <Sur x={0.075} rotate_X={-0.01} />
+                                    <Sur x={0.15} rotate_X={0.01} />
+                                    <Sururu rotate_Z={0.01} />
+                                </Center>
+                            </group>
+                            <Environment preset="warehouse" background blur={1} />
+                        </Canvas>
+                    </div>
                 </div>
+                <p>{product?.description}</p>
                 <button
+                    className={contextIsOpen ? "Product_Page_ContextButton Active" : "Product_Page_ContextButton"}
                     onClick={() => {
-                        addToCartAction(objectPath);
+                        setContextIsOpen(!contextIsOpen);
                     }}
-                    className="AddToCartButton"
                 >
-                    {tSimple.common.addToCartBtn} {quantity && quantity > 0 ? `(${quantity})` : ""}{" "}
+                    {tSimple.common.contextBtn}
                 </button>
-
-                <div className="ImageItem object3dCanvas">
-                    <Canvas shadows camera={{ position: [0, 0, 1.5], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
-                        <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />
-
-                        <group position={[0, -0.275, 0]}>
-                            <Center top>
-                                <Suru rotate_Z={-0.001} />
-                                <Sur x={0} rotate_X={0.01} />
-                                <Sur x={-0.075} rotate_X={-0.01} />
-                                <Sur x={-0.15} rotate_X={0.01} />
-                                <Sur x={0.075} rotate_X={-0.01} />
-                                <Sur x={0.15} rotate_X={0.01} />
-                                <Sururu rotate_Z={0.01} />
-                            </Center>
-                        </group>
-                        <Environment preset="warehouse" background blur={1} />
-                    </Canvas>
-                </div>
-            </div>
-            <p>{product?.description}</p>
-            <button
-                className={contextIsOpen ? "Product_Page_ContextButton Active" : "Product_Page_ContextButton"}
-                onClick={() => {
-                    setContextIsOpen(!contextIsOpen);
-                }}
-            >
-                {tSimple.common.contextBtn}
-            </button>
-        </m.div>
+            </m.div>
+        </>
     );
 };
 
