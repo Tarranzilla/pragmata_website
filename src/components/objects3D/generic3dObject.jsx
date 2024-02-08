@@ -7,8 +7,10 @@ export function Generic3dObject({ modelPath, materialPropertyName, ...props }) {
     const objectRef = useRef();
     let nodes, materials;
 
-    if (typeof modelPath === "string" && modelPath !== "") {
-        ({ nodes, materials } = useGLTF(modelPath));
+    const gltf = useGLTF(modelPath || "/default-model.gltf", false); // use a default model or update this line as per your requirement
+
+    if (modelPath) {
+        ({ nodes, materials } = gltf);
     }
 
     useFrame(() => {
