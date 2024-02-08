@@ -1,15 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
-import { setActivePage, setCartOpen } from "@/store/slices/interfaceSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { addCartItem } from "@/store/slices/cartSlice";
+import { useSelector } from "react-redux";
 
 import Image from "next/image";
-
-import { pathNameHelper } from "@/store/slices/interfaceSlice";
-
-import { useRouter } from "next/router";
 
 import { productPaths } from "@/types/WebStructure";
 
@@ -17,9 +11,9 @@ import { Product } from "@/types/WebStructure";
 import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 
-import Link from "next/link";
-
 import { motion as m, AnimatePresence } from "framer-motion";
+
+import ProductCard from "@/components/shop/ProductCard";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
@@ -40,7 +34,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
-    const dispatch = useDispatch();
     const tSimple = useSimpleTranslation();
 
     const product = tSimple.pages[5].products?.find((product: Product) => `/shop/${productPath}` === product.path);
@@ -76,21 +69,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
         }
     }, [cartItems, product]);
 
-    const router = useRouter();
-    const path = router.asPath;
-
-    const { page, pageLink, subpage, subpageLink, item, itemLink, pageTranslationKey } = pathNameHelper(path);
-
-    const addToCartAction = (translationKey: string) => {
-        const productExistsInCart = quantities[translationKey] && quantities[translationKey] > 0;
-
-        dispatch(addCartItem(translationKey));
-
-        if (!productExistsInCart) {
-            dispatch(setCartOpen(true));
-        }
-    };
-
     if (!product) {
         return <div>Product not found</div>;
     }
@@ -106,38 +84,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                                 {product.subproducts
                                     .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
                                     ?.products.map((product) => (
-                                        <m.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            key={product.name}
-                                            className="Subproduct"
-                                        >
-                                            <div className="SubproductImageContainer">
-                                                <img className="subproduct_image" src={product.bannerImage} alt="" />
-                                            </div>
-
-                                            <Link href={product.path} className="InfoButton">
-                                                ...
-                                            </Link>
-                                            <button className="Subproduct_Material_Selector">
-                                                <p className="Material_Icon">M</p>
-                                                <img
-                                                    className="Subproduct_Material_Image"
-                                                    src="/materialFiles/material_003_plastico.png"
-                                                    alt="plastico reciclavel"
-                                                />
-                                            </button>
-                                            <button
-                                                className="AddToCartButton"
-                                                onClick={() => {
-                                                    addToCartAction(product.translationKey);
-                                                }}
-                                            >
-                                                {tSimple.common.addToCartBtn}{" "}
-                                                {quantities[product.translationKey] > 0 ? `(${quantities[product.translationKey]})` : ""}
-                                            </button>
-                                        </m.div>
+                                        <ProductCard product={product} key={product.name} />
                                     ))}
                             </AnimatePresence>
                         </div>

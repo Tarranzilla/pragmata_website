@@ -9,7 +9,12 @@ export default function Shop() {
     const tSimple = useSimpleTranslation();
 
     return (
-        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer">
+        <m.div
+            initial={{ opacity: 0, y: "100vh" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+            exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+            className="ContentViewer"
+        >
             <div className="ProductList">
                 {tSimple.pages[5]?.products?.map((product: Product, index: number) => (
                     <Link href={product.path} className="Product_Container" key={index}>

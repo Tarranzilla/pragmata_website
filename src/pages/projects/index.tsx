@@ -8,7 +8,12 @@ export default function Projects() {
     const tSimple = useSimpleTranslation();
 
     return (
-        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ContentViewer Project_ContentViewer">
+        <m.div
+            initial={{ opacity: 0, y: "100vh" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+            exit={{ opacity: 0, y: "100vh", transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] } }}
+            className="ContentViewer Project_ContentViewer"
+        >
             {tSimple.pages[4]?.projects?.map((project: Project, index: number) => (
                 <Link href={project.path} key={index} className="Project_Container">
                     <h2 className="ProjectTitle">{project.name}</h2>
