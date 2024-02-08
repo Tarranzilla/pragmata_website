@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 // ... other imports
-import { subproductPaths } from "@/types/WebStructure";
+import { Material, subproductPaths } from "@/types/WebStructure";
 
 import { motion as m } from "framer-motion";
 
@@ -17,19 +17,14 @@ import { setCartOpen } from "@/store/slices/interfaceSlice";
 import { RootState } from "@/store/store";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, Center, AccumulativeShadows, RandomizedLight, Effects, SpotLight, Stage } from "@react-three/drei";
-import { Suru } from "@/components/objects3D/Suru";
-import { Sur } from "@/components/objects3D/Sur";
-import { Sururu } from "@/components/objects3D/Sururu";
+import { OrbitControls, Environment, Center } from "@react-three/drei";
+import { Generic3dObject } from "@/components/objects3D/generic3dObject";
 
 import Head from "next/head";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
     const objectPath = params?.objectPath;
-
-    console.log(productPath, objectPath);
-
     return { props: { productPath, objectPath } };
 };
 
@@ -58,9 +53,19 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
     const quantity = cartItems.find((item) => item.id === objectPath)?.quantity;
 
-    const [contextIsOpen, setContextIsOpen] = useState(false);
+    const availableMaterials = product?.availableMaterials || [];
+    const initialMaterial = availableMaterials[0] || null;
+    const [selectedMaterial, setSelectedMaterial] = useState(initialMaterial);
+    const [selectedMaterialProperty, setSelectedMaterialProperty] = useState(initialMaterial ? initialMaterial.materialPropertyName : null);
+
     const [materialIsOpen, setMaterialIsOpen] = useState(false);
-    const [selectedMaterial, setSelectedMaterial] = useState("");
+
+    const handleMaterialClick = (material: Material) => {
+        setSelectedMaterial(material);
+        setMaterialIsOpen(false);
+    };
+
+    const [contextIsOpen, setContextIsOpen] = useState(false);
 
     const addToCartAction = (translationKey: string) => {
         const productExistsInCart = quantity && quantity > 0;
@@ -82,31 +87,23 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
             </Head>
             <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
                 <div className="object3dCanvas_Container">
-                    <div
-                        className="object3d_material"
-                        onClick={() => {
-                            setMaterialIsOpen(!materialIsOpen);
-                        }}
-                    >
-                        <div className="object3d_material_item">
-                            <img src="/materialFiles/material_003_plastico.png" className="object3d_material_thumb" />
-                            <p className="object3d_material_name">plástico reciclado</p>
+                    {availableMaterials.length > 0 && (
+                        <div className="object3d_material" onClick={() => setMaterialIsOpen(!materialIsOpen)}>
+                            {materialIsOpen ? (
+                                availableMaterials.map((material, index) => (
+                                    <div key={index} className="object3d_material_item" onClick={() => handleMaterialClick(material)}>
+                                        <img src={material.thumb} className="object3d_material_thumb" />
+                                        <p className="object3d_material_name">{material.name}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="object3d_material_item">
+                                    <img src={selectedMaterial.thumb} className="object3d_material_thumb" />
+                                    <p className="object3d_material_name">{selectedMaterial.name}</p>
+                                </div>
+                            )}
                         </div>
-
-                        {materialIsOpen && (
-                            <>
-                                <div className="object3d_material_item">
-                                    <img src="/materialFiles/material_002_compensado.png" className="object3d_material_thumb" />
-                                    <p className="object3d_material_name">compensado naval</p>
-                                </div>
-
-                                <div className="object3d_material_item">
-                                    <img src="/materialFiles/material_001_mdf.png" className="object3d_material_thumb" />
-                                    <p className="object3d_material_name">mdf</p>
-                                </div>
-                            </>
-                        )}
-                    </div>
+                    )}
                     <button
                         onClick={() => {
                             addToCartAction(objectPath);
@@ -117,21 +114,22 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                     </button>
 
                     <div className="ImageItem object3dCanvas">
-                        <Canvas shadows camera={{ position: [0, 0, 1.5], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
+                        <Canvas shadows camera={{ position: [0, 0, 0.25], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
                             <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />
 
-                            <group position={[0, -0.275, 0]}>
+                            <group position={[0, 0, 0]}>
                                 <Center top>
-                                    <Suru rotate_Z={-0.001} />
-                                    <Sur x={0} rotate_X={0.01} />
-                                    <Sur x={-0.075} rotate_X={-0.01} />
-                                    <Sur x={-0.15} rotate_X={0.01} />
-                                    <Sur x={0.075} rotate_X={-0.01} />
-                                    <Sur x={0.15} rotate_X={0.01} />
-                                    <Sururu rotate_Z={0.01} />
+                                    <Generic3dObject
+                                        modelPath={product?.object3dPath}
+                                        geometryName={product?.geometryName}
+                                        geometryScale={product?.geometryScale}
+                                        customPosition={[0, 0, 0]}
+                                        materialPropertyName={selectedMaterial ? selectedMaterialProperty : undefined}
+                                        rotate_Z={-0.001}
+                                    />
                                 </Center>
                             </group>
-                            <Environment preset="warehouse" background blur={1} />
+                            <Environment preset="forest" background blur={1} />
                         </Canvas>
                     </div>
                 </div>

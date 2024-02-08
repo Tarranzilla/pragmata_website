@@ -69,6 +69,19 @@ export type Product = {
     subproducts?: SubProductGroup[];
     components?: Product[];
     type?: string;
+
+    object3dPath?: string;
+    geometryName?: string;
+    geometryScale?: string;
+    customPostion?: number[];
+    availableMaterials?: Material[];
+};
+
+export type Material = {
+    key: string;
+    name: string;
+    thumb: string;
+    materialPropertyName: string;
 };
 
 export type Service = {
@@ -290,6 +303,28 @@ export const products: Product[] = [
                         price: 80,
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
                         type: "module",
+                        object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
+                        geometryName: "Object_1_Madeira_",
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "wood",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "plastic",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "SUR",
@@ -302,6 +337,28 @@ export const products: Product[] = [
                         price: 30,
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_002.png",
                         type: "module",
+                        object3dPath: "/productsFiles/suru/objects3D/sur_madeira.glb",
+                        geometryName: "Sur",
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "wood",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "plastic",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "SU",
@@ -314,6 +371,28 @@ export const products: Product[] = [
                         price: 30,
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_003.png",
                         type: "module",
+                        object3dPath: "/productsFiles/suru/objects3D/su_madeira.glb",
+                        geometryName: "Sururu",
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "wood",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "plastic",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                 ],
             },
@@ -420,6 +499,7 @@ export const products: Product[] = [
                 ],
             },
         ],
+        object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
     },
     {
         name: "naointendo",
@@ -563,6 +643,28 @@ const products_ptBR: Product[] = [
                         price: 80,
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
                         type: "module",
+                        object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
+                        geometryName: "Object_1_Madeira_",
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "Compensado Naval",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "Plástico Reciclado",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "SUR",
@@ -575,6 +677,28 @@ const products_ptBR: Product[] = [
                         price: 30,
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_002.png",
                         type: "module",
+                        object3dPath: "/productsFiles/suru/objects3D/sur_madeira.glb",
+                        geometryName: "Sur",
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "Compensado Naval",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "Plástico Reciclado",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "SU",
@@ -588,6 +712,28 @@ const products_ptBR: Product[] = [
                         price: 30,
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_003.png",
                         type: "module",
+                        object3dPath: "/productsFiles/suru/objects3D/su_madeira.glb",
+                        geometryName: "Sururu",
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "Compensado Naval",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "Plástico Reciclado",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                 ],
             },
