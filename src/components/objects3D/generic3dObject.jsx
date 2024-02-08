@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export function Generic3dObject({ modelPath, materialPropertyName, ...props }) {
+export function Generic3dObject({ modelPath, materialPropertyName, objectScale, ...props }) {
     const objectRef = useRef();
     let nodes, materials;
 
@@ -42,7 +42,7 @@ export function Generic3dObject({ modelPath, materialPropertyName, ...props }) {
                 geometry={nodes[props.geometryName].geometry}
                 material={materials[materialPropertyName]}
                 rotation={[Math.PI / 2, 0, 0]}
-                scale={0.01}
+                scale={objectScale}
             />
         </group>
     );

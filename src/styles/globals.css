@@ -1152,7 +1152,7 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    aspect-ratio: 1/2;
+    min-height: 65vh;
 }
 
 .object3dCanvas {

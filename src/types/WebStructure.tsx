@@ -75,6 +75,7 @@ export type Product = {
     geometryScale?: string;
     customPostion?: number[];
     availableMaterials?: Material[];
+    objectScale?: number;
 };
 
 export type Material = {
@@ -305,6 +306,7 @@ export const products: Product[] = [
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
                         geometryName: "Object_1_Madeira_",
+                        objectScale: 0.005,
                         availableMaterials: [
                             {
                                 key: "wood",
@@ -339,6 +341,7 @@ export const products: Product[] = [
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/sur_madeira.glb",
                         geometryName: "Sur",
+                        objectScale: 0.03,
                         availableMaterials: [
                             {
                                 key: "wood",
@@ -373,6 +376,7 @@ export const products: Product[] = [
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/su_madeira.glb",
                         geometryName: "Sururu",
+                        objectScale: 0.005,
                         availableMaterials: [
                             {
                                 key: "wood",
@@ -645,6 +649,7 @@ const products_ptBR: Product[] = [
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
                         geometryName: "Object_1_Madeira_",
+                        objectScale: 0.005,
                         availableMaterials: [
                             {
                                 key: "wood",
@@ -679,6 +684,7 @@ const products_ptBR: Product[] = [
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/sur_madeira.glb",
                         geometryName: "Sur",
+                        objectScale: 0.03,
                         availableMaterials: [
                             {
                                 key: "wood",
@@ -714,6 +720,7 @@ const products_ptBR: Product[] = [
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/su_madeira.glb",
                         geometryName: "Sururu",
+                        objectScale: 0.005,
                         availableMaterials: [
                             {
                                 key: "wood",

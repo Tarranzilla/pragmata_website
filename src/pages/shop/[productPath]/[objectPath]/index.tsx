@@ -114,11 +114,11 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                     </button>
 
                     <div className="ImageItem object3dCanvas">
-                        <Canvas shadows camera={{ position: [0, 0, 0.25], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
+                        <Canvas shadows camera={{ position: [0, 0, 0.5], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
                             <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />
 
                             <group position={[0, 0, 0]}>
-                                <Center top>
+                                <Center>
                                     <Generic3dObject
                                         modelPath={product?.object3dPath}
                                         geometryName={product?.geometryName}
@@ -126,6 +126,7 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                                         customPosition={[0, 0, 0]}
                                         materialPropertyName={selectedMaterial ? selectedMaterialProperty : undefined}
                                         rotate_Z={-0.001}
+                                        objectScale={product?.objectScale || [0.01]}
                                     />
                                 </Center>
                             </group>
