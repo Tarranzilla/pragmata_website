@@ -5,13 +5,8 @@ import * as THREE from "three";
 
 export function Generic3dObject({ modelPath, materialPropertyName, objectScale, customMaterial, ...props }) {
     const objectRef = useRef();
-    let nodes, materials;
 
-    let gltf;
-    if (modelPath) {
-        gltf = useGLTF(modelPath, false);
-        ({ nodes, materials } = gltf);
-    }
+    const gltf = modelPath ? useGLTF(modelPath, false) : null;
 
     useFrame(() => {
         if (objectRef.current) {
@@ -25,7 +20,7 @@ export function Generic3dObject({ modelPath, materialPropertyName, objectScale, 
         }
     }, [objectRef]);
 
-    if (!nodes || !materials) {
+    if (!gltf) {
         // Render a box of color #ffb800 if there's no valid model path
         return (
             <mesh ref={objectRef} {...props} scale={0.5}>
@@ -34,6 +29,8 @@ export function Generic3dObject({ modelPath, materialPropertyName, objectScale, 
             </mesh>
         );
     }
+
+    const { nodes, materials } = gltf;
 
     return (
         <group {...props} dispose={null}>
