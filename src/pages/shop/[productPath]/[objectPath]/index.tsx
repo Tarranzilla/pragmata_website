@@ -19,6 +19,8 @@ import { RootState } from "@/store/store";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, Center } from "@react-three/drei";
 import { Generic3dObject } from "@/components/objects3D/generic3dObject";
+import * as THREE from "three";
+import { MeshStandardMaterial } from "three";
 
 import Head from "next/head";
 
@@ -51,12 +53,20 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
 
     const product = findProductByTranslationKeyWebStruc(objectPath, tSimple);
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-    const quantity = cartItems.find((item) => item.id === objectPath)?.quantity;
+
+    const baseMaterial = {
+        key: "wood",
+        name: tSimple.common.materialNames.default,
+        thumb: "/materials/wood.jpg",
+        materialPropertyName: "wood",
+    };
 
     const availableMaterials = product?.availableMaterials || [];
-    const initialMaterial = availableMaterials[0] || null;
+    const initialMaterial = availableMaterials[0] || baseMaterial;
     const [selectedMaterial, setSelectedMaterial] = useState(initialMaterial);
     const [selectedMaterialProperty, setSelectedMaterialProperty] = useState(initialMaterial ? initialMaterial.materialPropertyName : null);
+
+    const quantity = cartItems.find((item) => item.id === objectPath && item.variant.key === selectedMaterial.key)?.quantity;
 
     const [materialIsOpen, setMaterialIsOpen] = useState(false);
 
@@ -65,12 +75,24 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
         setMaterialIsOpen(false);
     };
 
+    type MaterialTypes = "wood" | "mdf" | "plastic";
+
+    type CustomMaterials = {
+        [key: string]: MeshStandardMaterial;
+    };
+
+    const customMaterials: CustomMaterials = {
+        wood: new THREE.MeshStandardMaterial({ color: "brown" }),
+        mdf: new THREE.MeshStandardMaterial({ color: "gray" }),
+        plastic: new THREE.MeshStandardMaterial({ color: "blue" }),
+    };
+
     const [contextIsOpen, setContextIsOpen] = useState(false);
 
     const addToCartAction = (translationKey: string) => {
         const productExistsInCart = quantity && quantity > 0;
 
-        dispatch(addCartItem(translationKey));
+        dispatch(addCartItem({ cartItemId: translationKey, variant: { key: selectedMaterial.key, name: selectedMaterial.name } }));
 
         if (!productExistsInCart) {
             dispatch(setCartOpen(true));
@@ -125,6 +147,7 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                                         geometryScale={product?.geometryScale}
                                         customPosition={[0, 0, 0]}
                                         materialPropertyName={selectedMaterial ? selectedMaterialProperty : undefined}
+                                        customMaterial={customMaterials[selectedMaterial?.key]}
                                         rotate_Z={-0.001}
                                         objectScale={product?.objectScale || [0.01]}
                                     />

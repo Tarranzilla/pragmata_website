@@ -908,6 +908,9 @@ a {
     justify-content: space-between;
     gap: 1rem;
     width: 100%;
+    min-height: 10rem;
+    height: auto;
+    max-height: 35%;
     position: relative;
     background-color: var(--bg-color);
     border-radius: 1rem;
@@ -917,12 +920,12 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-height: 10rem;
     height: 100%;
     border-radius: 1rem;
     outline: 3px solid var(--text-color);
     outline-offset: -2px;
     overflow: hidden;
+    max-width: 50%;
 }
 
 .Bag_Item_Right {
@@ -939,6 +942,11 @@ a {
 .Bag_Item_Name {
     font-size: 1.4rem;
     font-weight: 800;
+}
+
+.Bag_Item_Variant {
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .BagItemFooter {
@@ -991,6 +999,7 @@ a {
 .BagTotal {
     color: var(--bg-color);
     background-color: transparent;
+    min-height: auto;
 }
 
 .CartHelper {

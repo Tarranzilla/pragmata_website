@@ -100,7 +100,7 @@ export default function ShoppingBag() {
                                             <m.div
                                                 layoutId={`item-${index}`}
                                                 className="BagItem"
-                                                key={cartItem.id}
+                                                key={cartItem.id + cartItem.variant.key}
                                                 variants={cartItemVariants}
                                                 initial="hidden"
                                                 animate="show"
@@ -111,20 +111,36 @@ export default function ShoppingBag() {
                                                 </div>
                                                 <div className="Bag_Item_Right">
                                                     <h2 className="Bag_Item_Name">{product.name}</h2>
+                                                    <h3 className="Bag_Item_Variant">{tSimple.common.materialNames[cartItem.variant.key]}</h3>
                                                     <h3>R$ {cartItem.price},00</h3>
                                                     <div className="BagItemFooter">
                                                         <div className="QttySelector">
-                                                            <div className="BtnLeft" onClick={() => dispatch(decrementCartItem(cartItem.id))}>
+                                                            <div
+                                                                className="BtnLeft"
+                                                                onClick={() =>
+                                                                    dispatch(
+                                                                        decrementCartItem({ cartItemId: cartItem.id, variant: cartItem.variant })
+                                                                    )
+                                                                }
+                                                            >
                                                                 -
                                                             </div>
                                                             <div className="QttyValue">{cartItem.quantity}</div>
-                                                            <div className="BtnRight" onClick={() => dispatch(addCartItem(cartItem.id))}>
+                                                            <div
+                                                                className="BtnRight"
+                                                                onClick={() =>
+                                                                    dispatch(addCartItem({ cartItemId: cartItem.id, variant: cartItem.variant }))
+                                                                }
+                                                            >
                                                                 +
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="RemoveBtn" onClick={() => dispatch(removeCartItem(cartItem.id))}>
+                                                <div
+                                                    className="RemoveBtn"
+                                                    onClick={() => dispatch(removeCartItem({ cartItemId: cartItem.id, variant: cartItem.variant }))}
+                                                >
                                                     X
                                                 </div>
                                             </m.div>

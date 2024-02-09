@@ -3,13 +3,13 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export function Generic3dObject({ modelPath, materialPropertyName, objectScale, ...props }) {
+export function Generic3dObject({ modelPath, materialPropertyName, objectScale, customMaterial, ...props }) {
     const objectRef = useRef();
     let nodes, materials;
 
-    const gltf = useGLTF(modelPath || "/default-model.gltf", false); // use a default model or update this line as per your requirement
-
+    let gltf;
     if (modelPath) {
+        gltf = useGLTF(modelPath, false);
         ({ nodes, materials } = gltf);
     }
 
@@ -40,7 +40,7 @@ export function Generic3dObject({ modelPath, materialPropertyName, objectScale, 
             <mesh
                 ref={objectRef}
                 geometry={nodes[props.geometryName].geometry}
-                material={materials[materialPropertyName]}
+                material={customMaterial}
                 rotation={[Math.PI / 2, 0, 0]}
                 scale={objectScale}
             />

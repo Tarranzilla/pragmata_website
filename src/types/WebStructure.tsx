@@ -45,6 +45,10 @@ export type SubProductGroup = {
     products: Product[];
 };
 
+type Price = {
+    [variant: string]: number;
+};
+
 export type Product = {
     name: string;
     subtitle: string;
@@ -53,7 +57,7 @@ export type Product = {
     language: string;
     translationKey: string;
     categories: string[];
-    price: number;
+    price: Price;
 
     // propriedades opcionais
     bannerImage?: string;
@@ -137,6 +141,9 @@ export type WebStructure = {
     common: {
         addToCartBtn: string;
         contextBtn: string;
+        materialNames: {
+            [key: string]: string;
+        };
     };
     navbar: {
         // propriedades opcionais
@@ -230,7 +237,9 @@ export const products: Product[] = [
         language: "en",
         translationKey: "suru",
         categories: ["furniture"],
-        price: 420, // You need to provide the actual price
+        price: {
+            default: 420,
+        }, // You need to provide the actual price
         bannerImage: "/productsFiles/suru/imgs/suru_img_banner_512.png",
         imageGroups: [
             {
@@ -301,7 +310,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "suru-suru",
                         categories: ["furniture"],
-                        price: 80,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
@@ -336,7 +350,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "sur",
                         categories: ["furniture"],
-                        price: 30,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_002.png",
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/sur_madeira.glb",
@@ -371,7 +390,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "su",
                         categories: ["furniture"],
-                        price: 30,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_003.png",
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/su_madeira.glb",
@@ -412,7 +436,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "table",
                         categories: ["furniture"],
-                        price: 300,
+                        price: {
+                            default: 300,
+                            wood: 300,
+                            plastic: 400,
+                            mdf: 200,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
                         type: "object",
                     },
@@ -424,7 +453,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "high_table",
                         categories: ["furniture"],
-                        price: 300,
+                        price: {
+                            default: 300,
+                            wood: 300,
+                            plastic: 400,
+                            mdf: 200,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_002.png",
                         type: "object",
                     },
@@ -436,7 +470,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "chair",
                         categories: ["furniture"],
-                        price: 400,
+                        price: {
+                            default: 300,
+                            wood: 300,
+                            plastic: 400,
+                            mdf: 200,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
                         type: "object",
                     },
@@ -448,7 +487,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "shelf",
                         categories: ["furniture"],
-                        price: 400,
+                        price: {
+                            default: 300,
+                            wood: 300,
+                            plastic: 400,
+                            mdf: 200,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_004.png",
                         type: "object",
                     },
@@ -466,7 +510,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "starter_pack",
                         categories: ["furniture"],
-                        price: 1000,
+                        price: {
+                            default: 1000,
+                            wood: 1000,
+                            plastic: 1500,
+                            mdf: 800,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_extra_001.png",
                         type: "collection",
                     },
@@ -478,7 +527,12 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "advanced_pack",
                         categories: ["furniture"],
-                        price: 3000,
+                        price: {
+                            default: 3000,
+                            wood: 3000,
+                            plastic: 4500,
+                            mdf: 2000,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_extra_002.png",
                         type: "collection",
                     },
@@ -496,7 +550,11 @@ export const products: Product[] = [
                         language: "en",
                         translationKey: "surumac",
                         categories: ["machines"],
-                        price: 5000,
+                        price: {
+                            default: 5000,
+                            wood: 5000,
+                            plastic: 6000,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_surumac_001.png",
                         type: "machine",
                     },
@@ -513,7 +571,9 @@ export const products: Product[] = [
         language: "en",
         translationKey: "nintendo-gate-control",
         categories: ["electronics"],
-        price: 240, // You need to provide the actual price
+        price: {
+            default: 200,
+        }, // You need to provide the actual price
         bannerImage: "/productsFiles/naointendo/imgs/naointendo_img_banner_512.png",
         imageGroups: [
             {
@@ -536,7 +596,9 @@ export const products: Product[] = [
         language: "en",
         translationKey: "unvrs",
         categories: ["clothing"],
-        price: 150, // You need to provide the actual price
+        price: {
+            default: 200,
+        }, // You need to provide the actual price
         bannerImage: "/productsFiles/unvrs/imgs/unvrs_img_banner_512.png",
         imageGroups: [
             {
@@ -574,7 +636,12 @@ const products_ptBR: Product[] = [
         language: "en",
         translationKey: "suru",
         categories: ["mobiliário"],
-        price: 420, // Você precisa fornecer o preço real
+        price: {
+            default: 50,
+            wood: 50,
+            plastic: 80,
+            mdf: 30,
+        }, // Você precisa fornecer o preço real
         bannerImage: "/productsFiles/suru/imgs/suru_img_banner_512.png",
         imageGroups: [
             {
@@ -644,7 +711,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "suru-suru",
                         categories: ["furniture"],
-                        price: 80,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
@@ -679,7 +751,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "sur",
                         categories: ["furniture"],
-                        price: 30,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_002.png",
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/sur_madeira.glb",
@@ -715,7 +792,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "su",
                         categories: ["furniture"],
-                        price: 30,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_003.png",
                         type: "module",
                         object3dPath: "/productsFiles/suru/objects3D/su_madeira.glb",
@@ -756,7 +838,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "table",
                         categories: ["furniture"],
-                        price: 300,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
                         type: "object",
                     },
@@ -768,7 +855,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "high_table",
                         categories: ["furniture"],
-                        price: 300,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_002.png",
                         type: "object",
                     },
@@ -780,7 +872,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "chair",
                         categories: ["furniture"],
-                        price: 400,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
                         type: "object",
                     },
@@ -792,7 +889,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "shelf",
                         categories: ["furniture"],
-                        price: 400,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_004.png",
                         type: "object",
                     },
@@ -810,7 +912,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "starter_pack",
                         categories: ["furniture"],
-                        price: 1000,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_extra_001.png",
                         type: "collection",
                     },
@@ -822,7 +929,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "advanced_pack",
                         categories: ["furniture"],
-                        price: 3000,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_extra_002.png",
                         type: "collection",
                     },
@@ -840,7 +952,12 @@ const products_ptBR: Product[] = [
                         language: "en",
                         translationKey: "surumac",
                         categories: ["machines"],
-                        price: 5000,
+                        price: {
+                            default: 50,
+                            wood: 50,
+                            plastic: 80,
+                            mdf: 30,
+                        },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_surumac_001.png",
                         type: "machine",
                     },
@@ -856,7 +973,12 @@ const products_ptBR: Product[] = [
         language: "en",
         translationKey: "nintendo-gate-control",
         categories: ["eletrônicos"],
-        price: 240, // Você precisa fornecer o preço real
+        price: {
+            default: 50,
+            wood: 50,
+            plastic: 80,
+            mdf: 30,
+        }, // Você precisa fornecer o preço real
         bannerImage: "/productsFiles/naointendo/imgs/naointendo_img_banner_512.png",
         imageGroups: [
             {
@@ -879,7 +1001,12 @@ const products_ptBR: Product[] = [
         language: "en",
         translationKey: "unvrs",
         categories: ["roupas"],
-        price: 150, // Você precisa fornecer o preço
+        price: {
+            default: 50,
+            wood: 50,
+            plastic: 80,
+            mdf: 30,
+        }, // Você precisa fornecer o preço
         bannerImage: "/productsFiles/unvrs/imgs/unvrs_img_banner_512.png",
         imageGroups: [
             {
@@ -2508,6 +2635,12 @@ const englishWebStructure: WebStructure = {
     common: {
         addToCartBtn: "Add to Cart",
         contextBtn: "More Context",
+        materialNames: {
+            default: "",
+            wood: "Naval Plywood",
+            mdf: "MDF Plate",
+            plastic: "Recycled Plastic",
+        },
     },
     navbar: {
         logoTitle: "Home",
@@ -2844,6 +2977,12 @@ const portugueseWebStructure: WebStructure = {
     common: {
         addToCartBtn: "Adicionar à cesta",
         contextBtn: "Mais Contexto",
+        materialNames: {
+            default: "",
+            wood: "Compensado Naval",
+            mdf: "Placa de MDF",
+            plastic: "Plástico Reciclado",
+        },
     },
     navbar: {
         logoTitle: "pragmata",
