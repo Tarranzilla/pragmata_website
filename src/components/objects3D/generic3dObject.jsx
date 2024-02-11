@@ -9,7 +9,7 @@ function Model({ modelPath, materialPropertyName, objectScale, customMaterial, .
 
     useFrame(() => {
         if (objectRef.current) {
-            objectRef.current.rotation.z += props.rotate_Z;
+            objectRef.current.rotation.y += props.rotate_Z;
         }
     });
 
@@ -21,13 +21,7 @@ function Model({ modelPath, materialPropertyName, objectScale, customMaterial, .
 
     return (
         <group {...props} dispose={null}>
-            <mesh
-                ref={objectRef}
-                geometry={nodes[props.geometryName].geometry}
-                material={customMaterial}
-                rotation={[Math.PI / 2, 0, 0]}
-                scale={objectScale}
-            />
+            <mesh ref={objectRef} geometry={nodes[props.geometryName].geometry} material={customMaterial} scale={objectScale} />
         </group>
     );
 }

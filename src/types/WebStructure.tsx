@@ -444,6 +444,29 @@ export const products: Product[] = [
                         },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_001.png",
                         type: "object",
+                        object3dPath: "/productsFiles/suru/objects3D/Surubona_GLB_5.glb",
+                        geometryName: "Surubona",
+                        objectScale: 0.02,
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "wood",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "plastic",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "high table",
@@ -478,6 +501,29 @@ export const products: Product[] = [
                         },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
                         type: "object",
+                        object3dPath: "/productsFiles/suru/objects3D/Surubona_GLB_5.glb",
+                        geometryName: "Surubona",
+                        objectScale: 0.02,
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "wood",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "plastic",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "shelf",
@@ -880,6 +926,29 @@ const products_ptBR: Product[] = [
                         },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
                         type: "object",
+                        object3dPath: "/productsFiles/suru/objects3D/Surubona_GLB_5.glb",
+                        geometryName: "Surubona",
+                        objectScale: 0.02,
+                        availableMaterials: [
+                            {
+                                key: "wood",
+                                name: "wood",
+                                thumb: "/materialFiles/material_002_compensado.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "plastic",
+                                name: "plastic",
+                                thumb: "/materialFiles/material_003_plastico.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                            {
+                                key: "mdf",
+                                name: "mdf",
+                                thumb: "/materialFiles/material_001_mdf.png",
+                                materialPropertyName: "Madeira_Image_Texture",
+                            },
+                        ],
                     },
                     {
                         name: "armário",
