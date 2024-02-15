@@ -501,8 +501,8 @@ export const products: Product[] = [
                         },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
                         type: "object",
-                        object3dPath: "/productsFiles/suru/objects3D/Surubona_GLB_5.glb",
-                        geometryName: "Surubona",
+                        object3dPath: "/productsFiles/suru/objects3D/cadeira_guapik_6_GLB.glb",
+                        geometryName: "cadeira_guapik",
                         objectScale: 0.02,
                         availableMaterials: [
                             {
@@ -765,8 +765,8 @@ const products_ptBR: Product[] = [
                         },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_modulo_001.png",
                         type: "module",
-                        object3dPath: "/productsFiles/suru/objects3D/suru_universal_madeira.gltf",
-                        geometryName: "Object_1_Madeira_",
+                        object3dPath: "/productsFiles/suru/objects3D/suru_GLB.glb",
+                        geometryName: "suru",
                         objectScale: 0.005,
                         availableMaterials: [
                             {
@@ -926,9 +926,9 @@ const products_ptBR: Product[] = [
                         },
                         bannerImage: "/productsFiles/suru/imgs/suru_img_mobilia_003.png",
                         type: "object",
-                        object3dPath: "/productsFiles/suru/objects3D/Surubona_GLB_5.glb",
-                        geometryName: "Surubona",
-                        objectScale: 0.02,
+                        object3dPath: "/productsFiles/suru/objects3D/cadeira_guapik_6_GLB.glb",
+                        geometryName: "cadeira_guapik",
+                        objectScale: 0.2,
                         availableMaterials: [
                             {
                                 key: "wood",
