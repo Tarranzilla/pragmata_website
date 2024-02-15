@@ -530,6 +530,13 @@ a {
     height: auto;
 }
 
+.SubproductImageContainer {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 1rem;
+}
+
 .subproduct_content {
     display: flex;
     flex-direction: column;
