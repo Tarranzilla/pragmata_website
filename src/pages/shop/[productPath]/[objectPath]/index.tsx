@@ -26,6 +26,7 @@ import { useThree, useFrame } from "@react-three/fiber";
 import { SpotLight } from "@react-three/drei";
 
 import Head from "next/head";
+import ContextIcon from "@/components/icons/Context_Icon";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const productPath = params?.productPath;
@@ -153,12 +154,18 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                                     <div key={index} className="object3d_material_item" onClick={() => handleMaterialClick(material)}>
                                         <img src={material.thumb} className="object3d_material_thumb" />
                                         <p className="object3d_material_name">{material.name}</p>
+                                        <div className="material_action_btn">
+                                            <ContextIcon />
+                                        </div>
                                     </div>
                                 ))
                             ) : (
                                 <div className="object3d_material_item">
                                     <img src={selectedMaterial.thumb} className="object3d_material_thumb" />
                                     <p className="object3d_material_name">{selectedMaterial.name}</p>
+                                    <div className="material_action_btn">
+                                        <ContextIcon />
+                                    </div>
                                 </div>
                             )}
                         </div>

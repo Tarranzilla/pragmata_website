@@ -1152,6 +1152,21 @@ a {
     object-fit: contain;
 }
 
+.material_action_btn {
+    padding: 0.25rem;
+    border-radius: 50%;
+    background-color: white;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.material_action_btn svg {
+    height: 1.5rem;
+}
+
 .ButtonLabel {
     font-size: 1rem;
     line-height: 1.1rem;
