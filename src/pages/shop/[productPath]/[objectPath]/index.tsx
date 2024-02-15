@@ -9,7 +9,7 @@ import { findProductByTranslationKeyWebStruc } from "@/types/WebStructure";
 
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItem } from "@/store/slices/cartSlice";
@@ -21,6 +21,9 @@ import { OrbitControls, Environment, Center } from "@react-three/drei";
 import { Generic3dObject } from "@/components/objects3D/generic3dObject";
 import * as THREE from "three";
 import { MeshStandardMaterial } from "three";
+import { useThree, useFrame } from "@react-three/fiber";
+
+import { SpotLight } from "@react-three/drei";
 
 import Head from "next/head";
 
@@ -44,6 +47,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
 
     return { paths, fallback: true };
+};
+
+const Scene = () => {
+    const { scene, camera } = useThree();
+
+    useEffect(() => {
+        const light = scene.getObjectByName("spotLight");
+        if (light && (light as THREE.SpotLight).isSpotLight) {
+            (light as THREE.SpotLight).target.position.set(0, 0, 0); // Set to the position of your object
+            (light as THREE.SpotLight).target.updateMatrixWorld();
+        }
+    }, [scene]);
+
+    useEffect(() => {
+        camera.position.set(0, 0, 0.5); // Set to the desired position
+        camera.lookAt(0, 0, 0); // Set to the position of your object
+    }, [camera]);
+
+    useFrame(() => {
+        const light = scene.getObjectByName("spotLight");
+        if (light) {
+            light.position.copy(camera.position);
+        }
+    });
+
+    return null;
 };
 
 const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath }) => {
@@ -147,6 +176,8 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                         <Canvas shadows camera={{ position: [0, 0, 0.5], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
                             <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />
 
+                            <SpotLight name="spotLight" position={[0, 0, 2]} angle={0.3} penumbra={0.8} castShadow intensity={0.3} />
+
                             <group position={[0, 0, 0]}>
                                 <Center>
                                     <Generic3dObject
@@ -161,7 +192,11 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                                     />
                                 </Center>
                             </group>
-                            <Environment preset="forest" background blur={1} />
+
+                            <Scene />
+                            {/*
+                                <Environment preset="sunset" background blur={1} />
+                            */}
                         </Canvas>
                     </div>
                 </div>
