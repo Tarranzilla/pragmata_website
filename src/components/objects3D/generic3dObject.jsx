@@ -1,27 +1,26 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-function Model({ modelPath, materialPropertyName, objectScale, customMaterial, ...props }) {
-    const objectRef = useRef();
-    const { nodes, materials } = useGLTF(modelPath, false);
+function Model({ modelPath, materialPropertyName, objectScale, customMaterial, rotate_Z, ...props }) {
+    const groupRef = useRef();
+    const { nodes } = useGLTF(modelPath, false);
 
     useFrame(() => {
-        if (objectRef.current) {
-            objectRef.current.rotation.y += props.rotate_Z;
+        if (groupRef.current) {
+            groupRef.current.rotation.y += rotate_Z;
         }
     });
 
-    useEffect(() => {
-        if (objectRef.current) {
-            objectRef.current.geometry.center();
-        }
-    }, [objectRef]);
-
     return (
-        <group {...props} dispose={null}>
-            <mesh ref={objectRef} geometry={nodes[props.geometryName].geometry} material={customMaterial} scale={objectScale} />
+        <group ref={groupRef} {...props}>
+            {Object.entries(nodes).map(([name, node]) => {
+                if (node.isMesh) {
+                    return <mesh key={name} geometry={node.geometry} material={customMaterial} scale={objectScale} />;
+                }
+                return null;
+            })}
         </group>
     );
 }

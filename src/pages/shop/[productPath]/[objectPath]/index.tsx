@@ -114,16 +114,22 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
     const textureLoader = typeof window !== "undefined" ? new THREE.TextureLoader() : null;
 
     const customMaterials: CustomMaterials = {
-        wood: new THREE.MeshStandardMaterial({
-            map: textureLoader ? textureLoader.load("/materialFiles/texturas/compensado_colorMap.jpg") : undefined,
-        }),
-        mdf: new THREE.MeshStandardMaterial({
-            map: textureLoader ? textureLoader.load("/materialFiles/material_001_mdf.png") : undefined,
-        }),
-        plastic: new THREE.MeshStandardMaterial({
-            map: textureLoader ? textureLoader.load("/materialFiles/material_003_plastico.png") : undefined,
-        }),
+        wood: new THREE.MeshStandardMaterial(),
+        mdf: new THREE.MeshStandardMaterial(),
+        plastic: new THREE.MeshStandardMaterial(),
     };
+
+    if (textureLoader) {
+        textureLoader.load("/materialFiles/texturas/compensado_colorMap.jpg", (texture) => {
+            customMaterials.wood.map = texture;
+        });
+        textureLoader.load("/materialFiles/material_001_mdf.png", (texture) => {
+            customMaterials.mdf.map = texture;
+        });
+        textureLoader.load("/materialFiles/material_003_plastico.png", (texture) => {
+            customMaterials.plastic.map = texture;
+        });
+    }
 
     const [contextIsOpen, setContextIsOpen] = useState(false);
 
