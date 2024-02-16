@@ -87,7 +87,7 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
     const baseMaterial = {
         key: "wood",
         name: tSimple.common.materialNames.default,
-        thumb: "/materials/wood.jpg",
+        thumb: "/materialFiles/texturas/compensado_colorMap.jpg",
         materialPropertyName: "wood",
     };
 
@@ -113,23 +113,34 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
 
     const textureLoader = typeof window !== "undefined" ? new THREE.TextureLoader() : null;
 
-    const customMaterials: CustomMaterials = {
+    const [customMaterials, setCustomMaterials] = useState<CustomMaterials>({
         wood: new THREE.MeshStandardMaterial(),
         mdf: new THREE.MeshStandardMaterial(),
         plastic: new THREE.MeshStandardMaterial(),
-    };
+    });
 
-    if (textureLoader) {
-        textureLoader.load("/materialFiles/texturas/compensado_colorMap.jpg", (texture) => {
-            customMaterials.wood.map = texture;
-        });
-        textureLoader.load("/materialFiles/material_001_mdf.png", (texture) => {
-            customMaterials.mdf.map = texture;
-        });
-        textureLoader.load("/materialFiles/material_003_plastico.png", (texture) => {
-            customMaterials.plastic.map = texture;
-        });
-    }
+    useEffect(() => {
+        if (textureLoader) {
+            textureLoader.load("/materialFiles/texturas/compensado_colorMap.jpg", (texture) => {
+                setCustomMaterials((prevMaterials) => {
+                    prevMaterials.wood.map = texture;
+                    return { ...prevMaterials };
+                });
+            });
+            textureLoader.load("/materialFiles/material_001_mdf.png", (texture) => {
+                setCustomMaterials((prevMaterials) => {
+                    prevMaterials.mdf.map = texture;
+                    return { ...prevMaterials };
+                });
+            });
+            textureLoader.load("/materialFiles/material_003_plastico.png", (texture) => {
+                setCustomMaterials((prevMaterials) => {
+                    prevMaterials.plastic.map = texture;
+                    return { ...prevMaterials };
+                });
+            });
+        }
+    }, [textureLoader]);
 
     const [contextIsOpen, setContextIsOpen] = useState(false);
 
