@@ -167,6 +167,10 @@ export type WebStructure = {
         shareBtnPath?: string;
         shareBtnText?: string;
         shareBtnLabel?: string;
+
+        cartBtnText?: string;
+        cartBtnLabel?: string;
+        cartBtnPath?: string;
     };
     menu: {
         menuTitle?: string;
@@ -3712,6 +3716,10 @@ const englishWebStructure: WebStructure = {
         shareBtnPath: "/",
         shareBtnText: "Share",
         shareBtnLabel: "Share this page",
+
+        cartBtnText: "Wish Bag",
+        cartBtnLabel: "Open Wish Bag",
+        
     },
     menu: {
         menuTitle: "Menu",
@@ -4054,6 +4062,9 @@ const portugueseWebStructure: WebStructure = {
         shareBtnPath: "/",
         shareBtnText: "Partilhar",
         shareBtnLabel: "Partilhe esta página",
+
+        cartBtnText: "Cesto de Desejos",
+        cartBtnLabel: "Abrir Cesto de Desejos"
     },
     menu: {
         menuTitle: "Menu",

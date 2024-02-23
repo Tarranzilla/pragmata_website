@@ -117,7 +117,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                 )}
 
                 <div className="Product_Page_Header">
-                    <h1 className="ProductTitle">{product.name}</h1>
                     <h2 className="ProductSubtitle">{product.subtitle}</h2>
                     <h3 className="ProductDescription">{product.description}</h3>
                     <div className="CategoryList">

@@ -39,7 +39,6 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ projectPath }) => {
 
     return (
         <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="Project_Page">
-            <h1 className={"ProjectTitle"}>{project.name}</h1>
             <h2 className={"ProjectSubtitle"}>{project.subtitle}</h2>
             <h3 className={"ProjectDescription"}>{project.description}</h3>
             <div className="CategoryList">

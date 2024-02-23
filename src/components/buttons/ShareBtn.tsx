@@ -22,7 +22,12 @@ export default function ShareBtn() {
     return (
         <button className="HeaderButton ShareButton" onClick={share}>
             <Share_Icon />
-            <p className="DesktopOnly ButtonLabel">{tSimple.navbar.shareBtnText}</p>
         </button>
     );
 }
+
+/*
+
+<p className="DesktopOnly ButtonLabel">{tSimple.navbar.shareBtnText}</p>
+
+*/

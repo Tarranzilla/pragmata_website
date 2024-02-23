@@ -19,7 +19,7 @@ export default function CartSwitch() {
         <button className={isCartOpen ? "Nav_Button CartButton Active" : "Nav_Button CartButton"} onClick={toggleCartAction}>
             <Cart_Icon />
             {totalItems > 0 && <div className="CartTotalItems">{totalItems}</div>}
-            <p className="DesktopOnly ButtonLabel">{tSimple.menu.languageBtnText}</p>
+            <p className="DesktopOnly ButtonLabel">{tSimple.navbar.cartBtnText}</p>
         </button>
     );
 }

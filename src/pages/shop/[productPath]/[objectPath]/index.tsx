@@ -196,7 +196,7 @@ const ObjectPathPage: React.FC<ObjectPathPageProps> = ({ productPath, objectPath
                         {tSimple.common.addToCartBtn} {quantity && quantity > 0 ? `(${quantity})` : ""}{" "}
                     </button>
 
-                    <div className="ImageItem object3dCanvas">
+                    <div className="object3dCanvas">
                         <Canvas shadows camera={{ position: [0, 0, 0.5], fov: 35 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
                             <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />
 

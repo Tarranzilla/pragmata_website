@@ -16,7 +16,12 @@ export default function ThemeSwitch() {
     return (
         <button className="HeaderButton ThemeSwitch" onClick={toggleColorModeAction}>
             <Theme_Icon />
-            <p className="DesktopOnly ButtonLabel">{tSimple.navbar.colorModeBtnText}</p>
         </button>
     );
 }
+
+/*
+
+    <p className="DesktopOnly ButtonLabel">{tSimple.navbar.colorModeBtnText}</p>
+
+*/
