@@ -8,7 +8,7 @@ import Image from "next/image";
 import { productPaths } from "@/types/WebStructure";
 
 import { Product } from "@/types/WebStructure";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { RootState } from "@/store/store";
 
 import { motion as m, AnimatePresence } from "framer-motion";
@@ -46,6 +46,48 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
 
     const [contextIsOpen, setContextIsOpen] = useState(false);
     const [activeSubproductGroup, setActiveSubproductGroup] = useState<string | null>(null);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+    const classesRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleMouseDown = (e: any) => {
+        if (!containerRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - containerRef.current.offsetLeft);
+        setScrollLeft(containerRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e: any) => {
+        if (!containerRef.current) return;
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - containerRef.current.offsetLeft;
+        const walk = (x - startX) * 5;
+        containerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleWheel = (e: any) => {
+        if (!containerRef.current) return;
+        e.preventDefault();
+        containerRef.current.scrollLeft += e.deltaY;
+    };
+
+    const handleWheel2 = (e: any) => {
+        if (!classesRef.current) return;
+        e.preventDefault();
+        classesRef.current.scrollLeft += e.deltaY;
+    };
 
     useEffect(() => {
         if (product && loadedImages === product.imageGroups?.reduce((total, group) => total + group.images.length, 0)) {
@@ -88,12 +130,29 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
                     <>
                         <div className="Subproducts_Container_Wrapper">
                             <div className="Subproducts_Container_Fader"></div>
-                            <div className="Subproducts_Container">
+                            <div
+                                className="Subproducts_Container"
+                                ref={containerRef}
+                                onMouseDown={handleMouseDown}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseUp={handleMouseUp}
+                                onMouseMove={handleMouseMove}
+                                onWheel={handleWheel}
+                            >
                                 <AnimatePresence mode="wait">
                                     {product.subproducts
                                         .find((subproductGroup) => subproductGroup.key === activeSubproductGroup)
                                         ?.products.map((product) => (
-                                            <ProductCard product={product} key={product.name} />
+                                            <ProductCard
+                                                product={product}
+                                                key={product.name}
+                                                onClick={(e: any) => {
+                                                    if (isDragging) {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                    }
+                                                }}
+                                            />
                                         ))}
                                 </AnimatePresence>
                             </div>
@@ -101,7 +160,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ productPath }) => {
 
                         <div className="subproducts_classes_container_wrapper">
                             <div className="subproducts_classes_container_fader"></div>
-                            <div className="subproducts_classes_container">
+                            <div className="subproducts_classes_container" onWheel={handleWheel2} ref={classesRef}>
                                 {product.subproducts.map((subproductGroup) => (
                                     <div
                                         key={subproductGroup.key}

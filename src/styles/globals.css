@@ -211,6 +211,7 @@ a {
     cursor: pointer;
 
     transition: background-color 0.5s ease-in-out;
+    text-decoration: none;
 }
 
 .Menu_Button {
@@ -488,6 +489,7 @@ a {
     background-color: var(--text-color);
     color: var(--bg-color);
     border-radius: 1rem;
+    width: 100%;
 }
 
 .Product_Buy_Info {
@@ -529,6 +531,13 @@ a {
     flex-shrink: 0;
 }
 
+.subproduct_wrapper {
+    display: flex;
+    max-width: 300px;
+    height: 300px;
+    aspect-ratio: 1/1;
+}
+
 .Subproduct {
     position: relative;
     display: flex;
@@ -542,6 +551,13 @@ a {
     aspect-ratio: 1/1;
 
     gap: 1rem;
+
+    transition: scale 0.2s ease-in-out;
+}
+
+.Subproduct:hover,
+.Subproduct:focus-within {
+    scale: 1.0125;
 }
 
 .subproduct_image {
@@ -609,11 +625,25 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: padding 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.subproduct_class:first-child {
+    margin-left: auto;
+}
+
+.subproduct_class:last-child {
+    margin-right: auto;
 }
 
 .subproduct_class.active {
     background-color: var(--active-color);
     color: white;
+}
+
+.subproduct_class:hover {
+    padding-inline: 2rem;
 }
 
 .InfoButton {
@@ -635,6 +665,7 @@ a {
 
 .Product_Page_ContextButton {
     width: 100%;
+    max-width: 25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -645,6 +676,7 @@ a {
     color: var(--bg-color);
     border: none;
     transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .CategoryList {
@@ -909,6 +941,21 @@ a {
     padding-inline: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.Bag_Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px;
+    padding-inline: 1rem;
+    padding-bottom: 1rem;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .BagHeader {
@@ -918,7 +965,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-block: 1rem;
     font-size: 1rem;
 }
 
@@ -935,6 +982,7 @@ a {
     justify-content: flex-start;
     gap: 1rem;
     width: 100%;
+    max-width: 640px;
     flex: 1;
     overflow-y: scroll;
     padding: 0.5rem 1rem;
@@ -1040,6 +1088,7 @@ a {
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
+    max-width: 640px;
     padding-inline: 1.5rem;
 }
 
@@ -1270,5 +1319,11 @@ a {
         font-size: clamp(2rem, 3vw, 2.4rem);
         width: 100%;
         max-width: 18rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .Mobile_Only {
+        display: none;
     }
 }

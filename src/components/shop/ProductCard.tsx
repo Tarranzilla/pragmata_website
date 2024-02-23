@@ -4,11 +4,22 @@ import Link from "next/link";
 import { useSimpleTranslation } from "@/international/useSimpleTranslation";
 import { motion as m } from "framer-motion";
 
-export default function ProductCard({ product }: { product: Product }) {
+type ProductCardProps = {
+    product: Product;
+    onClick?: (e: React.MouseEvent<HTMLDivElement>) => void; // Add this line
+};
+const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
     const tSimple = useSimpleTranslation();
 
     return (
-        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="subproduct_wrapper" key={product.name}>
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="subproduct_wrapper"
+            key={product.name}
+            onClick={onClick}
+        >
             <Link href={product.path} className="Subproduct">
                 <div className="SubproductImageContainer">
                     <img className="subproduct_image" src={product.bannerImage} alt="" />
@@ -17,7 +28,9 @@ export default function ProductCard({ product }: { product: Product }) {
             </Link>
         </m.div>
     );
-}
+};
+
+export default ProductCard;
 
 /*
 

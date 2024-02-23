@@ -76,113 +76,122 @@ export default function ShoppingBag() {
                     className="ShoppingBag"
                     key={"ShoppingBag"}
                 >
-                    <div className="BagHeader">
-                        <h2>{tSimple.cart.cartTitle}</h2>
-                    </div>
-                    {cartItems.length < 1 && <h5 className="EmptyCartTitle">{tSimple.cart.emptyCartMessage}</h5>}
+                    <div className="Bag_Content">
+                        <div className="BagHeader">
+                            <h2>{tSimple.cart.cartTitle}</h2>
+                        </div>
+                        {cartItems.length < 1 && <h5 className="EmptyCartTitle">{tSimple.cart.emptyCartMessage}</h5>}
 
-                    {cartItems.length > 0 && (
-                        <div className="BagList">
-                            {[...cartItems].reverse().map((cartItem, index) => {
-                                if (products) {
-                                    let product;
-                                    for (const prod of products) {
-                                        if (prod.subproducts) {
-                                            for (const subproductGroup of prod.subproducts) {
-                                                product = subproductGroup.products.find((product) => product.translationKey === cartItem.id);
-                                                if (product) break;
+                        {cartItems.length > 0 && (
+                            <div className="BagList">
+                                {[...cartItems].reverse().map((cartItem, index) => {
+                                    if (products) {
+                                        let product;
+                                        for (const prod of products) {
+                                            if (prod.subproducts) {
+                                                for (const subproductGroup of prod.subproducts) {
+                                                    product = subproductGroup.products.find((product) => product.translationKey === cartItem.id);
+                                                    if (product) break;
+                                                }
                                             }
+                                            if (product) break;
                                         }
-                                        if (product) break;
-                                    }
-                                    if (product) {
-                                        return (
-                                            <m.div
-                                                layoutId={`item-${index}`}
-                                                className="BagItem"
-                                                key={cartItem.id + cartItem.variant.key}
-                                                variants={cartItemVariants}
-                                                initial="hidden"
-                                                animate="show"
-                                                exit="exit"
-                                            >
-                                                <div className="Bag_Item_Left">
-                                                    <img className="CartItem_Image" src={cartItem.bannerImage} alt="" />
-                                                </div>
-                                                <div className="Bag_Item_Right">
-                                                    <h2 className="Bag_Item_Name">{product.name}</h2>
-                                                    <h3 className="Bag_Item_Variant">{tSimple.common.materialNames[cartItem.variant.key]}</h3>
-                                                    <h3>R$ {cartItem.price},00</h3>
-                                                    <div className="BagItemFooter">
-                                                        <div className="QttySelector">
-                                                            <div
-                                                                className="BtnLeft"
-                                                                onClick={() =>
-                                                                    dispatch(
-                                                                        decrementCartItem({ cartItemId: cartItem.id, variant: cartItem.variant })
-                                                                    )
-                                                                }
-                                                            >
-                                                                -
-                                                            </div>
-                                                            <div className="QttyValue">{cartItem.quantity}</div>
-                                                            <div
-                                                                className="BtnRight"
-                                                                onClick={() =>
-                                                                    dispatch(addCartItem({ cartItemId: cartItem.id, variant: cartItem.variant }))
-                                                                }
-                                                            >
-                                                                +
+                                        if (product) {
+                                            return (
+                                                <m.div
+                                                    layoutId={`item-${index}`}
+                                                    className="BagItem"
+                                                    key={cartItem.id + cartItem.variant.key}
+                                                    variants={cartItemVariants}
+                                                    initial="hidden"
+                                                    animate="show"
+                                                    exit="exit"
+                                                >
+                                                    <div className="Bag_Item_Left">
+                                                        <img className="CartItem_Image" src={cartItem.bannerImage} alt="" />
+                                                    </div>
+                                                    <div className="Bag_Item_Right">
+                                                        <h2 className="Bag_Item_Name">{product.name}</h2>
+                                                        <h3 className="Bag_Item_Variant">{tSimple.common.materialNames[cartItem.variant.key]}</h3>
+                                                        <h3>R$ {cartItem.price},00</h3>
+                                                        <div className="BagItemFooter">
+                                                            <div className="QttySelector">
+                                                                <div
+                                                                    className="BtnLeft"
+                                                                    onClick={() =>
+                                                                        dispatch(
+                                                                            decrementCartItem({ cartItemId: cartItem.id, variant: cartItem.variant })
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    -
+                                                                </div>
+                                                                <div className="QttyValue">{cartItem.quantity}</div>
+                                                                <div
+                                                                    className="BtnRight"
+                                                                    onClick={() =>
+                                                                        dispatch(addCartItem({ cartItemId: cartItem.id, variant: cartItem.variant }))
+                                                                    }
+                                                                >
+                                                                    +
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div
-                                                    className="RemoveBtn"
-                                                    onClick={() => dispatch(removeCartItem({ cartItemId: cartItem.id, variant: cartItem.variant }))}
-                                                >
-                                                    X
-                                                </div>
-                                            </m.div>
-                                        );
+                                                    <div
+                                                        className="RemoveBtn"
+                                                        onClick={() =>
+                                                            dispatch(removeCartItem({ cartItemId: cartItem.id, variant: cartItem.variant }))
+                                                        }
+                                                    >
+                                                        X
+                                                    </div>
+                                                </m.div>
+                                            );
+                                        }
                                     }
-                                }
-                            })}
-                        </div>
-                    )}
-
-                    <div className="BagFooter">
-                        <div className="BagItem BagTotal">
-                            <div className="BagTotal_Left">
-                                <h2>Total</h2>
+                                })}
                             </div>
-                            <div className="BagTotal_Right">
-                                <h3>R$ {cartTotal},00</h3>
-                            </div>
-                        </div>
-                        <button
-                            className="CheckoutBtn CheckoutHelpBtn"
-                            onClick={() => {
-                                setCartHelperOpenAction(true);
-                            }}
-                        >
-                            {tSimple.cart.checkOutHelpTitle}
-                        </button>
-                        {cartItems.length === 0 ? (
-                            <Link
-                                href={"/shop"}
-                                onClick={() => {
-                                    setCartOpenAction(false);
-                                }}
-                                className="CheckoutBtn CheckoutActionButton Disabled"
-                            >
-                                {tSimple.cart.checkOutActionEmptyCartText}
-                            </Link>
-                        ) : (
-                            <a className="CheckoutBtn CheckoutActionButton" href={generateCartMessage()} target="_blank" rel="noopener noreferrer">
-                                {tSimple.cart.checkOutActionText}
-                            </a>
                         )}
+
+                        <div className="BagFooter">
+                            <div className="BagItem BagTotal">
+                                <div className="BagTotal_Left">
+                                    <h2>Total</h2>
+                                </div>
+                                <div className="BagTotal_Right">
+                                    <h3>R$ {cartTotal},00</h3>
+                                </div>
+                            </div>
+                            <button
+                                className="CheckoutBtn CheckoutHelpBtn"
+                                onClick={() => {
+                                    setCartHelperOpenAction(true);
+                                }}
+                            >
+                                {tSimple.cart.checkOutHelpTitle}
+                            </button>
+                            {cartItems.length === 0 ? (
+                                <Link
+                                    href={"/shop"}
+                                    onClick={() => {
+                                        setCartOpenAction(false);
+                                    }}
+                                    className="CheckoutBtn CheckoutActionButton Disabled"
+                                >
+                                    {tSimple.cart.checkOutActionEmptyCartText}
+                                </Link>
+                            ) : (
+                                <a
+                                    className="CheckoutBtn CheckoutActionButton"
+                                    href={generateCartMessage()}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {tSimple.cart.checkOutActionText}
+                                </a>
+                            )}
+                        </div>
                     </div>
                 </m.div>
             )}
