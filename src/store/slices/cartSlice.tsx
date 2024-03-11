@@ -15,7 +15,7 @@ export const findProductByTranslationKey = (translationKey: string, products: Pr
     return undefined;
 };
 
-type CartItem = {
+export type CartItem = {
     id: string;
     price: number;
     quantity: number;

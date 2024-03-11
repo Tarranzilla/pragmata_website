@@ -6,7 +6,11 @@ import { RootState } from "@/store/store";
 import { toggleMenuOpen, setCartHelperOpen, closeMenu, setCartOpen } from "@/store/slices/interfaceSlice";
 import { addCartItem, decrementCartItem, removeCartItem } from "@/store/slices/cartSlice";
 
+import { setPreferenceId } from "@/store/slices/mercadoPagoSlice";
+
 import { useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
 
 const cartItemVariants = {
     hidden: { opacity: 0, transition: { duration: 0.5 } },
@@ -17,6 +21,7 @@ const cartItemVariants = {
 import Link from "next/link";
 
 export default function ShoppingBag() {
+    const router = useRouter();
     const dispatch = useDispatch();
 
     const isCartOpen = useSelector((state: RootState) => state.interface.isCartOpen);
@@ -64,6 +69,40 @@ export default function ShoppingBag() {
 
     const setCartOpenAction = (value: boolean) => {
         dispatch(setCartOpen(false));
+    };
+
+    const setPreferenceIdAction = (value: string) => {
+        dispatch(setPreferenceId(value));
+    };
+
+    const handleMercadoClick = () => {
+        console.log("Mercado Pago Clicked");
+
+        fetch("http://localhost:666/api/create_preference", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cartItems),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then((data) => {
+                if (data) {
+                    const preference = JSON.parse(data);
+                    setPreferenceIdAction(preference.id);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+            .finally(() => {
+                router.push("/checkout");
+            });
     };
 
     return (
@@ -182,14 +221,25 @@ export default function ShoppingBag() {
                                     {tSimple.cart.checkOutActionEmptyCartText}
                                 </Link>
                             ) : (
-                                <a
-                                    className="CheckoutBtn CheckoutActionButton"
-                                    href={generateCartMessage()}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {tSimple.cart.checkOutActionText}
-                                </a>
+                                <>
+                                    <a
+                                        className="CheckoutBtn CheckoutActionButton"
+                                        href={generateCartMessage()}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {tSimple.cart.checkOutActionText}
+                                    </a>
+                                    <button
+                                        id="wallet_container"
+                                        className="CheckoutBtn CheckoutActionButton"
+                                        onClick={() => {
+                                            handleMercadoClick();
+                                        }}
+                                    >
+                                        Mercado Pago
+                                    </button>
+                                </>
                             )}
                         </div>
                     </div>

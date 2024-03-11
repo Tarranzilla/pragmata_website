@@ -1131,6 +1131,7 @@ a {
     text-align: center;
     text-decoration: none;
     line-height: 1.1rem;
+    cursor: pointer;
 }
 
 .CheckoutHelpBtn {
